@@ -1,97 +1,134 @@
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzSlf54-naWf-R3dGNFIFqeQD1sUOSeY8G8D9VKZLpP8a6l_JNcyh2GuUP_QgXJ2Bo/exec";
+
 const products = [
-  {
-    id: 1,
-    name: "Judydoll Iron Mascara",
-    price: 999,
-    images: ["images/mascara.png"],
-    description: "Slim metal wand mascara for clean, long lashes."
-  },
-  {
-    id: 2,
-    name: "Hydrocolloid Acne Patch",
-    price: 150,
-    images: [
-      "images/acne-patch.png",
-      "images/acne-patch1.png",
-      "images/acne-patch2.png"
-    ],
-    description: "Cute acne patches (star, Hello Kitty, cartoon)."
-  },
-  {
-    id: 3,
-    name: "Hisyi Eyeshadow Palette",
-    price: 299,
-    images: ["images/eyeshadow.png"],
-    description: "Neutral everyday shades with shimmer + matte."
-  },
-  {
-    id: 4,
-    name: "Oil Blotting Paper",
-    price: 350,
-    images: [
-      "images/blotting-paper.png",
-      "images/blotting-paper1.png",
-      "images/blotting-paper2.png"
-    ],
-    description: "100 sheets, oil control, compact case."
-  }
+{
+id:1,
+name:"Judydoll Iron Mascara",
+price:999,
+images:["images/mascara.png"],
+desc:"✨ Long clean lashes. No clumps. Perfect for daily use."
+},
+{
+id:2,
+name:"Hydrocolloid Acne Patch",
+price:150,
+images:[
+"images/acne-patch.png",
+"images/acne-patch1.png",
+"images/acne-patch2.png"
+],
+desc:"✨ Heals pimples fast. Cute star & cartoon design."
+},
+{
+id:3,
+name:"Hisyi Eyeshadow Palette",
+price:299,
+images:["images/eyeshadow.png"],
+desc:"✨ Soft nude shades for everyday glam."
+},
+{
+id:4,
+name:"Blotting Paper",
+price:350,
+images:[
+"images/blotting-paper.png",
+"images/blotting-paper1.png",
+"images/blotting-paper2.png"
+],
+desc:"✨ Oil control. 100 sheets. Travel friendly."
+}
 ];
 
-let cart = [];
+let cart=[];
 
-const productList = document.getElementById("product-list");
-const cartCount = document.getElementById("cart-count");
+function render(){
+let html="";
+products.forEach(p=>{
+html+=`
+<div class="product">
+< img src="${p.images[0]}" id="img${p.id}" class="main-img">
 
-function renderProducts() {
-  productList.innerHTML = "";
+${p.images.map(i=>`< img src="${i}" class="thumb" onclick="change(${p.id},'${i}')">`).join("")}
 
-  products.forEach((product) => {
-    const card = document.createElement("div");
-    card.className = "product-card";
-
-    const thumbnails = product.images
-      .map(
-        (img) =>
-          `< img src="${img}" class="thumb" onclick="changeImage(this, ${product.id})">`
-      )
-      .join("");
-
-    card.innerHTML = `
-      <div class="image-box">
-        < img src="${product.images[0]}" id="main-${product.id}" class="main-img">
-        <div class="thumbs">${thumbnails}</div>
-      </div>
-
-      <div class="product-content">
-        <h3>${product.name}</h3>
-        <p>${product.description}</p >
-        <div class="price">${product.price} tk</div>
-        <button class="add-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
-      </div>
-    `;
-
-    productList.appendChild(card);
-  });
+<h3>${p.name}</h3>
+<p>${p.desc}</p >
+<b>${p.price} tk</b><br>
+<button onclick="add(${p.id})">Add to Cart</button>
+</div>
+`;
+});
+document.getElementById("product-list").innerHTML=html;
 }
 
-function changeImage(el, id) {
-  document.getElementById("main-" + id).src = el.src;
+function change(id,img){
+document.getElementById("img"+id).src=img;
 }
 
-function addToCart(id) {
-  const item = cart.find((i) => i.id === id);
-  if (item) {
-    item.quantity++;
-  } else {
-    const product = products.find((p) => p.id === id);
-    cart.push({ ...product, quantity: 1 });
-  }
-  updateCart();
+function add(id){
+let item=cart.find(i=>i.id==id);
+if(item) item.qty++;
+else{
+let p=products.find(p=>p.id==id);
+cart.push({...p,qty:1});
+}
+updateCart();
 }
 
-function updateCart() {
-  const total = cart.reduce((sum, i) => sum + i.quantity, 0);
-  cartCount.textContent = total;
+function updateCart(){
+document.getElementById("cart-count").innerText=
+cart.reduce((s,i)=>s+i.qty,0);
+
+let html="";
+let total=0;
+
+cart.forEach(i=>{
+html+=`${i.name} x ${i.qty}<br>`;
+total+=i.price*i.qty;
+});
+
+document.getElementById("cart-items").innerHTML=html;
+document.getElementById("subtotal").innerText=total;
+
+let delivery=document.getElementById("area").value=="Inside Dhaka"?80:120;
+
+document.getElementById("total").innerText=total+delivery;
 }
 
-renderProducts();
+function openCart(){
+document.getElementById("cart").classList.remove("hidden");
+updateCart();
+}
+
+function closeCart(){
+document.getElementById("cart").classList.add("hidden");
+}
+
+async function placeOrder(){
+
+let data={
+name:document.getElementById("name").value,
+phone:document.getElementById("phone").value,
+address:document.getElementById("address").value,
+area:document.getElementById("area").value,
+payment:document.getElementById("payment").value,
+products:cart.map(i=>i.name+" x "+i.qty).join(", "),
+subtotal:document.getElementById("subtotal").innerText,
+total:document.getElementById("total").innerText
+};
+
+document.getElementById("msg").innerText="Sending...";
+
+try{
+await fetch(SCRIPT_URL,{
+method:"POST",
+body:JSON.stringify(data)
+});
+document.getElementById("msg").innerText="Order sent!";
+cart=[];
+updateCart();
+}catch{
+document.getElementById("msg").innerText="Error!";
+}
+}
+
+render();
