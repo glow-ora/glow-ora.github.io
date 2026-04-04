@@ -1,4 +1,5 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzSlf54-naWf-R3dGNFIFqeQD1sUOSeY8G8D9VKZLpP8a6l_JNcyh2GuUP_QgXJ2Bo/exec";
+const SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
 
 const products = [
   {
@@ -154,4 +155,170 @@ function decreaseQty(productId) {
   const item = cart.find((product) => product.id === productId);
   if (!item) return;
 
-  item.quantity -=
+  item.quantity -= 1;
+
+  if (item.quantity <= 0) {
+    cart = cart.filter((product) => product.id !== productId);
+  }
+
+  updateCartCount();
+  renderCart();
+}
+
+function removeItem(productId) {
+  cart = cart.filter((product) => product.id !== productId);
+  updateCartCount();
+  renderCart();
+}
+
+function getSubtotal() {
+  return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+}
+
+function getDeliveryCharge() {
+  if (deliveryAreaEl.value === "Inside Dhaka") return 80;
+  if (deliveryAreaEl.value === "Outside Dhaka") return 120;
+  return 0;
+}
+
+function updateTotals() {
+  const subtotal = getSubtotal();
+  const deliveryCharge = getDeliveryCharge();
+  const grandTotal = subtotal + deliveryCharge;
+
+  subtotalEl.textContent = subtotal;
+  deliveryChargeEl.textContent = deliveryCharge;
+  grandTotalEl.textContent = grandTotal;
+}
+
+function renderCart() {
+  cartItems.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartItems.innerHTML = `<div class="empty-cart">Your cart is empty.</div>`;
+    updateTotals();
+    return;
+  }
+
+  cart.forEach((item) => {
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    row.innerHTML = `
+      <div>
+        <div class="cart-item-title">${item.name}</div>
+        <div>${item.price} tk × ${item.quantity}</div>
+      </div>
+
+      <div class="qty-box">
+        <button class="qty-btn" onclick="decreaseQty(${item.id})">−</button>
+        <span>${item.quantity}</span>
+        <button class="qty-btn" onclick="increaseQty(${item.id})">+</button>
+      </div>
+
+      <div>
+        <div><strong>${item.price * item.quantity} tk</strong></div>
+        <button class="remove-btn" onclick="removeItem(${item.id})">Remove</button>
+      </div>
+    `;
+
+    cartItems.appendChild(row);
+  });
+
+  updateTotals();
+}
+
+function openCart() {
+  cartModal.classList.remove("hidden");
+}
+
+function closeCart() {
+  cartModal.classList.add("hidden");
+}
+
+cartToggle.addEventListener("click", () => {
+  renderCart();
+  openCart();
+});
+
+closeCartBtn.addEventListener("click", closeCart);
+
+window.addEventListener("click", (e) => {
+  if (e.target === cartModal) {
+    closeCart();
+  }
+});
+
+deliveryAreaEl.addEventListener("change", updateTotals);
+
+checkoutForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  if (cart.length === 0) {
+    orderMessage.textContent = "Your cart is empty.";
+    return;
+  }
+
+  const name = document.getElementById("customer-name").value.trim();
+  const phone = document.getElementById("customer-phone").value.trim();
+  const address = document.getElementById("customer-address").value.trim();
+  const area = deliveryAreaEl.value;
+  const paymentMethod = document.getElementById("payment-method").value;
+  const subtotal = getSubtotal();
+  const deliveryCharge = getDeliveryCharge();
+  const total = subtotal + deliveryCharge;
+
+  if (!name || !phone || !address || !area || !paymentMethod) {
+    orderMessage.textContent = "Please fill in all fields.";
+    return;
+  }
+
+  const productSummary = cart
+    .map((item) => `${item.name} x ${item.quantity}`)
+    .join(", ");
+
+  const orderData = {
+    name,
+    phone,
+    address,
+    area,
+    paymentMethod,
+    products: productSummary,
+    subtotal,
+    deliveryCharge,
+    total
+  };
+
+  orderMessage.textContent = "Placing order...";
+
+  try {
+    const response = await fetch(SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify(orderData)
+    });
+
+    let result = null;
+    try {
+      result = await response.json();
+    } catch (jsonError) {
+      result = { result: "success" };
+    }
+
+    if (result.result === "success") {
+      orderMessage.textContent = "Order placed successfully!";
+      checkoutForm.reset();
+      cart = [];
+      updateCartCount();
+      renderCart();
+    } else {
+      orderMessage.textContent = "Something went wrong. Please try again.";
+    }
+  } catch (error) {
+    orderMessage.textContent = "Order failed. Check your Apps Script URL and deployment settings.";
+    console.error(error);
+  }
+});
+
+renderProducts();
+updateCartCount();
+updateTotals();
