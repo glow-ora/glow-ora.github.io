@@ -8,22 +8,30 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="#top" class="brand">
+  <div class="container header-shell">
+    <div class="header-left">
+      <a href="#top" class="brand brand-center">
         <img src="images/logo.png" alt="Glowora logo" class="brand-logo" />
         <div class="brand-text">
           <h1>Glowora</h1>
           <p>The Art of Radiant Skin</p>
         </div>
       </a>
+    </div>
 
-      <nav class="nav">
+    <div class="header-right">
+      <nav class="nav nav-fancy">
         <a href="#products">Products</a>
         <a href="#story">Why Glowora</a>
         <a href="#delivery">Delivery</a>
         <a href="#reviews">Reviews</a>
         <a href="#faq">FAQ</a>
       </nav>
+
+      <button id="cart-toggle" class="cart-pill">Cart <span id="cart-count">0</span></button>
+    </div>
+  </div>
+</header>
 
       <button id="cart-toggle" class="cart-pill">Cart <span id="cart-count">0</span></button>
     </div>
