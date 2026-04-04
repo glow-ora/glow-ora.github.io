@@ -7,27 +7,117 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="#top" class="brand">
-        <img src="images/logo.png" alt="Glowora logo" class="brand-logo" />
-        <div class="brand-text">
-          <h1>Glowora</h1>
-          <p>The Art of Radiant Skin</p>
-        </div>
-      </a>
+  .site-header {
+  position: sticky;
+  top: 16px;
+  z-index: 1000;
+  background: transparent;
+}
 
-      <nav class="nav">
-        <a href="#products">Products</a>
-        <a href="#story">Why Glowora</a>
-        <a href="#delivery">Delivery</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#faq">FAQ</a>
-      </nav>
+.header-shell {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(232, 225, 215, 0.9);
+  border-radius: 999px;
+  padding: 14px 22px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
+  margin-top: 14px;
+}
 
-      <button id="cart-toggle" class="cart-pill">Cart <span id="cart-count">0</span></button>
-    </div>
-  </header>
+.header-left {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-center {
+  justify-content: center;
+}
+
+.brand-logo {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #f6f2eb;
+  padding: 6px;
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #7fa391;
+  letter-spacing: 0.3px;
+}
+
+.brand-text p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #8d8d8d;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-fancy {
+  background: #f8f5ef;
+  border-radius: 999px;
+  padding: 8px 10px;
+  border: 1px solid #ede5d9;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #223026;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+.nav a:hover {
+  background: white;
+  color: #6f937f;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+}
+
+.cart-pill {
+  border: none;
+  background: linear-gradient(135deg, #7ea694, #6d8f80);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(126, 166, 148, 0.25);
+}
 
   <main id="top">
     <section class="hero">
