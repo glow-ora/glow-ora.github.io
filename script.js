@@ -1,16 +1,20 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzSlf54-naWf-R3dGNFIFqeQD1sUOSeY8G8D9VKZLpP8a6l_JNcyh2GuUP_QgXJ2Bo/exec";
-const SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
 
 const products = [
   {
     id: 1,
     name: "Judydoll Iron Mascara",
     price: 999,
-    images: [
-      "images/mascara.png"
-    ],
-    shortDescription: "Slim metal wand mascara for clean, defined lashes.",
-    description: "Get precise lash definition with a slim metal wand that helps separate lashes neatly, reduce clumping, and create a longer-looking finish for everyday makeup."
+    images: ["images/mascara.png"],
+    shortDescription: "Precision lash definition with a sleek metal wand.",
+    description:
+      "Designed for refined, separated lashes, this slim metal mascara wand helps coat even smaller lashes with better control. It creates a cleaner, longer-looking lash finish that feels elegant and polished rather than heavy or overly dramatic.",
+    bullets: [
+      "Defines and separates lashes for a neat finish",
+      "Slim applicator helps with detail and control",
+      "Perfect for natural makeup and lower lashes",
+      "Great for clean girl beauty looks and everyday wear"
+    ]
   },
   {
     id: 2,
@@ -21,30 +25,49 @@ const products = [
       "images/acne-patch1.png",
       "images/acne-patch2.png"
     ],
-    shortDescription: "Cute pimple patches in fun styles for daily blemish care.",
-    description: "These hydrocolloid patches help protect pimples from dirt and touching while supporting a cleaner healing process. Cute star and cartoon styles make skincare more fun."
+    shortDescription: "Cute blemish care with practical skin protection.",
+    description:
+      "These hydrocolloid patches help cover active blemishes while keeping them protected from outside dirt, touching, and irritation. The playful designs add charm to your skincare routine while still serving a useful everyday purpose.",
+    bullets: [
+      "Helps protect pimples from touching and friction",
+      "Supports a cleaner healing environment",
+      "Cute star and cartoon designs for fun skincare",
+      "Easy to use at home, overnight, or during the day"
+    ]
   },
   {
     id: 3,
-    name: "Hisyi Eyeshadow Palette",
+    name: "Hisyi 9-Colour Eye Shadow Palette",
     price: 299,
-    images: [
-      "images/eyeshadow.png"
-    ],
-    shortDescription: "Soft nude tones for easy everyday glam.",
-    description: "A wearable 9-colour palette with soft neutrals and shimmer shades. Great for simple daytime looks, warm glam, and beginner-friendly blending."
+    images: ["images/eyeshadow.png"],
+    shortDescription: "Soft neutral tones for elegant everyday eyes.",
+    description:
+      "A wearable eyeshadow palette with flattering nude and warm brown tones that work beautifully for day-to-day makeup. The balanced mix of matte and shimmer shades makes it easy to create soft glam, office looks, or gentle evening definition.",
+    bullets: [
+      "Beginner-friendly shade story",
+      "Matte and shimmer mix for versatile looks",
+      "Soft neutral palette for daily wear",
+      "Perfect for polished, feminine eye makeup"
+    ]
   },
   {
     id: 4,
-    name: "Blotting Paper",
+    name: "Oil Absorbing Blotting Paper",
     price: 350,
     images: [
       "images/blotting-paper.png",
       "images/blotting-paper1.png",
       "images/blotting-paper2.png"
     ],
-    shortDescription: "Travel-friendly oil control sheets with 100 sheets per pack.",
-    description: "Portable blotting sheets designed to absorb excess oil without ruining makeup. Great for touch-ups during hot days, oily skin moments, and on-the-go freshness."
+    shortDescription: "Portable shine control for fresh-looking skin.",
+    description:
+      "A simple beauty-bag essential for oily or combination skin. These blotting sheets help remove excess shine without ruining makeup, making them ideal for mid-day touch-ups, humid weather, and on-the-go freshness.",
+    bullets: [
+      "Absorbs excess oil quickly",
+      "Helps keep makeup looking cleaner for longer",
+      "Travel-friendly format for your bag or pouch",
+      "Useful for touch-ups in hot or humid weather"
+    ]
   }
 ];
 
@@ -83,6 +106,10 @@ function renderProducts() {
       )
       .join("");
 
+    const bulletList = product.bullets
+      .map((bullet) => `<li>${bullet}</li>`)
+      .join("");
+
     const badge = index < 2 ? `<div class="product-badge">Best Seller</div>` : "";
 
     card.innerHTML = `
@@ -102,11 +129,14 @@ function renderProducts() {
 
       <div class="product-content">
         <h3>${product.name}</h3>
-        <p>${product.description}</p >
-        <div class="product-meta">
+        <p class="product-short">${product.shortDescription}</p>
+        <p class="product-description">${product.description}</p>
+        <ul class="product-bullets">${bulletList}</ul>
+
+        <div class="price-row">
           <div class="price">${product.price} tk</div>
+          <button class="product-btn" onclick="addToCart(${product.id})">Add to Cart</button>
         </div>
-        <button class="product-btn" onclick="addToCart(${product.id})">Add to Cart</button>
       </div>
     `;
 
@@ -116,9 +146,7 @@ function renderProducts() {
 
 function changeImage(productId, imagePath) {
   const mainImg = document.getElementById(`main-img-${productId}`);
-  if (mainImg) {
-    mainImg.src = imagePath;
-  }
+  if (mainImg) mainImg.src = imagePath;
 }
 
 function addToCart(productId) {
@@ -300,7 +328,7 @@ checkoutForm.addEventListener("submit", async (e) => {
     let result = null;
     try {
       result = await response.json();
-    } catch (jsonError) {
+    } catch (error) {
       result = { result: "success" };
     }
 
