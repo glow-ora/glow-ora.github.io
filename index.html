@@ -4,74 +4,217 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Glowora | The Art of Radiant Skin</title>
+  <meta name="description" content="Glowora brings trendy beauty, skincare, and lifestyle products across Bangladesh." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="header">
-    <div class="logo-wrap">
-      < img src="images/logo.png" alt="Glowora logo" class="logo" />
-      <div>
-        <h1>Glowora</h1>
-        <p class="tagline">The Art of Radiant Skin</p >
-      </div>
-    </div>
+    <div class="container nav-wrap">
+      <a href=" " class="brand">
+        < img src="images/logo.png" alt="Glowora logo" class="brand-logo" />
+        <div>
+          <h1>Glowora</h1>
+          <p>The Art of Radiant Skin</p >
+        </div>
+      </a >
 
-    <nav class="nav">
-      <a href=" ">Home</a >
-      <a href="#products">Products</a >
-      <a href="#delivery">Delivery</a >
-      <a href="#contact">Contact</a >
-      <button id="cart-button" class="cart-button">Cart (<span id="cart-count">0</span>)</button>
-    </nav>
+      <nav class="nav">
+        <a href="#products">Products</a >
+        <a href="#why-us">Why Glowora</a >
+        <a href="#delivery">Delivery</a >
+        <a href="#reviews">Reviews</a >
+        <a href="#faq">FAQ</a >
+        <button id="cart-button" class="cart-button">
+          Cart <span id="cart-count">0</span>
+        </button>
+      </nav>
+    </div>
   </header>
 
   <section id="home" class="hero">
-    <div class="hero-content">
-      <h2>Beauty picks curated for your everyday glow</h2>
-      <p>
-        Trendy, affordable beauty and skincare products delivered across Bangladesh.
-      </p >
-      <a href="#products" class="shop-now-btn">Shop Now</a >
-    </div>
-  </section>
-
-  <section id="products" class="products-section">
-    <div class="section-title">
-      <h2>Our Products</h2>
-      <p>Choose your Glowora favorites and add them to cart.</p >
-    </div>
-    <div id="product-list" class="product-list"></div>
-  </section>
-
-  <section id="delivery" class="info-section">
-    <h2>Delivery & Payment</h2>
-    <div class="info-grid">
-      <div class="info-card">
-        <h3>Delivery Charge</h3>
-        <p>Inside Dhaka: <strong>80 tk</strong></p >
-        <p>Outside Dhaka: <strong>120 tk</strong></p >
-      </div>
-      <div class="info-card">
-        <h3>Payment Options</h3>
-        <p>Cash on Delivery</p >
-        <p>bKash</p >
+    <div class="hero-overlay">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <span class="pill">Beauty • Skincare • Lifestyle</span>
+          <h2>Glow with confidence every day</h2>
+          <p>
+            Discover curated beauty picks from Glowora — stylish, affordable,
+            and perfect for your everyday glow.
+          </p >
+          <div class="hero-actions">
+            <a href="#products" class="primary-btn">Shop Now</a >
+            <a href="#delivery" class="secondary-btn">Delivery Info</a >
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="info-section">
-    <h2>Contact</h2>
-    <div class="info-card single-card">
-      <p><strong>WhatsApp:</strong> +8801581836550</p >
-      <p><strong>Brand:</strong> Glowora</p >
-      <p><strong>Delivery Area:</strong> Bangladesh</p >
+  <section class="features-strip">
+    <div class="container features-grid">
+      <div class="feature-item">
+        <h3>Cash on Delivery</h3>
+        <p>Easy ordering across Bangladesh.</p >
+      </div>
+      <div class="feature-item">
+        <h3>bKash Accepted</h3>
+        <p>Simple and trusted payment option.</p >
+      </div>
+      <div class="feature-item">
+        <h3>Curated Picks</h3>
+        <p>Trendy beauty essentials for daily use.</p >
+      </div>
+      <div class="feature-item">
+        <h3>Fast Support</h3>
+        <p>Order help whenever you need it.</p >
+      </div>
     </div>
   </section>
+
+  <section id="products" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-label">Our Collection</span>
+        <h2>Best picks for your beauty routine</h2>
+        <p>Explore Glowora favorites and add them to your cart.</p >
+      </div>
+
+      <div id="product-list" class="product-list"></div>
+    </div>
+  </section>
+
+  <section id="why-us" class="section alt-section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-label">Why Glowora</span>
+        <h2>More than just products</h2>
+        <p>We focus on beauty products that are practical, trendy, and easy to love.</p >
+      </div>
+
+      <div class="cards-grid three">
+        <div class="info-card">
+          <h3>Handpicked Selection</h3>
+          <p>We choose products that fit modern beauty needs, from daily essentials to cute trend items.</p >
+        </div>
+        <div class="info-card">
+          <h3>Affordable Beauty</h3>
+          <p>Glowora keeps beauty accessible without compromising on style and presentation.</p >
+        </div>
+        <div class="info-card">
+          <h3>Made for Everyday Use</h3>
+          <p>Our collection is chosen to suit daily routines, quick touch-ups, and simple glam looks.</p >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="delivery" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-label">Delivery & Payment</span>
+        <h2>Simple ordering, clear charges</h2>
+      </div>
+
+      <div class="cards-grid two">
+        <div class="info-card">
+          <h3>Delivery Charges</h3>
+          <ul class="clean-list">
+            <li>Inside Dhaka: <strong>80 tk</strong></li>
+            <li>Outside Dhaka: <strong>120 tk</strong></li>
+            <li>Delivery area: <strong>Bangladesh</strong></li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>Payment Methods</h3>
+          <ul class="clean-list">
+            <li>Cash on Delivery</li>
+            <li>bKash</li>
+          </ul>
+          <p class="small-note">
+            Orders are submitted through the website form and saved to your order sheet.
+          </p >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="section alt-section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-label">Customer Love</span>
+        <h2>Why people love Glowora</h2>
+      </div>
+
+      <div class="cards-grid three">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>Beautiful packaging and the products look even nicer in person. Loved the eyeshadow shades.</p >
+          <strong>— Happy Customer</strong>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>The acne patches are super cute and easy to use. Perfect for skincare lovers.</p >
+          <strong>— Glowora Buyer</strong>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>Fast response and smooth order process. The mascara is really precise and easy to apply.</p >
+          <strong>— Returning Customer</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-label">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3>How do I place an order?</h3>
+          <p>Add products to cart, open the cart, fill in your details, choose delivery area and payment method, then place your order.</p >
+        </div>
+        <div class="faq-item">
+          <h3>Do you deliver all over Bangladesh?</h3>
+          <p>Yes, Glowora delivers across Bangladesh.</p >
+        </div>
+        <div class="faq-item">
+          <h3>What payment methods are available?</h3>
+          <p>Cash on Delivery and bKash.</p >
+        </div>
+        <div class="faq-item">
+          <h3>How is delivery charge calculated?</h3>
+          <p>Inside Dhaka is 80 tk and outside Dhaka is 120 tk. The website adds it automatically.</p >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <div>
+        <h3>Glowora</h3>
+        <p>The Art of Radiant Skin</p >
+      </div>
+      <div>
+        <p><strong>WhatsApp:</strong> +8801581836550</p >
+        <p><strong>Delivery:</strong> Bangladesh</p >
+      </div>
+    </div>
+  </footer>
 
   <div id="cart-modal" class="modal hidden">
     <div class="modal-content">
       <button id="close-cart" class="close-btn">&times;</button>
-      <h2>Your Cart</h2>
+
+      <div class="modal-header">
+        <h2>Your Cart</h2>
+        <p>Review your order and complete checkout below.</p >
+      </div>
 
       <div id="cart-items" class="cart-items"></div>
 
@@ -79,8 +222,9 @@
         <p>Subtotal: <strong><span id="subtotal">0</span> tk</strong></p >
       </div>
 
-      <h3>Checkout Form</h3>
       <form id="checkout-form" class="checkout-form">
+        <h3>Checkout Details</h3>
+
         <input type="text" id="customer-name" placeholder="Full Name" required />
         <input type="text" id="customer-phone" placeholder="Phone Number" required />
         <textarea id="customer-address" placeholder="Full Address" required></textarea>
@@ -102,10 +246,9 @@
           <p>Total: <strong><span id="grand-total">0</span> tk</strong></p >
         </div>
 
-        <button type="submit" class="place-order-btn">Place Order</button>
+        <button type="submit" class="primary-btn full-btn">Place Order</button>
+        <p id="order-message" class="order-message"></p >
       </form>
-
-      <p id="order-message" class="order-message"></p >
     </div>
   </div>
 
