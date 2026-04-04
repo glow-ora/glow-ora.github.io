@@ -8,63 +8,65 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="container nav-wrap">
+    <div class="container header-inner">
       <a href=" " class="brand">
         < img src="images/logo.png" alt="Glowora logo" class="brand-logo" />
-        <div>
+        <div class="brand-text">
           <h1>Glowora</h1>
           <p>The Art of Radiant Skin</p >
         </div>
       </a >
 
-      <nav class="nav">
-        <a href="#products">Products</a >
-        <a href="#why">Why Glowora</a >
-        <a href="#delivery">Delivery</a >
+      <nav class="main-nav">
+        <a href="#products">Shop</a >
+        <a href="#about">About</a >
+        <a href="#benefits">Why Glowora</a >
         <a href="#reviews">Reviews</a >
         <a href="#faq">FAQ</a >
       </nav>
 
-      <button id="cart-toggle" class="cart-pill">Cart <span id="cart-count">0</span></button>
+      <button id="cart-toggle" class="cart-btn">
+        Cart <span id="cart-count">0</span>
+      </button>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="container hero-content">
+      <div class="hero-overlay"></div>
+      <div class="container hero-inner">
         <div class="hero-card">
-          <span class="eyebrow">Beauty • Skincare • Lifestyle</span>
-          <h2>Glow with confidence every day</h2>
+          <span class="eyebrow">Curated C-Beauty • Skincare • Lifestyle</span>
+          <h2>Refined beauty for your everyday glow</h2>
           <p>
-            Discover curated beauty picks from Glowora — stylish, affordable,
-            and perfect for your everyday glow.
+            Discover elegant, trend-forward beauty essentials from Glowora —
+            thoughtfully selected to bring softness, confidence, and charm to your routine.
           </p >
           <div class="hero-actions">
-            <a href="#products" class="btn btn-primary">Shop Now</a >
-            <a href="#delivery" class="btn btn-secondary">Delivery Info</a >
+            <a href="#products" class="btn btn-primary">Shop Collection</a >
+            <a href="#benefits" class="btn btn-secondary">Why Glowora</a >
           </div>
         </div>
       </div>
     </section>
 
-    <section class="trust-strip">
-      <div class="container trust-grid">
-        <div class="trust-card">
+    <section class="mini-features">
+      <div class="container mini-features-grid">
+        <div class="mini-card">
           <h3>Cash on Delivery</h3>
-          <p>Easy ordering across Bangladesh.</p >
+          <p>Simple ordering anywhere in Bangladesh.</p >
         </div>
-        <div class="trust-card">
-          <h3>bKash Accepted</h3>
-          <p>Simple and trusted payment option.</p >
+        <div class="mini-card">
+          <h3>bKash Available</h3>
+          <p>Fast and trusted payment option.</p >
         </div>
-        <div class="trust-card">
+        <div class="mini-card">
           <h3>Curated Picks</h3>
-          <p>Trendy beauty essentials for daily use.</p >
+          <p>Trendy beauty pieces with an aesthetic touch.</p >
         </div>
-        <div class="trust-card">
-          <h3>Fast Support</h3>
-          <p>Order help whenever you need it.</p >
+        <div class="mini-card">
+          <h3>Brand Experience</h3>
+          <p>Classy presentation, smooth ordering, and support.</p >
         </div>
       </div>
     </section>
@@ -72,78 +74,82 @@
     <section id="products" class="section">
       <div class="container">
         <div class="section-heading">
-          <span class="eyebrow">Our Collection</span>
-          <h2>Best picks for your beauty routine</h2>
-          <p>Explore Glowora favorites and add them to your cart.</p >
+          <span class="eyebrow">Collection</span>
+          <h2>Glowora signature picks</h2>
+          <p>
+            Chic, practical, and beautifully chosen products for daily beauty,
+            quick touch-ups, and soft glam moments.
+          </p >
         </div>
 
         <div id="product-list" class="product-grid"></div>
       </div>
     </section>
 
-    <section id="why" class="section light-section">
+    <section id="about" class="section soft-section">
+      <div class="container about-grid">
+        <div>
+          <span class="eyebrow">About Glowora</span>
+          <h2>Beauty that feels polished, modern, and wearable</h2>
+          <p class="lead">
+            Glowora is a curated beauty destination focused on products that feel elegant,
+            useful, and visually pleasing. We choose items that blend trend, affordability,
+            and daily practicality.
+          </p >
+          <p>
+            From soft neutral makeup to cute skincare details and oil-control essentials,
+            our collection is designed for beauty lovers who enjoy a refined and aesthetic look.
+          </p >
+        </div>
+
+        <div class="about-card">
+          <h3>Our style</h3>
+          <ul>
+            <li>Soft, feminine, clean beauty aesthetic</li>
+            <li>Trendy C-beauty inspired selection</li>
+            <li>Affordable but elevated presentation</li>
+            <li>Products chosen for both style and usefulness</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits" class="section">
       <div class="container">
         <div class="section-heading">
           <span class="eyebrow">Why Glowora</span>
           <h2>More than just products</h2>
           <p>
-            We focus on beauty products that are practical, trendy, and easy to love.
+            We focus on beauty products that are practical, giftable, visually attractive,
+            and easy to enjoy every day.
           </p >
         </div>
 
-        <div class="info-grid">
-          <div class="info-card">
+        <div class="benefit-grid">
+          <div class="benefit-card">
             <h3>Handpicked Selection</h3>
             <p>
-              We choose products that fit modern beauty needs, from daily essentials
-              to cute trend items.
+              Every product is chosen to suit modern beauty routines, from subtle glam
+              to skincare-friendly essentials.
             </p >
           </div>
-          <div class="info-card">
-            <h3>Affordable Beauty</h3>
+          <div class="benefit-card">
+            <h3>Everyday Luxury Feel</h3>
             <p>
-              Glowora keeps beauty accessible without compromising on style and presentation.
+              We love products that feel stylish and elevated while still being affordable.
             </p >
           </div>
-          <div class="info-card">
-            <h3>Made for Everyday Use</h3>
+          <div class="benefit-card">
+            <h3>Aesthetic & Functional</h3>
             <p>
-              Our collection is chosen to suit daily routines, quick touch-ups, and simple glam looks.
+              Our collection is curated to be beautiful to own and practical to use.
             </p >
           </div>
         </div>
       </div>
     </section>
 
-    <section id="delivery" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Delivery & Payment</span>
-          <h2>Simple ordering, clear charges</h2>
-        </div>
-
-        <div class="info-grid two-col">
-          <div class="info-card">
-            <h3>Delivery Charges</h3>
-            <ul>
-              <li>Inside Dhaka: <strong>80 tk</strong></li>
-              <li>Outside Dhaka: <strong>120 tk</strong></li>
-              <li>Delivery area: <strong>Bangladesh</strong></li>
-            </ul>
-          </div>
-          <div class="info-card">
-            <h3>Payment Methods</h3>
-            <ul>
-              <li>Cash on Delivery</li>
-              <li>bKash</li>
-            </ul>
-            <p>Orders are submitted through the website form and saved to your order sheet.</p >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="reviews" class="section light-section">
+    <section id="reviews" class="section soft-section">
       <div class="container">
         <div class="section-heading">
           <span class="eyebrow">Customer Love</span>
@@ -154,22 +160,21 @@
           <div class="review-card">
             <div class="stars">★★★★★</div>
             <p>
-              Beautiful packaging and the products look even nicer in person.
-              Loved the eyeshadow shades.
+              Beautiful packaging and a very polished feel. The eyeshadow palette looks even prettier in person.
             </p >
             <strong>— Happy Customer</strong>
           </div>
           <div class="review-card">
             <div class="stars">★★★★★</div>
             <p>
-              The acne patches are super cute and easy to use. Perfect for skincare lovers.
+              The acne patches are super cute and practical. Perfect for skincare lovers who want something fun too.
             </p >
             <strong>— Glowora Buyer</strong>
           </div>
           <div class="review-card">
             <div class="stars">★★★★★</div>
             <p>
-              Fast response and smooth order process. The mascara is really precise and easy to apply.
+              Fast response, smooth order process, and the mascara is very precise for neat lashes.
             </p >
             <strong>— Returning Customer</strong>
           </div>
@@ -177,7 +182,31 @@
       </div>
     </section>
 
-    <section id="faq" class="section">
+    <section class="section">
+      <div class="container delivery-grid">
+        <div class="delivery-card">
+          <span class="eyebrow">Delivery</span>
+          <h3>Delivery charges</h3>
+          <ul>
+            <li>Inside Dhaka: <strong>80 tk</strong></li>
+            <li>Outside Dhaka: <strong>120 tk</strong></li>
+            <li>Delivery area: <strong>Bangladesh</strong></li>
+          </ul>
+        </div>
+
+        <div class="delivery-card">
+          <span class="eyebrow">Payment</span>
+          <h3>Payment methods</h3>
+          <ul>
+            <li>Cash on Delivery</li>
+            <li>bKash</li>
+          </ul>
+          <p>Orders are submitted through the website checkout form.</p >
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section soft-section">
       <div class="container">
         <div class="section-heading">
           <span class="eyebrow">FAQ</span>
@@ -187,10 +216,7 @@
         <div class="faq-list">
           <div class="faq-item">
             <h3>How do I place an order?</h3>
-            <p>
-              Add products to cart, open the cart, fill in your details, choose delivery area
-              and payment method, then place your order.
-            </p >
+            <p>Add products to cart, open the cart, fill in your details, choose delivery area and payment method, then place your order.</p >
           </div>
           <div class="faq-item">
             <h3>Do you deliver all over Bangladesh?</h3>
@@ -211,17 +237,17 @@
 
   <div id="cart-modal" class="cart-modal hidden">
     <div class="cart-panel">
-      <div class="cart-head">
+      <div class="cart-header">
         <h2>Your Cart</h2>
-        <button id="close-cart" class="close-btn">×</button>
+        <button id="close-cart" class="close-cart">×</button>
       </div>
 
       <div id="cart-items" class="cart-items"></div>
 
-      <div class="summary-box">
-        <p>Subtotal <strong><span id="subtotal">0</span> tk</strong></p >
-        <p>Delivery <strong><span id="delivery-charge">0</span> tk</strong></p >
-        <p class="grand-total">Total <strong><span id="grand-total">0</span> tk</strong></p >
+      <div class="cart-summary">
+        <div><span>Subtotal</span><strong><span id="subtotal">0</span> tk</strong></div>
+        <div><span>Delivery</span><strong><span id="delivery-charge">0</span> tk</strong></div>
+        <div class="grand-row"><span>Total</span><strong><span id="grand-total">0</span> tk</strong></div>
       </div>
 
       <form id="checkout-form" class="checkout-form">
@@ -241,14 +267,14 @@
           <option value="bKash">bKash</option>
         </select>
 
-        <button type="submit" class="btn btn-primary full-btn">Place Order</button>
+        <button type="submit" class="btn btn-primary full-width">Place Order</button>
         <p id="order-message" class="order-message"></p >
       </form>
     </div>
   </div>
 
   <footer class="site-footer">
-    <div class="container footer-wrap">
+    <div class="container footer-inner">
       <div>
         <h3>Glowora</h3>
         <p>The Art of Radiant Skin</p >
