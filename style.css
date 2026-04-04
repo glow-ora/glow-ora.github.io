@@ -1,667 +1,272 @@
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f8f6f2;
-  color: #283228;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-.container {
-  width: min(1200px, calc(100% - 40px));
-  margin: 0 auto;
-}
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #ece5db;
-}
-
-.header-inner {
-  min-height: 84px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  text-decoration: none;
-  color: inherit;
-}
-
-.brand-logo {
-  width: 56px;
-  height: 56px;
-  object-fit: contain;
-  border-radius: 50%;
-}
-
-.brand-text h1 {
-  margin: 0;
-  font-size: 22px;
-  color: #7da18f;
-  letter-spacing: 0.4px;
-}
-
-.brand-text p {
-  margin: 4px 0 0;
-  font-size: 13px;
-  color: #8b8b8b;
-}
-
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 26px;
-}
-
-.main-nav a {
-  text-decoration: none;
-  color: #283228;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.cart-btn {
-  border: none;
-  background: #7ea694;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 999px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.hero {
-  position: relative;
-  min-height: 640px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  background: url("images/hero.png") center/cover no-repeat;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(rgba(24, 29, 24, 0.28), rgba(24, 29, 24, 0.12));
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 2;
-}
-
-.hero-card {
-  max-width: 620px;
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 36px;
-  border-radius: 28px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
-}
-
-.eyebrow {
-  display: inline-block;
-  margin-bottom: 12px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #647e70;
-}
-
-.hero-card h2 {
-  margin: 0 0 16px;
-  font-size: 58px;
-  line-height: 1.02;
-  color: #42584a;
-}
-
-.hero-card p {
-  margin: 0 0 24px;
-  font-size: 21px;
-  line-height: 1.65;
-  color: #465348;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  border: none;
-  border-radius: 14px;
-  padding: 14px 22px;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn-primary {
-  background: #7ea694;
-  color: white;
-}
-
-.btn-secondary {
-  background: #eee3d6;
-  color: #6b5a47;
-}
-
-.full-width {
-  width: 100%;
-}
-
-.mini-features {
-  margin-top: -34px;
-  position: relative;
-  z-index: 3;
-}
-
-.mini-features-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.mini-card {
-  background: rgba(255,255,255,0.95);
-  border: 1px solid #ede6dc;
-  border-radius: 22px;
-  padding: 22px;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.04);
-}
-
-.mini-card h3 {
-  margin: 0 0 8px;
-  font-size: 21px;
-}
-
-.mini-card p {
-  margin: 0;
-  color: #666;
-  line-height: 1.6;
-  font-size: 15px;
-}
-
-.section {
-  padding: 88px 0;
-}
-
-.soft-section {
-  background: #f4f1ea;
-}
-
-.section-heading {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto 44px;
-}
-
-.section-heading h2 {
-  margin: 0 0 14px;
-  font-size: 50px;
-  color: #42584a;
-}
-
-.section-heading p {
-  margin: 0;
-  color: #666;
-  font-size: 18px;
-  line-height: 1.7;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-}
-
-.product-card {
-  background: white;
-  border: 1px solid #ece5da;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 14px 30px rgba(0,0,0,0.04);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-}
-
-.product-image-block {
-  position: relative;
-  padding: 18px 18px 0;
-}
-
-.product-badge {
-  position: absolute;
-  top: 28px;
-  left: 28px;
-  background: #d9988d;
-  color: white;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  padding: 8px 11px;
-  border-radius: 999px;
-  z-index: 2;
-}
-
-.main-product-image {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  border-radius: 20px;
-  background: #f7f4ef;
-}
-
-.thumb-row {
-  display: flex;
-  gap: 10px;
-  padding: 14px 18px 0;
-  flex-wrap: wrap;
-}
-
-.thumb-image {
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 2px solid transparent;
-  cursor: pointer;
-}
-
-.thumb-image:hover {
-  border-color: #7ea694;
-}
-
-.product-content {
-  padding: 22px 22px 26px;
-}
-
-.product-name {
-  margin: 0 0 10px;
-  font-size: 30px;
-  color: #2d372f;
-}
-
-.product-subtitle {
-  margin: 0 0 12px;
-  color: #6f7a72;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.product-description {
-  margin: 0 0 16px;
-  color: #505a53;
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-.product-why {
-  margin: 0 0 18px;
-  color: #4f5d54;
-  font-size: 15px;
-  line-height: 1.8;
-  background: #f8f5ef;
-  padding: 14px 16px;
-  border-radius: 16px;
-}
-
-.price-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-top: 18px;
-}
-
-.product-price {
-  font-size: 30px;
-  font-weight: 800;
-  color: #273127;
-}
-
-.add-btn {
-  border: none;
-  background: #7ea694;
-  color: white;
-  padding: 14px 22px;
-  border-radius: 14px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.about-grid,
-.benefit-grid,
-.review-grid,
-.delivery-grid {
-  display: grid;
-  gap: 24px;
-}
-
-.about-grid {
-  grid-template-columns: 1.5fr 1fr;
-  align-items: start;
-}
-
-.about-card,
-.benefit-card,
-.review-card,
-.delivery-card,
-.faq-item {
-  background: white;
-  border: 1px solid #ece5da;
-  border-radius: 24px;
-  padding: 28px;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.03);
-}
-
-.lead {
-  font-size: 19px;
-  line-height: 1.8;
-  color: #4f5c53;
-}
-
-.about-card h3,
-.benefit-card h3,
-.delivery-card h3,
-.faq-item h3 {
-  margin-top: 0;
-  margin-bottom: 14px;
-  font-size: 22px;
-}
-
-.about-card ul,
-.delivery-card ul {
-  margin: 0;
-  padding-left: 18px;
-}
-
-.about-card li,
-.delivery-card li,
-.benefit-card p,
-.delivery-card p,
-.faq-item p,
-.review-card p {
-  line-height: 1.8;
-  color: #58625c;
-  font-size: 16px;
-}
-
-.benefit-grid {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.review-grid {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.stars {
-  color: #cb9250;
-  letter-spacing: 2px;
-  margin-bottom: 14px;
-}
-
-.delivery-grid {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.faq-list {
-  display: grid;
-  gap: 18px;
-}
-
-.cart-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(16, 22, 17, 0.42);
-  display: flex;
-  justify-content: flex-end;
-  z-index: 3000;
-}
-
-.hidden {
-  display: none;
-}
-
-.cart-panel {
-  width: min(470px, 100%);
-  height: 100%;
-  background: white;
-  padding: 24px;
-  overflow-y: auto;
-  box-shadow: -8px 0 28px rgba(0,0,0,0.08);
-}
-
-.cart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-}
-
-.cart-header h2 {
-  margin: 0;
-}
-
-.close-cart {
-  border: none;
-  background: transparent;
-  font-size: 34px;
-  cursor: pointer;
-}
-
-.cart-items {
-  display: grid;
-  gap: 14px;
-}
-
-.cart-item {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 12px;
-  align-items: center;
-  padding: 16px;
-  background: #faf7f2;
-  border-radius: 18px;
-}
-
-.cart-item-title {
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.cart-qty {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.qty-btn,
-.remove-btn {
-  border: none;
-  border-radius: 10px;
-  padding: 8px 10px;
-  cursor: pointer;
-}
-
-.qty-btn {
-  background: #e7efe9;
-}
-
-.remove-btn {
-  background: #f5dddd;
-  color: #7b3434;
-}
-
-.cart-summary {
-  background: #f7f3ec;
-  border-radius: 18px;
-  padding: 18px;
-  margin: 20px 0;
-}
-
-.cart-summary div {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-}
-
-.grand-row {
-  font-size: 18px;
-}
-
-.checkout-form {
-  display: grid;
-  gap: 12px;
-}
-
-.checkout-form input,
-.checkout-form textarea,
-.checkout-form select {
-  width: 100%;
-  border: 1px solid #ddd6ca;
-  border-radius: 14px;
-  padding: 14px 15px;
-  font-size: 15px;
-  font-family: inherit;
-}
-
-.checkout-form textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.order-message {
-  margin: 4px 0 0;
-  font-weight: 700;
-  color: #42584a;
-}
-
-.empty-cart {
-  background: #faf7f2;
-  padding: 18px;
-  border-radius: 18px;
-  color: #666;
-}
-
-.site-footer {
-  background: #121914;
-  color: white;
-  padding: 34px 0;
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.site-footer h3,
-.site-footer p {
-  margin: 0 0 8px;
-}
-
-@media (max-width: 1100px) {
-  .product-grid,
-  .mini-features-grid,
-  .benefit-grid,
-  .review-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .about-grid,
-  .delivery-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-card h2 {
-    font-size: 46px;
-  }
-}
-
-@media (max-width: 760px) {
-  .header-inner {
-    flex-wrap: wrap;
-    padding: 14px 0;
-  }
-
-  .main-nav {
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-
-  .hero {
-    min-height: 520px;
-  }
-
-  .hero-card {
-    padding: 24px;
-  }
-
-  .hero-card h2 {
-    font-size: 36px;
-  }
-
-  .hero-card p {
-    font-size: 17px;
-  }
-
-  .section-heading h2 {
-    font-size: 38px;
-  }
-
-  .mini-features-grid,
-  .product-grid,
-  .benefit-grid,
-  .review-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .main-product-image {
-    height: 320px;
-  }
-
-  .price-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .cart-item {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-inner {
-    flex-direction: column;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glowora | The Art of Radiant Skin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#top" class="brand">
+        <img src="images/logo.png" alt="Glowora logo" class="brand-logo" />
+        <div class="brand-text">
+          <h1>Glowora</h1>
+          <p>The Art of Radiant Skin</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="#products">Products</a>
+        <a href="#story">Why Glowora</a>
+        <a href="#delivery">Delivery</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <button id="cart-toggle" class="cart-pill">Cart <span id="cart-count">0</span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container hero-inner">
+        <div class="hero-card">
+          <span class="eyebrow">Modern C-Beauty • Soft Glam • Everyday Elegance</span>
+          <h2>Glow with confidence, softness, and style</h2>
+          <p>
+            Discover Glowora’s curated beauty edit — refined daily essentials,
+            trend-forward picks, and feel-good products designed for modern beauty lovers.
+          </p>
+          <div class="hero-actions">
+            <a href="#products" class="btn btn-primary">Shop Collection</a>
+            <a href="#delivery" class="btn btn-secondary">Delivery Info</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-card">
+          <h3>Cash on Delivery</h3>
+          <p>Simple ordering across Bangladesh.</p>
+        </div>
+        <div class="trust-card">
+          <h3>bKash Available</h3>
+          <p>Fast and trusted payment support.</p>
+        </div>
+        <div class="trust-card">
+          <h3>Curated Selection</h3>
+          <p>Chosen for beauty, function, and everyday wear.</p>
+        </div>
+        <div class="trust-card">
+          <h3>Elegant Essentials</h3>
+          <p>Trend-led products with a polished aesthetic feel.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Collection</span>
+          <h2>Beauty picks with a premium feel</h2>
+          <p>
+            Thoughtfully selected products for natural definition, clean skin moments,
+            effortless eye looks, and polished touch-ups.
+          </p>
+        </div>
+
+        <div id="product-list" class="product-grid"></div>
+      </div>
+    </section>
+
+    <section id="story" class="section soft-section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Why Glowora</span>
+          <h2>More than products — a complete mood</h2>
+          <p>
+            Glowora is built around the idea that beauty should feel refined,
+            expressive, and easy to enjoy every day.
+          </p>
+        </div>
+
+        <div class="story-grid">
+          <div class="story-card">
+            <h3>Modern C-Beauty Energy</h3>
+            <p>
+              We love soft detail, wearable color stories, charming packaging,
+              and beauty products that feel current without being overwhelming.
+            </p>
+          </div>
+          <div class="story-card">
+            <h3>Aesthetic + Practical</h3>
+            <p>
+              Every pick is chosen to look beautiful, feel useful, and fit naturally
+              into daily routines — from study days to brunch days to evening glam.
+            </p>
+          </div>
+          <div class="story-card">
+            <h3>Affordable Luxury Feeling</h3>
+            <p>
+              Our goal is to make polished beauty accessible: elegant visuals,
+              thoughtful textures, and products that elevate your routine.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="delivery" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Delivery & Payment</span>
+          <h2>Clear charges, easy checkout</h2>
+        </div>
+
+        <div class="delivery-grid">
+          <div class="info-card">
+            <h3>Delivery Charges</h3>
+            <ul>
+              <li>Inside Dhaka: <strong>80 tk</strong></li>
+              <li>Outside Dhaka: <strong>120 tk</strong></li>
+              <li>Delivery area: <strong>Bangladesh</strong></li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Payment Methods</h3>
+            <ul>
+              <li>Cash on Delivery</li>
+              <li>bKash</li>
+            </ul>
+            <p>
+              Order details are submitted through your website cart and checkout form.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews" class="section soft-section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Client Notes</span>
+          <h2>Why customers love Glowora</h2>
+        </div>
+
+        <div class="review-grid">
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              The packaging looks beautiful and the eyeshadow tones are even prettier in person.
+              Very soft, wearable shades.
+            </p>
+            <strong>— Happy Customer</strong>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              The acne patches are cute, useful, and perfect for quick blemish care.
+              Love the fun designs.
+            </p>
+            <strong>— Glowora Buyer</strong>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              The mascara is precise and elegant to use. It gives a neat lash look without feeling heavy.
+            </p>
+            <strong>— Returning Customer</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">FAQ</span>
+          <h2>Common questions</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>How do I place an order?</h3>
+            <p>Add products to cart, open the cart, fill in your details, choose delivery area and payment method, then place your order.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Do you deliver all over Bangladesh?</h3>
+            <p>Yes, Glowora delivers across Bangladesh.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What payment methods are available?</h3>
+            <p>Cash on Delivery and bKash.</p>
+          </div>
+          <div class="faq-item">
+            <h3>How is delivery charge calculated?</h3>
+            <p>Inside Dhaka is 80 tk and outside Dhaka is 120 tk. The website adds it automatically at checkout.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="cart-modal" class="cart-modal hidden">
+    <div class="cart-panel">
+      <div class="cart-head">
+        <h2>Your Cart</h2>
+        <button id="close-cart" class="close-btn">×</button>
+      </div>
+
+      <div id="cart-items" class="cart-items"></div>
+
+      <div class="summary-box">
+        <p><span>Subtotal</span> <strong><span id="subtotal">0</span> tk</strong></p>
+        <p><span>Delivery</span> <strong><span id="delivery-charge">0</span> tk</strong></p>
+        <p class="grand-total"><span>Total</span> <strong><span id="grand-total">0</span> tk</strong></p>
+      </div>
+
+      <form id="checkout-form" class="checkout-form">
+        <input id="customer-name" type="text" placeholder="Full Name" required />
+        <input id="customer-phone" type="text" placeholder="Phone Number" required />
+        <textarea id="customer-address" placeholder="Full Address" required></textarea>
+
+        <select id="delivery-area" required>
+          <option value="">Select Delivery Area</option>
+          <option value="Inside Dhaka">Inside Dhaka</option>
+          <option value="Outside Dhaka">Outside Dhaka</option>
+        </select>
+
+        <select id="payment-method" required>
+          <option value="">Select Payment Method</option>
+          <option value="Cash on Delivery">Cash on Delivery</option>
+          <option value="bKash">bKash</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary full-btn">Place Order</button>
+        <p id="order-message" class="order-message"></p>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <div>
+        <h3>Glowora</h3>
+        <p>The Art of Radiant Skin</p>
+      </div>
+      <div>
+        <p><strong>WhatsApp:</strong> +8801581836550</p>
+        <p><strong>Delivery:</strong> Bangladesh</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
