@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glowora | The Art of Radiant Skin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo-wrap">
+      < img src="images/logo.png" alt="Glowora logo" class="logo" />
+      <div>
+        <h1>Glowora</h1>
+        <p class="tagline">The Art of Radiant Skin</p >
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href=" ">Home</a >
+      <a href="#products">Products</a >
+      <a href="#delivery">Delivery</a >
+      <a href="#contact">Contact</a >
+      <button id="cart-button" class="cart-button">Cart (<span id="cart-count">0</span>)</button>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h2>Beauty picks curated for your everyday glow</h2>
+      <p>
+        Trendy, affordable beauty and skincare products delivered across Bangladesh.
+      </p >
+      <a href="#products" class="shop-now-btn">Shop Now</a >
+    </div>
+  </section>
+
+  <section id="products" class="products-section">
+    <div class="section-title">
+      <h2>Our Products</h2>
+      <p>Choose your Glowora favorites and add them to cart.</p >
+    </div>
+    <div id="product-list" class="product-list"></div>
+  </section>
+
+  <section id="delivery" class="info-section">
+    <h2>Delivery & Payment</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Delivery Charge</h3>
+        <p>Inside Dhaka: <strong>80 tk</strong></p >
+        <p>Outside Dhaka: <strong>120 tk</strong></p >
+      </div>
+      <div class="info-card">
+        <h3>Payment Options</h3>
+        <p>Cash on Delivery</p >
+        <p>bKash</p >
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="info-section">
+    <h2>Contact</h2>
+    <div class="info-card single-card">
+      <p><strong>WhatsApp:</strong> +8801581836550</p >
+      <p><strong>Brand:</strong> Glowora</p >
+      <p><strong>Delivery Area:</strong> Bangladesh</p >
+    </div>
+  </section>
+
+  <div id="cart-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="close-cart" class="close-btn">&times;</button>
+      <h2>Your Cart</h2>
+
+      <div id="cart-items" class="cart-items"></div>
+
+      <div class="summary-box">
+        <p>Subtotal: <strong><span id="subtotal">0</span> tk</strong></p >
+      </div>
+
+      <h3>Checkout Form</h3>
+      <form id="checkout-form" class="checkout-form">
+        <input type="text" id="customer-name" placeholder="Full Name" required />
+        <input type="text" id="customer-phone" placeholder="Phone Number" required />
+        <textarea id="customer-address" placeholder="Full Address" required></textarea>
+
+        <select id="delivery-area" required>
+          <option value="">Select Delivery Area</option>
+          <option value="Inside Dhaka">Inside Dhaka</option>
+          <option value="Outside Dhaka">Outside Dhaka</option>
+        </select>
+
+        <select id="payment-method" required>
+          <option value="">Select Payment Method</option>
+          <option value="Cash on Delivery">Cash on Delivery</option>
+          <option value="bKash">bKash</option>
+        </select>
+
+        <div class="summary-box">
+          <p>Delivery Charge: <strong><span id="delivery-charge">0</span> tk</strong></p >
+          <p>Total: <strong><span id="grand-total">0</span> tk</strong></p >
+        </div>
+
+        <button type="submit" class="place-order-btn">Place Order</button>
+      </form>
+
+      <p id="order-message" class="order-message"></p >
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
