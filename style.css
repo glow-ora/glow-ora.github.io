@@ -427,7 +427,9 @@ a {
   margin: 6px 0;
   color: #d8e1dc;
 }
-
+.footer .btn {
+  margin: 14px 0;
+}
 @media (min-width: 800px) {
   .cards.three {
     grid-template-columns: repeat(3, 1fr);
