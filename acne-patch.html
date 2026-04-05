@@ -1280,10 +1280,7 @@
       const deliveryArea = deliverySelect.options[deliverySelect.selectedIndex].text;
       const deliveryCharge = parseInt(deliverySelect.value) || 80;
 
-      const subtotal = orderItems.reduce((sum, item) => {
-        return sum + (item.qty * item.price);
-      }, 0);
-
+      const subtotal = orderItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
       const totalAmount = subtotal + deliveryCharge;
 
       const payload = {
@@ -1291,7 +1288,7 @@
         phone: phone,
         address: address,
         notes: notes,
-        items: orderItems,
+        items: JSON.stringify(orderItems),
         subtotal: subtotal,
         deliveryArea: deliveryArea,
         deliveryCharge: deliveryCharge,
@@ -1301,32 +1298,28 @@
       try {
         showMessage("Submitting your order...", "success");
 
-        const response = await fetch(scriptURL, {
+        const formData = new FormData();
+        for (const key in payload) {
+          formData.append(key, payload[key]);
+        }
+
+        await fetch(scriptURL, {
           method: "POST",
-          body: JSON.stringify(payload),
-          headers: {
-            "Content-Type": "application/json"
-          }
+          body: formData
         });
 
-        const result = await response.json();
+        showMessage("Order placed successfully.", "success");
 
-        if (result.success) {
-          showMessage("Order placed successfully.", "success");
+        orderItems = [];
+        renderOrderList();
+        updateOrderSummary();
+        renderVariants();
+        clearSelection(false);
 
-          orderItems = [];
-          renderOrderList();
-          updateOrderSummary();
-          renderVariants();
-          clearSelection(false);
-
-          document.getElementById("customerName").value = "";
-          document.getElementById("customerPhone").value = "";
-          document.getElementById("customerAddress").value = "";
-          document.getElementById("customerNotes").value = "";
-        } else {
-          showMessage("Order failed: " + result.message, "error");
-        }
+        document.getElementById("customerName").value = "";
+        document.getElementById("customerPhone").value = "";
+        document.getElementById("customerAddress").value = "";
+        document.getElementById("customerNotes").value = "";
       } catch (error) {
         console.error(error);
         showMessage("Something went wrong while submitting order.", "error");
@@ -1345,7 +1338,6 @@
       box.innerText = "";
     }
 
-    /* mobile swipe */
     let touchStartX = 0;
     let touchEndX = 0;
     const sliderArea = document.getElementById("sliderArea");
