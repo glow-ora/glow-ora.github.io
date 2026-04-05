@@ -927,6 +927,8 @@
     </div>
   </div>
 
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbymRaCYVdyeP1KfyAt4SpwS51Y4F6hPEFg2-hdX7ICIFargVGGwhMdvkHe1uk4J3YM/exec";
     const basePrice = 150;
@@ -1245,7 +1247,7 @@
       document.getElementById("grandTotal").innerText = total + " tk";
     }
 
-    async function submitOrder() {
+    function submitOrder() {
       if (orderItems.length === 0) {
         showMessage("Please add at least one item to your order.", "error");
         return;
@@ -1298,28 +1300,40 @@
       try {
         showMessage("Submitting your order...", "success");
 
-        const formData = new FormData();
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = scriptURL;
+        form.target = "hidden_iframe";
+        form.style.display = "none";
+
         for (const key in payload) {
-          formData.append(key, payload[key]);
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = key;
+          input.value = payload[key];
+          form.appendChild(input);
         }
 
-        await fetch(scriptURL, {
-          method: "POST",
-          body: formData
-        });
+        document.body.appendChild(form);
+        form.submit();
 
-        showMessage("Order placed successfully.", "success");
+        setTimeout(function () {
+          showMessage("Order placed successfully.", "success");
 
-        orderItems = [];
-        renderOrderList();
-        updateOrderSummary();
-        renderVariants();
-        clearSelection(false);
+          orderItems = [];
+          renderOrderList();
+          updateOrderSummary();
+          renderVariants();
+          clearSelection(false);
 
-        document.getElementById("customerName").value = "";
-        document.getElementById("customerPhone").value = "";
-        document.getElementById("customerAddress").value = "";
-        document.getElementById("customerNotes").value = "";
+          document.getElementById("customerName").value = "";
+          document.getElementById("customerPhone").value = "";
+          document.getElementById("customerAddress").value = "";
+          document.getElementById("customerNotes").value = "";
+
+          form.remove();
+        }, 1200);
+
       } catch (error) {
         console.error(error);
         showMessage("Something went wrong while submitting order.", "error");
