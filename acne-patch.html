@@ -493,6 +493,12 @@
       transform: translateY(-1px);
     }
 
+    .btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .message {
       margin-top: 14px;
       padding: 14px 16px;
@@ -500,6 +506,7 @@
       font-size: 14px;
       font-weight: 700;
       display: none;
+      white-space: pre-line;
     }
 
     .message.success {
@@ -739,9 +746,9 @@
     <section class="hero">
       <div class="gallery-card">
         <div class="slider" id="sliderArea">
-          <button class="slider-btn left" onclick="prevSlide()">‹</button>
+          <button class="slider-btn left" type="button" onclick="prevSlide()">‹</button>
           <img id="mainImage" src="images/acne-patch-main.jpg" alt="Hydrocolloid Acne Patch">
-          <button class="slider-btn right" onclick="nextSlide()">›</button>
+          <button class="slider-btn right" type="button" onclick="nextSlide()">›</button>
           <div class="slide-count" id="slideCount">1 / 4</div>
         </div>
 
@@ -776,8 +783,8 @@
         <div class="form-block">
           <label class="label">Type</label>
           <div class="option-grid" id="typeButtons">
-            <button class="option-btn active" data-type="star" onclick="selectType('star')">Star</button>
-            <button class="option-btn" data-type="cartoon" onclick="selectType('cartoon')">Cartoon</button>
+            <button class="option-btn active" data-type="star" type="button" onclick="selectType('star')">Star</button>
+            <button class="option-btn" data-type="cartoon" type="button" onclick="selectType('cartoon')">Cartoon</button>
           </div>
         </div>
 
@@ -808,8 +815,8 @@
           </div>
 
           <div class="actions">
-            <button class="btn btn-dark" onclick="addItemToOrder()">Add Item</button>
-            <button class="btn btn-light" onclick="clearSelection()">Clear Selection</button>
+            <button class="btn btn-dark" type="button" onclick="addItemToOrder()">Add Item</button>
+            <button class="btn btn-light" type="button" onclick="clearSelection()">Clear Selection</button>
           </div>
         </div>
 
@@ -864,7 +871,7 @@
           </div>
 
           <div class="actions" style="margin-top:16px;">
-            <button class="btn btn-olive" onclick="submitOrder()">Place Order</button>
+            <button class="btn btn-olive" id="submitBtn" type="button" onclick="submitOrder()">Place Order</button>
           </div>
         </div>
       </div>
@@ -927,10 +934,8 @@
     </div>
   </div>
 
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
   <script>
-   const scriptURL = "https://script.google.com/macros/s/AKfycbzfLmHmE-l-B-rm0hxe9ArRC8xy4_4EShJ-7SbJ61ItMGfmTn6lpr1W9av_8IhdaPl6/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzfLmHmE-l-B-rm0hxe9ArRC8xy4_4EShJ-7SbJ61ItMGfmTn6lpr1W9av_8IhdaPl6/exec";
     const basePrice = 150;
 
     let currentSlide = 0;
@@ -1021,12 +1026,15 @@
       productData[selectedType].forEach((item, index) => {
         const btn = document.createElement("button");
         btn.className = "option-btn";
+        btn.type = "button";
         btn.innerText = item.name;
 
         if (item.stock <= getUsedCount(selectedType, item.name)) {
           btn.classList.add("disabled");
         } else {
-          btn.onclick = () => selectVariant(index);
+          btn.onclick = function() {
+            selectVariant(index);
+          };
         }
 
         variantButtons.appendChild(btn);
@@ -1034,12 +1042,11 @@
         const remaining = item.stock - getUsedCount(selectedType, item.name);
         const row = document.createElement("div");
         row.className = "stock-item";
-        row.innerHTML = `
-          <span>${item.name}</span>
-          <span class="stock-badge ${remaining > 0 ? 'in-stock' : 'out-stock'}">
-            ${remaining > 0 ? 'In Stock (' + remaining + ')' : 'Stock Out'}
-          </span>
-        `;
+        row.innerHTML =
+          '<span>' + item.name + '</span>' +
+          '<span class="stock-badge ' + (remaining > 0 ? 'in-stock' : 'out-stock') + '">' +
+          (remaining > 0 ? 'In Stock (' + remaining + ')' : 'Stock Out') +
+          '</span>';
         stockList.appendChild(row);
       });
     }
@@ -1105,7 +1112,7 @@
       }
 
       const input = document.getElementById("qty");
-      let qty = parseInt(input.value) || 1;
+      let qty = parseInt(input.value, 10) || 1;
       const remaining = variant.stock - getUsedCount(selectedType, variant.name);
 
       if (qty < remaining) {
@@ -1119,7 +1126,7 @@
 
     function decreaseQty() {
       const input = document.getElementById("qty");
-      let qty = parseInt(input.value) || 1;
+      let qty = parseInt(input.value, 10) || 1;
       if (qty > 1) {
         input.value = qty - 1;
       }
@@ -1128,7 +1135,7 @@
 
     function updateSelectedPreview() {
       const input = document.getElementById("qty");
-      let qty = parseInt(input.value) || 1;
+      let qty = parseInt(input.value, 10) || 1;
       const variant = getSelectedVariant();
 
       if (qty < 1) qty = 1;
@@ -1137,8 +1144,14 @@
         const remaining = variant.stock - getUsedCount(selectedType, variant.name);
         if (qty > remaining) qty = remaining > 0 ? remaining : 1;
         input.value = qty;
+
         document.getElementById("selectedPreviewText").innerText =
-          selectedType.charAt(0).toUpperCase() + selectedType.slice(1) + " / " + variant.name + " x " + qty;
+          selectedType.charAt(0).toUpperCase() +
+          selectedType.slice(1) +
+          " / " +
+          variant.name +
+          " x " +
+          qty;
       } else {
         document.getElementById("selectedPreviewText").innerText = "No item selected";
         input.value = qty;
@@ -1155,7 +1168,7 @@
         return;
       }
 
-      const qty = parseInt(document.getElementById("qty").value) || 1;
+      const qty = parseInt(document.getElementById("qty").value, 10) || 1;
       const remaining = variant.stock - getUsedCount(selectedType, variant.name);
 
       if (remaining <= 0) {
@@ -1192,12 +1205,17 @@
     function clearSelection(showMsg = true) {
       selectedVariantIndex = null;
       document.getElementById("qty").value = 1;
+
       document.querySelectorAll("#variantButtons .option-btn").forEach(btn => {
         btn.classList.remove("active");
       });
+
       resetStatus();
       updateSelectedPreview();
-      if (showMsg) clearMessage();
+
+      if (showMsg) {
+        clearMessage();
+      }
     }
 
     function renderOrderList() {
@@ -1206,7 +1224,7 @@
       document.getElementById("cartCount").innerText = "Items in Order: " + count;
 
       if (orderItems.length === 0) {
-        cartList.innerHTML = `<div class="cart-empty">No item added yet. Select type, option, quantity, then click “Add Item”.</div>`;
+        cartList.innerHTML = '<div class="cart-empty">No item added yet. Select type, option, quantity, then click “Add Item”.</div>';
         return;
       }
 
@@ -1215,14 +1233,14 @@
       orderItems.forEach((item, index) => {
         const div = document.createElement("div");
         div.className = "cart-item";
-        div.innerHTML = `
-          <div><strong>${item.type.toUpperCase()}</strong></div>
-          <div>${item.name}</div>
-          <div>${item.qty} pc(s)</div>
-          <div>${item.price} tk</div>
-          <div><strong>${item.qty * item.price} tk</strong></div>
-          <div><button class="remove-btn" onclick="removeItem(${index})">Remove</button></div>
-        `;
+        div.innerHTML =
+          '<div><strong>' + item.type.toUpperCase() + '</strong></div>' +
+          '<div>' + item.name + '</div>' +
+          '<div>' + item.qty + ' pc(s)</div>' +
+          '<div>' + item.price + ' tk</div>' +
+          '<div><strong>' + (item.qty * item.price) + ' tk</strong></div>' +
+          '<div><button class="remove-btn" type="button" onclick="removeItem(' + index + ')">Remove</button></div>';
+
         cartList.appendChild(div);
       });
     }
@@ -1238,7 +1256,7 @@
 
     function updateOrderSummary() {
       const subtotal = orderItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
-      const delivery = parseInt(document.getElementById("deliveryArea").value) || 80;
+      const delivery = parseInt(document.getElementById("deliveryArea").value, 10) || 80;
       const deliveryApplied = subtotal > 0 ? delivery : 0;
       const total = subtotal + deliveryApplied;
 
@@ -1247,7 +1265,15 @@
       document.getElementById("grandTotal").innerText = total + " tk";
     }
 
-    function submitOrder() {
+    function setSubmitButtonState(isLoading) {
+      const submitBtn = document.getElementById("submitBtn");
+      if (!submitBtn) return;
+
+      submitBtn.disabled = isLoading;
+      submitBtn.innerText = isLoading ? "Submitting..." : "Place Order";
+    }
+
+    async function submitOrder() {
       if (orderItems.length === 0) {
         showMessage("Please add at least one item to your order.", "error");
         return;
@@ -1280,7 +1306,7 @@
 
       const deliverySelect = document.getElementById("deliveryArea");
       const deliveryArea = deliverySelect.options[deliverySelect.selectedIndex].text;
-      const deliveryCharge = parseInt(deliverySelect.value) || 80;
+      const deliveryCharge = parseInt(deliverySelect.value, 10) || 80;
 
       const subtotal = orderItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
       const totalAmount = subtotal + deliveryCharge;
@@ -1298,45 +1324,56 @@
       };
 
       try {
+        setSubmitButtonState(true);
         showMessage("Submitting your order...", "success");
 
-        const form = document.createElement("form");
-        form.method = "POST";
-        form.action = scriptURL;
-        form.target = "hidden_iframe";
-        form.style.display = "none";
+        const response = await fetch(scriptURL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+          },
+          body: new URLSearchParams(payload).toString()
+        });
 
-        for (const key in payload) {
-          const input = document.createElement("input");
-          input.type = "hidden";
-          input.name = key;
-          input.value = payload[key];
-          form.appendChild(input);
+        const text = await response.text();
+
+        let result;
+        try {
+          result = JSON.parse(text);
+        } catch (parseError) {
+          throw new Error("Server returned invalid response: " + text);
         }
 
-        document.body.appendChild(form);
-        form.submit();
+        if (!result.success) {
+          throw new Error(result.message || "Order submission failed.");
+        }
 
-        setTimeout(function () {
-          showMessage("Order placed successfully.", "success");
+        let successText = result.message || "Order placed successfully.";
+        if (result.orderId) {
+          successText += "\nOrder ID: " + result.orderId;
+        }
+        if (result.emailStatus) {
+          successText += "\nEmail Status: " + result.emailStatus;
+        }
 
-          orderItems = [];
-          renderOrderList();
-          updateOrderSummary();
-          renderVariants();
-          clearSelection(false);
+        showMessage(successText, "success");
 
-          document.getElementById("customerName").value = "";
-          document.getElementById("customerPhone").value = "";
-          document.getElementById("customerAddress").value = "";
-          document.getElementById("customerNotes").value = "";
+        orderItems = [];
+        renderOrderList();
+        updateOrderSummary();
+        renderVariants();
+        clearSelection(false);
 
-          form.remove();
-        }, 1200);
+        document.getElementById("customerName").value = "";
+        document.getElementById("customerPhone").value = "";
+        document.getElementById("customerAddress").value = "";
+        document.getElementById("customerNotes").value = "";
 
       } catch (error) {
         console.error(error);
-        showMessage("Something went wrong while submitting order.", "error");
+        showMessage("Submission failed: " + error.message, "error");
+      } finally {
+        setSubmitButtonState(false);
       }
     }
 
