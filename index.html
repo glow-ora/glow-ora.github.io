@@ -7,271 +7,244 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="top-bar">Free Delivery On Orders Over 1000tk</div>
+
   <header class="site-header">
-  <div class="container header-shell">
-    <div class="header-left">
-      <a href="#top" class="brand brand-center">
-        <img src="images/logo.png" alt="Glowora logo" class="brand-logo" />
-        <div class="brand-text">
-          <h1>Glowora</h1>
-          <p>The Art of Radiant Skin</p>
-        </div>
-      </a>
-    </div>
+    <button class="icon-btn" id="searchToggle" aria-label="Open search">⌕</button>
 
-    <div class="header-right">
-      <nav class="nav nav-fancy">
-        <a href="#products">Products</a>
-        <a href="#story">Why Glowora</a>
-        <a href="#delivery">Delivery</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#faq">FAQ</a>
-      </nav>
+    <a href="#" class="brand">
+      <img src="images/logo.png" alt="Glowora logo" class="brand-logo" />
+      <span>GLOWORA</span>
+    </a>
 
-      <button id="cart-toggle" class="cart-pill">Cart <span id="cart-count">0</span></button>
-    </div>
-  </div>
-</header>
-
-      <button id="cart-toggle" class="cart-pill">Cart <span id="cart-count">0</span></button>
-    </div>
+    <button class="icon-btn" id="menuToggle" aria-label="Open menu">☰</button>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-overlay"></div>
-      <div class="container hero-inner">
-        <div class="hero-card">
-          <span class="eyebrow">Modern C-Beauty • Soft Glam • Everyday Elegance</span>
-          <h2>Glow with confidence, softness, and style</h2>
-          <p>
-            Discover Glowora’s curated beauty edit — refined daily essentials,
-            trend-forward picks, and feel-good products designed for modern beauty lovers.
-          </p>
-          <div class="hero-actions">
-            <a href="#products" class="btn btn-primary">Shop Collection</a>
-            <a href="#delivery" class="btn btn-secondary">Delivery Info</a>
-          </div>
+  <div class="search-drawer hidden" id="searchDrawer">
+    <input type="text" placeholder="Search products..." />
+  </div>
+
+  <nav class="mobile-menu hidden" id="mobileMenu">
+    <a href="#hero">Home</a>
+    <a href="#featured">Featured</a>
+    <a href="#about">About</a>
+    <a href="#catalog">Catalog</a>
+    <a href="#footer">Contact</a>
+  </nav>
+
+  <main>
+    <section class="hero-slider" id="hero">
+      <div class="hero-slide active" style="background-image:url('images/hero-1.jpg')">
+        <div class="hero-content">
+          <h1>Glowora Beauty Edit</h1>
+          <p>Soft glam, radiant skin, and curated beauty essentials for your everyday glow.</p>
+          <a href="#featured" class="cta-btn">SHOP NOW</a>
+        </div>
+      </div>
+
+      <div class="hero-slide" style="background-image:url('images/hero-2.jpg')">
+        <div class="hero-content">
+          <h1>Explorer Eyeshadow Palettes</h1>
+          <p>Elegant neutral and shimmer tones for polished day-to-night beauty looks.</p>
+          <a href="#featured" class="cta-btn">SHOP NOW</a>
+        </div>
+      </div>
+
+      <div class="hero-slide" style="background-image:url('images/hero-3.jpg')">
+        <div class="hero-content">
+          <h1>Radiance Meets Style</h1>
+          <p>Beautiful details, premium textures, and products designed to elevate your routine.</p>
+          <a href="#featured" class="cta-btn">SHOP NOW</a>
         </div>
       </div>
     </section>
 
-    <section class="trust-strip">
-      <div class="container trust-grid">
-        <div class="trust-card">
-          <h3>Cash on Delivery</h3>
-          <p>Simple ordering across Bangladesh.</p>
+    <section class="featured-slider-section" id="featured">
+      <div class="section-head">
+        <h2>Featured Picks</h2>
+        <p>Shop Glowora favorites with a soft luxury feel.</p>
+      </div>
+
+      <div class="slider-wrap">
+        <button class="slider-arrow" id="prevProduct" aria-label="Previous">‹</button>
+
+        <div class="product-slider-window">
+          <div class="product-slider-track" id="productTrack">
+            <article class="product-slide">
+              <img src="images/mascara.png" alt="Judydoll Iron Mascara" />
+              <h3>Judydoll Iron Mascara</h3>
+              <p class="price">999 tk</p>
+              <a href="#catalog" class="shop-btn">SHOP NOW</a>
+            </article>
+
+            <article class="product-slide">
+              <img src="images/acne-patch.png" alt="Hydrocolloid Acne Patch" />
+              <h3>Hydrocolloid Acne Patch</h3>
+              <p class="price">150 tk</p>
+              <a href="#catalog" class="shop-btn">SHOP NOW</a>
+            </article>
+
+            <article class="product-slide">
+              <img src="images/eyeshadow.png" alt="Hisyi Eyeshadow Palette" />
+              <h3>Hisyi 9-Colour Eye Shadow Palette</h3>
+              <p class="price">299 tk</p>
+              <a href="#catalog" class="shop-btn">SHOP NOW</a>
+            </article>
+
+            <article class="product-slide">
+              <img src="images/blotting-paper.png" alt="Oil Absorbing Blotting Paper" />
+              <h3>Oil Absorbing Blotting Paper</h3>
+              <p class="price">350 tk</p>
+              <a href="#catalog" class="shop-btn">SHOP NOW</a>
+            </article>
+          </div>
         </div>
-        <div class="trust-card">
-          <h3>bKash Available</h3>
-          <p>Fast and trusted payment support.</p>
-        </div>
-        <div class="trust-card">
-          <h3>Curated Selection</h3>
-          <p>Chosen for beauty, function, and everyday wear.</p>
-        </div>
-        <div class="trust-card">
-          <h3>Elegant Essentials</h3>
-          <p>Trend-led products with a polished aesthetic feel.</p>
-        </div>
+
+        <button class="slider-arrow" id="nextProduct" aria-label="Next">›</button>
       </div>
     </section>
 
-    <section id="products" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Collection</span>
-          <h2>Beauty picks with a premium feel</h2>
-          <p>
-            Thoughtfully selected products for natural definition, clean skin moments,
-            effortless eye looks, and polished touch-ups.
-          </p>
-        </div>
-
-        <div id="product-list" class="product-grid"></div>
+    <section class="editorial-banner" style="background-image:url('images/editorial-1.jpg')">
+      <div class="editorial-content">
+        <h2>Curated for Modern Beauty</h2>
+        <p>Discover aesthetic, wearable, and confidence-boosting beauty pieces for every mood.</p>
+        <a href="#catalog" class="cta-btn">SHOP NOW</a>
       </div>
     </section>
 
-    <section id="story" class="section soft-section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Why Glowora</span>
-          <h2>More than products — a complete mood</h2>
-          <p>
-            Glowora is built around the idea that beauty should feel refined,
-            expressive, and easy to enjoy every day.
-          </p>
-        </div>
-
-        <div class="story-grid">
-          <div class="story-card">
-            <h3>Modern C-Beauty Energy</h3>
-            <p>
-              We love soft detail, wearable color stories, charming packaging,
-              and beauty products that feel current without being overwhelming.
-            </p>
-          </div>
-          <div class="story-card">
-            <h3>Aesthetic + Practical</h3>
-            <p>
-              Every pick is chosen to look beautiful, feel useful, and fit naturally
-              into daily routines — from study days to brunch days to evening glam.
-            </p>
-          </div>
-          <div class="story-card">
-            <h3>Affordable Luxury Feeling</h3>
-            <p>
-              Our goal is to make polished beauty accessible: elegant visuals,
-              thoughtful textures, and products that elevate your routine.
-            </p>
-          </div>
-        </div>
+    <section class="about-section" id="about">
+      <div class="about-image">
+        <img src="images/about.jpg" alt="Glowora editorial beauty image" />
+      </div>
+      <div class="about-copy">
+        <span class="mini-label">UNLIMITED BEAUTY</span>
+        <h2>ABOUT US</h2>
+        <p>
+          Glowora is committed to curating high-quality beauty, skincare, and lifestyle
+          products that feel aesthetic, practical, and elevated. Our vision is to help
+          every customer express their beauty with confidence through modern, trend-led,
+          and affordable essentials.
+        </p>
+        <p>
+          From refined everyday makeup tools to charming skincare accessories, Glowora
+          believes beauty should feel inspiring, wearable, and effortlessly stylish.
+        </p>
+        <a href="#catalog" class="dark-btn">KNOW MORE</a>
       </div>
     </section>
 
-    <section id="delivery" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Delivery & Payment</span>
-          <h2>Clear charges, easy checkout</h2>
-        </div>
-
-        <div class="delivery-grid">
-          <div class="info-card">
-            <h3>Delivery Charges</h3>
-            <ul>
-              <li>Inside Dhaka: <strong>80 tk</strong></li>
-              <li>Outside Dhaka: <strong>120 tk</strong></li>
-              <li>Delivery area: <strong>Bangladesh</strong></li>
-            </ul>
-          </div>
-
-          <div class="info-card">
-            <h3>Payment Methods</h3>
-            <ul>
-              <li>Cash on Delivery</li>
-              <li>bKash</li>
-            </ul>
-            <p>
-              Order details are submitted through your website cart and checkout form.
-            </p>
-          </div>
-        </div>
+    <section class="catalog-section" id="catalog">
+      <div class="catalog-head">
+        <h2>CATALOG</h2>
+        <p>Discover premium Glowora essentials.</p>
       </div>
-    </section>
 
-    <section id="reviews" class="section soft-section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Client Notes</span>
-          <h2>Why customers love Glowora</h2>
-        </div>
-
-        <div class="review-grid">
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
+      <div class="catalog-grid">
+        <article class="catalog-card">
+          <img src="images/mascara.png" alt="Mascara" />
+          <div class="catalog-copy">
+            <h3>Judydoll Iron Mascara</h3>
             <p>
-              The packaging looks beautiful and the eyeshadow tones are even prettier in person.
-              Very soft, wearable shades.
+              A slim metal wand mascara designed for clean lash separation, better precision,
+              and an elegant everyday finish without clumping.
             </p>
-            <strong>— Happy Customer</strong>
+            <a href="#" class="shop-btn">SHOP NOW</a>
           </div>
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p>
-              The acne patches are cute, useful, and perfect for quick blemish care.
-              Love the fun designs.
-            </p>
-            <strong>— Glowora Buyer</strong>
-          </div>
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p>
-              The mascara is precise and elegant to use. It gives a neat lash look without feeling heavy.
-            </p>
-            <strong>— Returning Customer</strong>
-          </div>
-        </div>
-      </div>
-    </section>
+        </article>
 
-    <section id="faq" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">FAQ</span>
-          <h2>Common questions</h2>
-        </div>
+        <article class="catalog-card">
+          <img src="images/acne-patch1.png" alt="Acne Patch" />
+          <div class="catalog-copy">
+            <h3>Hydrocolloid Acne Patch</h3>
+            <p>
+              Cute blemish patches in playful styles that protect active spots while adding
+              a fun, stylish touch to your skincare routine.
+            </p>
+            <a href="#" class="shop-btn">SHOP NOW</a>
+          </div>
+        </article>
 
-        <div class="faq-list">
-          <div class="faq-item">
-            <h3>How do I place an order?</h3>
-            <p>Add products to cart, open the cart, fill in your details, choose delivery area and payment method, then place your order.</p>
+        <article class="catalog-card">
+          <img src="images/eyeshadow.png" alt="Eyeshadow" />
+          <div class="catalog-copy">
+            <h3>Hisyi 9-Colour Eye Shadow Palette</h3>
+            <p>
+              Soft, wearable tones with matte and shimmer finishes for simple daily looks
+              or polished soft-glam moments.
+            </p>
+            <a href="#" class="shop-btn">SHOP NOW</a>
           </div>
-          <div class="faq-item">
-            <h3>Do you deliver all over Bangladesh?</h3>
-            <p>Yes, Glowora delivers across Bangladesh.</p>
+        </article>
+
+        <article class="catalog-card">
+          <img src="images/blotting-paper1.png" alt="Blotting Paper" />
+          <div class="catalog-copy">
+            <h3>Oil Absorbing Blotting Paper</h3>
+            <p>
+              A compact beauty-bag essential that helps reduce excess oil while keeping makeup
+              looking fresh and clean throughout the day.
+            </p>
+            <a href="#" class="shop-btn">SHOP NOW</a>
           </div>
-          <div class="faq-item">
-            <h3>What payment methods are available?</h3>
-            <p>Cash on Delivery and bKash.</p>
-          </div>
-          <div class="faq-item">
-            <h3>How is delivery charge calculated?</h3>
-            <p>Inside Dhaka is 80 tk and outside Dhaka is 120 tk. The website adds it automatically at checkout.</p>
-          </div>
-        </div>
+        </article>
       </div>
     </section>
   </main>
 
-  <div id="cart-modal" class="cart-modal hidden">
-    <div class="cart-panel">
-      <div class="cart-head">
-        <h2>Your Cart</h2>
-        <button id="close-cart" class="close-btn">×</button>
-      </div>
-
-      <div id="cart-items" class="cart-items"></div>
-
-      <div class="summary-box">
-        <p><span>Subtotal</span> <strong><span id="subtotal">0</span> tk</strong></p>
-        <p><span>Delivery</span> <strong><span id="delivery-charge">0</span> tk</strong></p>
-        <p class="grand-total"><span>Total</span> <strong><span id="grand-total">0</span> tk</strong></p>
-      </div>
-
-      <form id="checkout-form" class="checkout-form">
-        <input id="customer-name" type="text" placeholder="Full Name" required />
-        <input id="customer-phone" type="text" placeholder="Phone Number" required />
-        <textarea id="customer-address" placeholder="Full Address" required></textarea>
-
-        <select id="delivery-area" required>
-          <option value="">Select Delivery Area</option>
-          <option value="Inside Dhaka">Inside Dhaka</option>
-          <option value="Outside Dhaka">Outside Dhaka</option>
-        </select>
-
-        <select id="payment-method" required>
-          <option value="">Select Payment Method</option>
-          <option value="Cash on Delivery">Cash on Delivery</option>
-          <option value="bKash">bKash</option>
-        </select>
-
-        <button type="submit" class="btn btn-primary full-btn">Place Order</button>
-        <p id="order-message" class="order-message"></p>
-      </form>
+  <footer class="site-footer" id="footer">
+    <div class="footer-logo-wrap">
+      <img src="images/logo.png" alt="Glowora logo" class="footer-logo" />
     </div>
-  </div>
 
-  <footer class="site-footer">
-    <div class="container footer-wrap">
-      <div>
-        <h3>Glowora</h3>
-        <p>The Art of Radiant Skin</p>
+    <div class="footer-columns">
+      <details>
+        <summary>BEST SELLERS</summary>
+        <p>Judydoll Iron Mascara</p>
+        <p>Hisyi Eye Shadow Palette</p>
+      </details>
+
+      <details>
+        <summary>ABOUT US</summary>
+        <p>Glowora is a beauty destination for curated, stylish, and affordable essentials.</p>
+      </details>
+
+      <details>
+        <summary>CUSTOMER SERVICE</summary>
+        <p>Order support</p>
+        <p>Delivery help</p>
+        <p>Payment guidance</p>
+      </details>
+
+      <details>
+        <summary>PRIVACY & TERMS</summary>
+        <p>Privacy Policy</p>
+        <p>Terms of Use</p>
+      </details>
+
+      <details>
+        <summary>GET IN TOUCH</summary>
+        <p>WhatsApp: +8801581836550</p>
+        <p>Bangladesh Delivery</p>
+      </details>
+
+      <details>
+        <summary>FOLLOW US</summary>
+        <p>Facebook</p>
+        <p>Instagram</p>
+      </details>
+    </div>
+
+    <div class="subscribe-box">
+      <h3>Subscribe Today And Get Updates</h3>
+      <p>Receive updates on new arrivals, featured products, and special offers.</p>
+      <div class="subscribe-form">
+        <input type="email" placeholder="Enter your email" />
+        <button>→</button>
       </div>
-      <div>
-        <p><strong>WhatsApp:</strong> +8801581836550</p>
-        <p><strong>Delivery:</strong> Bangladesh</p>
-      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Glowora Official</p>
     </div>
   </footer>
 
