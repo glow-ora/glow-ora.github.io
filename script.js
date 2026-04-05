@@ -1,41 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const searchToggle = document.getElementById("searchToggle");
-  const menuToggle = document.getElementById("menuToggle");
-  const searchDrawer = document.getElementById("searchDrawer");
-  const mobileMenu = document.getElementById("mobileMenu");
 
-  if (searchToggle && searchDrawer) {
-    searchToggle.addEventListener("click", () => {
-      searchDrawer.classList.toggle("hidden");
-      if (mobileMenu) {
-        mobileMenu.classList.add("hidden");
-      }
-    });
+  // HERO SLIDER
+  const slides = document.querySelectorAll(".hero-slide");
+  let index = 0;
+
+  function showSlide(i) {
+    slides.forEach(slide => slide.classList.remove("active"));
+    slides[i].classList.add("active");
   }
 
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-      if (searchDrawer) {
-        searchDrawer.classList.add("hidden");
-      }
-    });
+  if (slides.length > 0) {
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }, 4000); // change every 4 seconds
   }
 
-  const catalogLinks = document.querySelectorAll('a[href="#catalog"]');
-
-  catalogLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-
-      const catalog = document.getElementById("catalog");
-      if (catalog) {
-        catalog.scrollIntoView({ behavior: "smooth" });
-      }
-
-      if (mobileMenu) {
-        mobileMenu.classList.add("hidden");
-      }
-    });
-  });
 });
