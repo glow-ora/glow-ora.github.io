@@ -1,15 +1,199 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Know More</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Know More | Glowora</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .knowmore-page {
+      padding: 60px 10%;
+      background: #fffaf7;
+      color: #333;
+    }
+
+    .knowmore-hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .knowmore-hero h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: #1f1f1f;
+    }
+
+    .knowmore-hero p {
+      font-size: 18px;
+      max-width: 750px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: #666;
+    }
+
+    .knowmore-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .knowmore-card {
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+    }
+
+    .knowmore-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .knowmore-card h3 {
+      margin-bottom: 15px;
+      color: #2d6a4f;
+      font-size: 24px;
+    }
+
+    .knowmore-card p {
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .highlight-box {
+      background: #e8f5ee;
+      padding: 40px;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .highlight-box h2 {
+      font-size: 34px;
+      margin-bottom: 15px;
+      color: #1b4332;
+    }
+
+    .highlight-box p {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .back-home {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .back-home a {
+      display: inline-block;
+      text-decoration: none;
+      background: #2d6a4f;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .back-home a:hover {
+      background: #1b4332;
+    }
+
+    @media (max-width: 768px) {
+      .knowmore-page {
+        padding: 40px 6%;
+      }
+
+      .knowmore-hero h1 {
+        font-size: 34px;
+      }
+
+      .highlight-box h2 {
+        font-size: 28px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <h1>About Glowora</h1>
-  <p>This is the Know More page.</p>
+  <section class="knowmore-page">
+    <div class="knowmore-hero">
+      <h1>Discover More About Glowora</h1>
+      <p>
+        Glowora is more than just a beauty brand. We believe in simple beauty,
+        radiant confidence, and everyday self-care. Our mission is to bring you
+        modern, stylish, and affordable beauty essentials that fit naturally into your lifestyle.
+      </p>
+    </div>
 
-  <a href="index.html">Go Back</a>
+    <div class="knowmore-section">
+      <div class="knowmore-card">
+        <h3>Our Vision</h3>
+        <p>
+          We want to inspire confidence through products that help people feel fresh,
+          glowing, and beautiful every day. Glowora combines elegance, comfort, and practicality.
+        </p>
+      </div>
+
+      <div class="knowmore-card">
+        <h3>Our Products</h3>
+        <p>
+          From skincare helpers to beauty tools and lifestyle essentials, every Glowora
+          product is chosen to be useful, stylish, and easy to love.
+        </p>
+      </div>
+
+      <div class="knowmore-card">
+        <h3>Why Choose Us</h3>
+        <p>
+          We focus on quality, modern design, and affordability. Glowora is for people
+          who want beauty solutions that look good and work well in daily life.
+        </p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <h2>The Art of Radiant Skin</h2>
+      <p>
+        At Glowora, beauty is about feeling confident in your own skin. We celebrate
+        soft glam, healthy routines, and products that support your natural beauty.
+        Every detail is designed to make your beauty journey simple and enjoyable.
+      </p>
+    </div>
+
+    <div class="knowmore-section">
+      <div class="knowmore-card">
+        <h3>Customer First</h3>
+        <p>
+          We create experiences and products with our customers in mind. Your comfort,
+          happiness, and trust are always our top priorities.
+        </p>
+      </div>
+
+      <div class="knowmore-card">
+        <h3>Modern Beauty</h3>
+        <p>
+          Glowora follows modern beauty trends while keeping things wearable,
+          minimal, and elegant for everyday life.
+        </p>
+      </div>
+
+      <div class="knowmore-card">
+        <h3>Affordable Luxury</h3>
+        <p>
+          We believe beauty should feel premium without being expensive. That is why
+          Glowora offers products that balance quality and affordability.
+        </p>
+      </div>
+    </div>
+
+    <div class="back-home">
+      <a href="index.html">Back to Home</a>
+    </div>
+  </section>
 
 </body>
 </html>
