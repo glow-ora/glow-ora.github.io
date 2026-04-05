@@ -189,7 +189,48 @@ a {
   font-size: 21px;
   line-height: 1.55;
 }
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+}
 
+.hero-slide {
+  min-height: 80vh;
+  background-size: cover;
+  background-position: center;
+  display: none;
+  align-items: end;
+  position: relative;
+}
+
+.hero-slide.active {
+  display: flex;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(36,49,41,0.1), rgba(36,49,41,0.5));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  color: white;
+  padding: 40px 20px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
 .btn {
   display: inline-block;
   padding: 16px 30px;
