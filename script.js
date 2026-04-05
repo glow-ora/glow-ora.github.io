@@ -1,29 +1,92 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".slide");
+  let currentSlide = 0;
+  let slideInterval;
 
-  // HERO SLIDER
-  const slides = document.querySelectorAll(".hero-slide");
-  let index = 0;
+  function showSlide(index) {
+    slides.forEach((slide) => {
+      slide.classList.remove("active");
+    });
 
-  function showSlide(i) {
-    slides.forEach(slide => slide.classList.remove("active"));
-    slides[i].classList.add("active");
+    if (slides[index]) {
+      slides[index].classList.add("active");
+    }
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function startSlider() {
+    if (slides.length > 1) {
+      slideInterval = setInterval(nextSlide, 4000);
+    }
+  }
+
+  function stopSlider() {
+    clearInterval(slideInterval);
   }
 
   if (slides.length > 0) {
-    setInterval(() => {
-      index = (index + 1) % slides.length;
-      showSlide(index);
-    }, 4000); // change every 4 seconds
+    showSlide(currentSlide);
+    startSlider();
   }
-const slides = document.querySelectorAll(".slide");
-let index = 0;
 
-function changeSlide() {
-  slides.forEach(s => s.classList.remove("active"));
-  slides[index].classList.add("active");
+  const searchToggle = document.getElementById("searchToggle");
+  const menuToggle = document.getElementById("menuToggle");
+  const searchDrawer = document.getElementById("searchDrawer");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-  index = (index + 1) % slides.length;
-}
+  if (searchToggle && searchDrawer) {
+    searchToggle.addEventListener("click", () => {
+      searchDrawer.classList.toggle("hidden");
 
-setInterval(changeSlide, 4000);
+      if (mobileMenu) {
+        mobileMenu.classList.add("hidden");
+      }
+    });
+  }
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+
+      if (searchDrawer) {
+        searchDrawer.classList.add("hidden");
+      }
+    });
+  }
+
+  const catalogLinks = document.querySelectorAll('a[href="#catalog"]');
+
+  catalogLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const catalogSection = document.getElementById("catalog");
+      if (catalogSection) {
+        catalogSection.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+
+      if (mobileMenu) {
+        mobileMenu.classList.add("hidden");
+      }
+    });
+  });
+
+  slides.forEach((slide) => {
+    slide.addEventListener("mouseenter", stopSlider);
+    slide.addEventListener("mouseleave", startSlider);
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopSlider();
+    } else if (slides.length > 1) {
+      startSlider();
+    }
+  });
 });
