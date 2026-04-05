@@ -1,362 +1,446 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glowora | The Art of Radiant Skin</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  .site-header {
+:root {
+  --black: #080a09;
+  --offwhite: #f2f0ea;
+  --green: #7ea694;
+  --green-dark: #5f7e6f;
+  --text: #111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--offwhite);
+  color: var(--text);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.top-bar {
+  background: var(--black);
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.site-header {
+  background: #0a0d0b;
+  color: white;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  align-items: center;
+  padding: 18px 20px;
   position: sticky;
-  top: 16px;
+  top: 0;
   z-index: 1000;
-  background: transparent;
-}
-
-.header-shell {
-  min-height: 88px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(232, 225, 215, 0.9);
-  border-radius: 999px;
-  padding: 14px 22px;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
-  margin-top: 14px;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  min-width: 0;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-left: auto;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
-  text-decoration: none;
-  color: inherit;
-}
-
-.brand-center {
   justify-content: center;
+  gap: 10px;
+  color: white;
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 28px;
 }
 
 .brand-logo {
-  width: 58px;
-  height: 58px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
-  border-radius: 50%;
-  background: #f6f2eb;
-  padding: 6px;
 }
 
-.brand-text h1 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 700;
-  color: #7fa391;
-  letter-spacing: 0.3px;
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 38px;
+  cursor: pointer;
 }
 
-.brand-text p {
-  margin: 4px 0 0;
-  font-size: 12px;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: #8d8d8d;
+.search-drawer,
+.mobile-menu {
+  background: #111612;
+  color: white;
+  padding: 18px 20px;
 }
 
-.nav {
-  display: flex;
-  align-items: center;
+.search-drawer input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #2d392f;
+  background: black;
+  color: white;
+  font-size: 16px;
+}
+
+.mobile-menu {
+  display: grid;
   gap: 12px;
 }
 
-.nav-fancy {
-  background: #f8f5ef;
-  border-radius: 999px;
-  padding: 8px 10px;
-  border: 1px solid #ede5d9;
-}
-
-.nav a {
-  text-decoration: none;
-  color: #223026;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  transition: all 0.2s ease;
-}
-
-.nav a:hover {
-  background: white;
-  color: #6f937f;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
-}
-
-.cart-pill {
-  border: none;
-  background: linear-gradient(135deg, #7ea694, #6d8f80);
+.mobile-menu a {
   color: white;
-  padding: 12px 18px;
-  border-radius: 999px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 10px 20px rgba(126, 166, 148, 0.25);
+  padding: 10px 0;
+  border-bottom: 1px solid #1e241f;
 }
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-overlay"></div>
-      <div class="container hero-inner">
-        <div class="hero-card">
-          <span class="eyebrow">Modern C-Beauty • Soft Glam • Everyday Elegance</span>
-          <h2>Glow with confidence, softness, and style</h2>
-          <p>
-            Discover Glowora’s curated beauty edit — refined daily essentials,
-            trend-forward picks, and feel-good products designed for modern beauty lovers.
-          </p>
-          <div class="hero-actions">
-            <a href="#products" class="btn btn-primary">Shop Collection</a>
-            <a href="#delivery" class="btn btn-secondary">Delivery Info</a>
-          </div>
-        </div>
-      </div>
-    </section>
+.hidden {
+  display: none;
+}
 
-    <section class="trust-strip">
-      <div class="container trust-grid">
-        <div class="trust-card">
-          <h3>Cash on Delivery</h3>
-          <p>Simple ordering across Bangladesh.</p>
-        </div>
-        <div class="trust-card">
-          <h3>bKash Available</h3>
-          <p>Fast and trusted payment support.</p>
-        </div>
-        <div class="trust-card">
-          <h3>Curated Selection</h3>
-          <p>Chosen for beauty, function, and everyday wear.</p>
-        </div>
-        <div class="trust-card">
-          <h3>Elegant Essentials</h3>
-          <p>Trend-led products with a polished aesthetic feel.</p>
-        </div>
-      </div>
-    </section>
+.hero-slider {
+  position: relative;
+}
 
-    <section id="products" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Collection</span>
-          <h2>Beauty picks with a premium feel</h2>
-          <p>
-            Thoughtfully selected products for natural definition, clean skin moments,
-            effortless eye looks, and polished touch-ups.
-          </p>
-        </div>
+.hero-slide {
+  min-height: 78vh;
+  background-position: center;
+  background-size: cover;
+  display: none;
+  align-items: end;
+  padding: 0 0 34px;
+}
 
-        <div id="product-list" class="product-grid"></div>
-      </div>
-    </section>
+.hero-slide.active {
+  display: flex;
+}
 
-    <section id="story" class="section soft-section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Why Glowora</span>
-          <h2>More than products — a complete mood</h2>
-          <p>
-            Glowora is built around the idea that beauty should feel refined,
-            expressive, and easy to enjoy every day.
-          </p>
-        </div>
+.hero-content {
+  width: 100%;
+  text-align: center;
+  color: white;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
+  padding: 40px 20px 20px;
+}
 
-        <div class="story-grid">
-          <div class="story-card">
-            <h3>Modern C-Beauty Energy</h3>
-            <p>
-              We love soft detail, wearable color stories, charming packaging,
-              and beauty products that feel current without being overwhelming.
-            </p>
-          </div>
-          <div class="story-card">
-            <h3>Aesthetic + Practical</h3>
-            <p>
-              Every pick is chosen to look beautiful, feel useful, and fit naturally
-              into daily routines — from study days to brunch days to evening glam.
-            </p>
-          </div>
-          <div class="story-card">
-            <h3>Affordable Luxury Feeling</h3>
-            <p>
-              Our goal is to make polished beauty accessible: elegant visuals,
-              thoughtful textures, and products that elevate your routine.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+.hero-content h1 {
+  margin: 0 0 10px;
+  font-size: 52px;
+  line-height: 1.05;
+  font-weight: 900;
+}
 
-    <section id="delivery" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Delivery & Payment</span>
-          <h2>Clear charges, easy checkout</h2>
-        </div>
+.hero-content p {
+  max-width: 720px;
+  margin: 0 auto 18px;
+  font-size: 20px;
+  line-height: 1.5;
+}
 
-        <div class="delivery-grid">
-          <div class="info-card">
-            <h3>Delivery Charges</h3>
-            <ul>
-              <li>Inside Dhaka: <strong>80 tk</strong></li>
-              <li>Outside Dhaka: <strong>120 tk</strong></li>
-              <li>Delivery area: <strong>Bangladesh</strong></li>
-            </ul>
-          </div>
+.cta-btn,
+.shop-btn,
+.dark-btn {
+  display: inline-block;
+  background: #b10000;
+  color: white;
+  padding: 16px 28px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+}
 
-          <div class="info-card">
-            <h3>Payment Methods</h3>
-            <ul>
-              <li>Cash on Delivery</li>
-              <li>bKash</li>
-            </ul>
-            <p>
-              Order details are submitted through your website cart and checkout form.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+.featured-slider-section,
+.catalog-section,
+.about-section {
+  padding: 60px 20px;
+}
 
-    <section id="reviews" class="section soft-section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Client Notes</span>
-          <h2>Why customers love Glowora</h2>
-        </div>
+.section-head,
+.catalog-head {
+  text-align: center;
+  margin-bottom: 26px;
+}
 
-        <div class="review-grid">
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p>
-              The packaging looks beautiful and the eyeshadow tones are even prettier in person.
-              Very soft, wearable shades.
-            </p>
-            <strong>— Happy Customer</strong>
-          </div>
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p>
-              The acne patches are cute, useful, and perfect for quick blemish care.
-              Love the fun designs.
-            </p>
-            <strong>— Glowora Buyer</strong>
-          </div>
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p>
-              The mascara is precise and elegant to use. It gives a neat lash look without feeling heavy.
-            </p>
-            <strong>— Returning Customer</strong>
-          </div>
-        </div>
-      </div>
-    </section>
+.section-head h2,
+.catalog-head h2,
+.about-copy h2 {
+  margin: 0 0 8px;
+  font-size: 44px;
+  line-height: 1.1;
+}
 
-    <section id="faq" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">FAQ</span>
-          <h2>Common questions</h2>
-        </div>
+.section-head p,
+.catalog-head p,
+.about-copy p {
+  font-size: 18px;
+  line-height: 1.7;
+}
 
-        <div class="faq-list">
-          <div class="faq-item">
-            <h3>How do I place an order?</h3>
-            <p>Add products to cart, open the cart, fill in your details, choose delivery area and payment method, then place your order.</p>
-          </div>
-          <div class="faq-item">
-            <h3>Do you deliver all over Bangladesh?</h3>
-            <p>Yes, Glowora delivers across Bangladesh.</p>
-          </div>
-          <div class="faq-item">
-            <h3>What payment methods are available?</h3>
-            <p>Cash on Delivery and bKash.</p>
-          </div>
-          <div class="faq-item">
-            <h3>How is delivery charge calculated?</h3>
-            <p>Inside Dhaka is 80 tk and outside Dhaka is 120 tk. The website adds it automatically at checkout.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+.slider-wrap {
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  gap: 10px;
+  align-items: center;
+}
 
-  <div id="cart-modal" class="cart-modal hidden">
-    <div class="cart-panel">
-      <div class="cart-head">
-        <h2>Your Cart</h2>
-        <button id="close-cart" class="close-btn">×</button>
-      </div>
+.slider-arrow {
+  background: transparent;
+  border: none;
+  font-size: 52px;
+  cursor: pointer;
+  color: #222;
+}
 
-      <div id="cart-items" class="cart-items"></div>
+.product-slider-window {
+  overflow: hidden;
+}
 
-      <div class="summary-box">
-        <p><span>Subtotal</span> <strong><span id="subtotal">0</span> tk</strong></p>
-        <p><span>Delivery</span> <strong><span id="delivery-charge">0</span> tk</strong></p>
-        <p class="grand-total"><span>Total</span> <strong><span id="grand-total">0</span> tk</strong></p>
-      </div>
+.product-slider-track {
+  display: flex;
+  transition: transform 0.35s ease;
+}
 
-      <form id="checkout-form" class="checkout-form">
-        <input id="customer-name" type="text" placeholder="Full Name" required />
-        <input id="customer-phone" type="text" placeholder="Phone Number" required />
-        <textarea id="customer-address" placeholder="Full Address" required></textarea>
+.product-slide {
+  min-width: 100%;
+  text-align: center;
+  background: var(--offwhite);
+  padding: 20px;
+}
 
-        <select id="delivery-area" required>
-          <option value="">Select Delivery Area</option>
-          <option value="Inside Dhaka">Inside Dhaka</option>
-          <option value="Outside Dhaka">Outside Dhaka</option>
-        </select>
+.product-slide img {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 20px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #efefef;
+}
 
-        <select id="payment-method" required>
-          <option value="">Select Payment Method</option>
-          <option value="Cash on Delivery">Cash on Delivery</option>
-          <option value="bKash">bKash</option>
-        </select>
+.product-slide h3 {
+  font-size: 24px;
+  margin: 0 0 12px;
+}
 
-        <button type="submit" class="btn btn-primary full-btn">Place Order</button>
-        <p id="order-message" class="order-message"></p>
-      </form>
-    </div>
-  </div>
+.price {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
 
-  <footer class="site-footer">
-    <div class="container footer-wrap">
-      <div>
-        <h3>Glowora</h3>
-        <p>The Art of Radiant Skin</p>
-      </div>
-      <div>
-        <p><strong>WhatsApp:</strong> +8801581836550</p>
-        <p><strong>Delivery:</strong> Bangladesh</p>
-      </div>
-    </div>
-  </footer>
+.editorial-banner {
+  min-height: 90vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: end;
+  padding: 40px 20px;
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+.editorial-content {
+  width: 100%;
+  text-align: center;
+  color: white;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.28));
+}
+
+.editorial-content h2 {
+  font-size: 56px;
+  margin: 0 0 10px;
+  font-weight: 900;
+}
+
+.editorial-content p {
+  max-width: 760px;
+  margin: 0 auto 18px;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.about-section {
+  background: #eceae4;
+}
+
+.about-image img {
+  width: 100%;
+  margin-bottom: 34px;
+}
+
+.mini-label {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 20px;
+  letter-spacing: 6px;
+}
+
+.about-copy h2 {
+  font-size: 72px;
+  margin-bottom: 18px;
+}
+
+.about-copy p {
+  margin-bottom: 18px;
+  font-size: 20px;
+  line-height: 1.8;
+}
+
+.dark-btn {
+  background: black;
+  padding: 18px 34px;
+}
+
+.catalog-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.catalog-card {
+  background: #f5f3ee;
+}
+
+.catalog-card img {
+  width: 100%;
+  background: #efefef;
+}
+
+.catalog-copy {
+  padding: 22px;
+}
+
+.catalog-copy h3 {
+  margin: 0 0 12px;
+  font-size: 28px;
+}
+
+.catalog-copy p {
+  margin: 0 0 18px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.site-footer {
+  background: black;
+  color: white;
+  padding: 60px 20px 30px;
+}
+
+.footer-logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+
+.footer-logo {
+  width: 90px;
+}
+
+.footer-columns {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.footer-columns details {
+  border-bottom: 1px solid #202020;
+  padding: 10px 0 18px;
+}
+
+.footer-columns summary {
+  font-size: 24px;
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.footer-columns summary::-webkit-details-marker {
+  display: none;
+}
+
+.footer-columns p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #d5d5d5;
+}
+
+.subscribe-box {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 40px;
+}
+
+.subscribe-box h3 {
+  font-size: 44px;
+  margin: 0 0 12px;
+}
+
+.subscribe-box p {
+  font-size: 20px;
+  line-height: 1.7;
+  color: #ddd;
+}
+
+.subscribe-form {
+  margin: 24px auto 0;
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  max-width: 620px;
+  border: 1px solid white;
+}
+
+.subscribe-form input {
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 22px 18px;
+  font-size: 20px;
+}
+
+.subscribe-form button {
+  border: none;
+  background: #111;
+  color: white;
+  font-size: 34px;
+  cursor: pointer;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #1c1c1c;
+  padding-top: 24px;
+  color: #d0d0d0;
+  font-size: 18px;
+}
+
+@media (min-width: 900px) {
+  .site-header {
+    grid-template-columns: 80px 1fr 80px;
+  }
+
+  .featured-slider-section,
+  .catalog-section,
+  .about-section,
+  .site-footer {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+}
