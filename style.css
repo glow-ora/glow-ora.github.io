@@ -157,32 +157,27 @@ a {
   inset: 0;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 1s ease;
 }
 
 .slide.active {
   opacity: 1;
-  visibility: visible;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0,0,0,0.35);
 }
 
 .content {
   position: relative;
-  z-index: 2;
   color: white;
   text-align: center;
-  padding: 20px;
 }
 .hero-mini {
   font-size: 14px;
