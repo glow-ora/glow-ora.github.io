@@ -189,45 +189,47 @@ a {
   font-size: 21px;
   line-height: 1.55;
 }
-.hero-slider {
+.hero {
   position: relative;
+  height: 80vh;
   overflow: hidden;
 }
 
-.hero-slide {
-  min-height: 80vh;
-  background-size: cover;
-  background-position: center;
-  display: none;
-  align-items: end;
-  position: relative;
-}
-
-.hero-slide.active {
-  display: flex;
-}
-
-.hero-overlay {
+.slide {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(36,49,41,0.1), rgba(36,49,41,0.5));
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero-content {
+.slide.active {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+.content {
   position: relative;
-  z-index: 1;
-  width: 100%;
-  text-align: center;
   color: white;
-  padding: 40px 20px;
+  text-align: center;
+  padding: 20px;
 }
 
-.hero-content h1 {
-  font-size: 48px;
+.content h1 {
+  font-size: 42px;
   margin-bottom: 10px;
 }
 
-.hero-content p {
+.content p {
   font-size: 18px;
   margin-bottom: 20px;
 }
