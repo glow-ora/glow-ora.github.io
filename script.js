@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelectorAll(".slide");
   let currentSlide = 0;
-  let slideInterval;
+  let sliderInterval = null;
 
   function showSlide(index) {
     slides.forEach((slide) => {
@@ -14,18 +14,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function nextSlide() {
+    if (slides.length === 0) return;
     currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
   }
 
   function startSlider() {
-    if (slides.length > 1) {
-      slideInterval = setInterval(nextSlide, 4000);
+    if (slides.length > 1 && !sliderInterval) {
+      sliderInterval = setInterval(nextSlide, 4000);
     }
   }
 
   function stopSlider() {
-    clearInterval(slideInterval);
+    if (sliderInterval) {
+      clearInterval(sliderInterval);
+      sliderInterval = null;
+    }
   }
 
   if (slides.length > 0) {
@@ -74,6 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (mobileMenu) {
         mobileMenu.classList.add("hidden");
       }
+
+      if (searchDrawer) {
+        searchDrawer.classList.add("hidden");
+      }
     });
   });
 
@@ -85,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       stopSlider();
-    } else if (slides.length > 1) {
+    } else {
       startSlider();
     }
   });
