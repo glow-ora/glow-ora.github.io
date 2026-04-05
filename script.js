@@ -15,5 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
       showSlide(index);
     }, 4000); // change every 4 seconds
   }
+const slides = document.querySelectorAll(".slide");
+let index = 0;
 
+function changeSlide() {
+  slides.forEach(s => s.classList.remove("active"));
+  slides[index].classList.add("active");
+
+  index = (index + 1) % slides.length;
+}
+
+setInterval(changeSlide, 4000);
 });
