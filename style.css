@@ -254,22 +254,25 @@ a {
   font-size: 18px;
   margin-bottom: 20px;
 }
-.btn {
-  display: inline-block;
-  padding: 16px 30px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(135deg, var(--brand-green) 0%, #7fa393 100%);
-  color: white;
+.btn {  
+  display: inline-block;  
+  padding: 16px 30px;  
+  font-weight: 800;  
+  letter-spacing: 1px;  
+  border: none;  
+  cursor: pointer;  
+  background: linear-gradient(135deg, var(--brand-green) 0%, #7fa393 100%);  
+  color: white;  
   box-shadow: 0 10px 22px rgba(111, 143, 129, 0.18);
+  border-radius: 8px;              /* ✅ makes it rounded */
+  text-decoration: none;           /* ✅ remove underline */
+  transition: 0.3s ease;           /* ✅ smooth hover */
 }
 
-.btn:hover {
+.btn:hover {  
   background: var(--brand-green-dark);
+  transform: translateY(-2px);     /* ✅ nice lift effect */
 }
-
 .section {
   padding: 54px 18px;
 }
