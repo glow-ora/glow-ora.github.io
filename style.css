@@ -156,7 +156,7 @@ a {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 1s ease;
+  transition: opacity 1s ease, transform 1s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,9 +164,13 @@ a {
 
 .slide.active {
   opacity: 1;
+  transform: scale(1);
 }
 
-/* 🔥 THIS FIXES YOUR ISSUE */
+.slide:not(.active) {
+  transform: scale(1.05);
+}
+
 .bg-img {
   position: absolute;
   inset: 0;
@@ -179,7 +183,7 @@ a {
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   z-index: 1;
 }
 
@@ -189,71 +193,21 @@ a {
   color: white;
   text-align: center;
   padding: 20px;
-}
-.hero-mini {
-  font-size: 14px;
-  letter-spacing: 2px;
-  margin: 0 0 12px;
-  text-transform: uppercase;
-}
-
-.hero-content h1 {
-  margin: 0 0 12px;
-  font-size: 58px;
-  line-height: 1.02;
-  font-weight: 900;
-}
-
-.hero-desc {
-  max-width: 760px;
-  margin: 0 auto 22px;
-  font-size: 21px;
-  line-height: 1.55;
-}
-.hero {
-  position: relative;
-  height: 80vh;
-  overflow: hidden;
-}
-
-.slide {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 1s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slide.active {
-  opacity: 1;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-}
-
-.content {
-  position: relative;
-  color: white;
-  text-align: center;
-  padding: 20px;
+  max-width: 900px;
 }
 
 .content h1 {
-  font-size: 42px;
+  font-size: 48px;
   margin-bottom: 10px;
+  line-height: 1.1;
 }
 
 .content p {
   font-size: 18px;
   margin-bottom: 20px;
+  line-height: 1.6;
 }
+
 .btn {
   display: inline-block;
   padding: 16px 30px;
@@ -447,12 +401,12 @@ a {
 }
 
 @media (max-width: 900px) {
-  .hero-content h1,
+  .content h1,
   .section-title h2 {
     font-size: 34px;
   }
 
-  .hero-desc,
+  .content p,
   .section-title p,
   .about-text-paragraph {
     font-size: 16px;
