@@ -6,85 +6,145 @@
   <title>Know More | Glowora</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .knowmore-page {
-      padding: 60px 10%;
-      background: #fffaf7;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fffaf8;
       color: #333;
     }
 
-    .knowmore-hero {
+    .knowmore-page {
+      width: 100%;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+        url("images/beauty-banner.jpg") center/cover no-repeat;
+      color: white;
       text-align: center;
-      margin-bottom: 60px;
+      padding: 100px 20px;
     }
 
-    .knowmore-hero h1 {
-      font-size: 48px;
+    .hero h1 {
+      font-size: 52px;
       margin-bottom: 15px;
-      color: #1f1f1f;
     }
 
-    .knowmore-hero p {
-      font-size: 18px;
-      max-width: 750px;
+    .hero p {
+      max-width: 800px;
       margin: 0 auto;
+      font-size: 20px;
       line-height: 1.8;
-      color: #666;
     }
 
-    .knowmore-section {
+    .section {
+      padding: 70px 10%;
+    }
+
+    .about-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-bottom: 60px;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
     }
 
-    .knowmore-card {
+    .about-grid img {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .about-text h2 {
+      font-size: 38px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .about-text p {
+      font-size: 18px;
+      line-height: 1.9;
+      color: #555;
+    }
+
+    .cards-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .cards-title h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .cards-title p {
+      color: #666;
+      font-size: 17px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
       background: white;
-      padding: 30px;
-      border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
       transition: 0.3s;
     }
 
-    .knowmore-card:hover {
-      transform: translateY(-5px);
+    .card:hover {
+      transform: translateY(-6px);
     }
 
-    .knowmore-card h3 {
-      margin-bottom: 15px;
+    .card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 24px;
+    }
+
+    .card-content h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
       color: #2d6a4f;
       font-size: 24px;
     }
 
-    .knowmore-card p {
-      line-height: 1.8;
+    .card-content p {
       color: #555;
-    }
-
-    .highlight-box {
-      background: #e8f5ee;
-      padding: 40px;
-      border-radius: 16px;
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .highlight-box h2 {
-      font-size: 34px;
-      margin-bottom: 15px;
-      color: #1b4332;
-    }
-
-    .highlight-box p {
-      max-width: 800px;
-      margin: 0 auto;
       line-height: 1.8;
-      color: #444;
+      font-size: 16px;
+    }
+
+    .highlight {
+      background: #ffeef4;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    .highlight h2 {
+      font-size: 40px;
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    .highlight p {
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.9;
+      color: #555;
     }
 
     .back-home {
       text-align: center;
-      margin-top: 30px;
+      padding: 40px 20px 80px;
     }
 
     .back-home a {
@@ -92,7 +152,7 @@
       text-decoration: none;
       background: #2d6a4f;
       color: white;
-      padding: 14px 28px;
+      padding: 14px 30px;
       border-radius: 8px;
       font-weight: bold;
       transition: 0.3s;
@@ -103,97 +163,131 @@
     }
 
     @media (max-width: 768px) {
-      .knowmore-page {
-        padding: 40px 6%;
+      .hero h1 {
+        font-size: 36px;
       }
 
-      .knowmore-hero h1 {
-        font-size: 34px;
+      .hero p {
+        font-size: 17px;
       }
 
-      .highlight-box h2 {
-        font-size: 28px;
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-text h2,
+      .cards-title h2,
+      .highlight h2 {
+        font-size: 30px;
       }
     }
   </style>
 </head>
 <body>
 
-  <section class="knowmore-page">
-    <div class="knowmore-hero">
-      <h1>Discover More About Glowora</h1>
+  <div class="knowmore-page">
+
+    <section class="hero">
+      <h1>Welcome to Glowora ✨</h1>
       <p>
-        Glowora is more than just a beauty brand. We believe in simple beauty,
-        radiant confidence, and everyday self-care. Our mission is to bring you
-        modern, stylish, and affordable beauty essentials that fit naturally into your lifestyle.
+        Your destination for trendy beauty, skincare, and lifestyle products—sourced directly from China.
+        We bring you quality, style, and affordability to help you glow confidently every day 💖
       </p>
-    </div>
+    </section>
 
-    <div class="knowmore-section">
-      <div class="knowmore-card">
-        <h3>Our Vision</h3>
-        <p>
-          We want to inspire confidence through products that help people feel fresh,
-          glowing, and beautiful every day. Glowora combines elegance, comfort, and practicality.
-        </p>
+    <section class="section">
+      <div class="about-grid">
+        <img src="images/glowora-about.jpg" alt="Glowora beauty products">
+        <div class="about-text">
+          <h2>About Glowora</h2>
+          <p>
+            Glowora is a modern beauty and lifestyle brand created for people who love stylish,
+            useful, and affordable products. We carefully source trendy beauty, skincare, and
+            lifestyle essentials directly from China so you can enjoy quality products at great prices.
+          </p>
+          <p>
+            Our goal is simple: to make beauty feel exciting, easy, and accessible. From everyday
+            self-care to trendy new finds, Glowora helps you express your style and glow with confidence.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="cards-title">
+        <h2>What We Offer</h2>
+        <p>Discover the products that make Glowora special</p>
       </div>
 
-      <div class="knowmore-card">
-        <h3>Our Products</h3>
-        <p>
-          From skincare helpers to beauty tools and lifestyle essentials, every Glowora
-          product is chosen to be useful, stylish, and easy to love.
-        </p>
-      </div>
+      <div class="cards">
+        <div class="card">
+          <img src="images/beauty-products.jpg" alt="Beauty products">
+          <div class="card-content">
+            <h3>Trendy Beauty</h3>
+            <p>
+              Explore stylish beauty products chosen to match modern trends. We bring you items
+              that feel elegant, fun, and perfect for everyday beauty routines.
+            </p>
+          </div>
+        </div>
 
-      <div class="knowmore-card">
-        <h3>Why Choose Us</h3>
-        <p>
-          We focus on quality, modern design, and affordability. Glowora is for people
-          who want beauty solutions that look good and work well in daily life.
-        </p>
-      </div>
-    </div>
+        <div class="card">
+          <img src="images/skincare.jpg" alt="Skincare collection">
+          <div class="card-content">
+            <h3>Skincare Essentials</h3>
+            <p>
+              Discover skincare products that support fresh, healthy-looking skin. Glowora helps
+              you build a simple self-care routine that feels both relaxing and effective.
+            </p>
+          </div>
+        </div>
 
-    <div class="highlight-box">
-      <h2>The Art of Radiant Skin</h2>
+        <div class="card">
+          <img src="images/lifestyle.jpg" alt="Lifestyle products">
+          <div class="card-content">
+            <h3>Lifestyle Picks</h3>
+            <p>
+              Beyond beauty, we also offer lifestyle products that are practical, aesthetic, and
+              easy to love. Every item is selected to add comfort and style to your daily life.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="highlight">
+      <h2>Quality, Style, and Affordability</h2>
       <p>
-        At Glowora, beauty is about feeling confident in your own skin. We celebrate
-        soft glam, healthy routines, and products that support your natural beauty.
-        Every detail is designed to make your beauty journey simple and enjoyable.
+        At Glowora, we believe you should not have to choose between looking good and spending wisely.
+        That is why we focus on bringing you trendy, high-quality products at affordable prices.
+        Every product is selected to help you feel confident, stylish, and ready to glow every day.
       </p>
-    </div>
+    </section>
 
-    <div class="knowmore-section">
-      <div class="knowmore-card">
-        <h3>Customer First</h3>
-        <p>
-          We create experiences and products with our customers in mind. Your comfort,
-          happiness, and trust are always our top priorities.
-        </p>
+    <section class="section">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>Why Choose Glowora?</h2>
+          <p>
+            We understand that today’s customers want more than just products—they want value,
+            beauty, and trust. Glowora is built around those ideas. We search for products that
+            are fashionable, practical, and worth buying.
+          </p>
+          <p>
+            Whether you are shopping for beauty tools, skincare favorites, or aesthetic lifestyle
+            items, Glowora is here to give you a shopping experience that feels modern, exciting,
+            and full of glow.
+          </p>
+        </div>
+        <img src="images/why-glowora.jpg" alt="Woman with glowing skin">
       </div>
-
-      <div class="knowmore-card">
-        <h3>Modern Beauty</h3>
-        <p>
-          Glowora follows modern beauty trends while keeping things wearable,
-          minimal, and elegant for everyday life.
-        </p>
-      </div>
-
-      <div class="knowmore-card">
-        <h3>Affordable Luxury</h3>
-        <p>
-          We believe beauty should feel premium without being expensive. That is why
-          Glowora offers products that balance quality and affordability.
-        </p>
-      </div>
-    </div>
+    </section>
 
     <div class="back-home">
       <a href="index.html">Back to Home</a>
     </div>
-  </section>
+
+  </div>
 
 </body>
 </html>
