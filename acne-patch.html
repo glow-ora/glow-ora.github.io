@@ -26,7 +26,6 @@
       --success: #356142;
       --warning: #9c6a19;
       --shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
-      --radius: 24px;
     }
 
     body {
@@ -42,7 +41,8 @@
 
     button,
     select,
-    input {
+    input,
+    textarea {
       font-family: inherit;
     }
 
@@ -115,7 +115,8 @@
 
     .gallery-card,
     .product-card,
-    .section-card {
+    .section-card,
+    .order-card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 28px;
@@ -405,15 +406,33 @@
       outline: none;
     }
 
-    select {
+    select,
+    input[type="text"],
+    textarea {
       width: 100%;
-      height: 50px;
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 0 14px;
+      padding: 14px 16px;
       font-size: 15px;
       background: var(--white);
       outline: none;
+      color: var(--black);
+    }
+
+    select {
+      height: 50px;
+      padding: 0 14px;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--sage-5);
     }
 
     .mini-total {
@@ -499,10 +518,6 @@
 
     .order-card {
       margin-top: 26px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
       padding: 22px;
     }
 
@@ -810,12 +825,28 @@
       </div>
 
       <div class="summary-panel">
-        <div class="delivery-box">
-          <label class="label">Delivery Area</label>
-          <select id="deliveryArea" onchange="updateOrderSummary()">
-            <option value="80">Inside Dhaka - 80 tk</option>
-            <option value="120">Outside Dhaka - 120 tk</option>
-          </select>
+        <div>
+          <div class="delivery-box">
+            <label class="label">Delivery Area</label>
+            <select id="deliveryArea" onchange="updateOrderSummary()">
+              <option value="80">Inside Dhaka - 80 tk</option>
+              <option value="120">Outside Dhaka - 120 tk</option>
+            </select>
+          </div>
+
+          <div class="delivery-box" style="margin-top:18px;">
+            <label class="label">Customer Name</label>
+            <input type="text" id="customerName" placeholder="Enter your full name">
+
+            <label class="label" style="margin-top:14px;">Phone Number</label>
+            <input type="text" id="customerPhone" placeholder="Enter your phone number">
+
+            <label class="label" style="margin-top:14px;">Address</label>
+            <textarea id="customerAddress" placeholder="Enter your full delivery address"></textarea>
+
+            <label class="label" style="margin-top:14px;">Notes</label>
+            <textarea id="customerNotes" placeholder="Optional note"></textarea>
+          </div>
         </div>
 
         <div class="total-box">
@@ -825,15 +856,15 @@
           </div>
           <div class="summary-line">
             <span>Delivery Charge</span>
-            <strong id="deliveryCharge">80 tk</strong>
+            <strong id="deliveryCharge">0 tk</strong>
           </div>
           <div class="summary-line total">
             <span>Total Amount</span>
-            <strong id="grandTotal">80 tk</strong>
+            <strong id="grandTotal">0 tk</strong>
           </div>
 
           <div class="actions" style="margin-top:16px;">
-            <button class="btn btn-olive" onclick="buyNow()">Buy Now</button>
+            <button class="btn btn-olive" onclick="submitOrder()">Place Order</button>
           </div>
         </div>
       </div>
@@ -897,7 +928,9 @@
   </div>
 
   <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbymRaCYVdyeP1KfyAt4SpwS51Y4F6hPEFg2-hdX7ICIFargVGGwhMdvkHe1uk4J3YM/exec";
     const basePrice = 150;
+
     let currentSlide = 0;
     let selectedType = "star";
     let selectedVariantIndex = null;
@@ -969,6 +1002,12 @@
       resetStatus();
       updateSelectedPreview();
       clearMessage();
+    }
+
+    function getUsedCount(type, name) {
+      return orderItems
+        .filter(item => item.type === type && item.name === name)
+        .reduce((sum, item) => sum + item.qty, 0);
     }
 
     function renderVariants() {
@@ -1106,12 +1145,6 @@
       document.getElementById("selectedItemTotal").innerText = (qty * basePrice) + " tk";
     }
 
-    function getUsedCount(type, name) {
-      return orderItems
-        .filter(item => item.type === type && item.name === name)
-        .reduce((sum, item) => sum + item.qty, 0);
-    }
-
     function addItemToOrder() {
       const variant = getSelectedVariant();
 
@@ -1204,24 +1237,100 @@
     function updateOrderSummary() {
       const subtotal = orderItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
       const delivery = parseInt(document.getElementById("deliveryArea").value) || 80;
-      const total = subtotal + (subtotal > 0 ? delivery : 0);
+      const deliveryApplied = subtotal > 0 ? delivery : 0;
+      const total = subtotal + deliveryApplied;
 
       document.getElementById("itemsSubtotal").innerText = subtotal + " tk";
-      document.getElementById("deliveryCharge").innerText = (subtotal > 0 ? delivery : 0) + " tk";
+      document.getElementById("deliveryCharge").innerText = deliveryApplied + " tk";
       document.getElementById("grandTotal").innerText = total + " tk";
     }
 
-    function buyNow() {
+    async function submitOrder() {
       if (orderItems.length === 0) {
         showMessage("Please add at least one item to your order.", "error");
         return;
       }
 
-      const subtotal = orderItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
-      const delivery = parseInt(document.getElementById("deliveryArea").value) || 80;
-      const total = subtotal + delivery;
+      const customerName = document.getElementById("customerName").value.trim();
+      const phone = document.getElementById("customerPhone").value.trim();
+      const address = document.getElementById("customerAddress").value.trim();
+      const notes = document.getElementById("customerNotes").value.trim();
 
-      showMessage("Order ready. Total amount: " + total + " tk", "success");
+      if (customerName === "") {
+        showMessage("Please enter customer name.", "error");
+        return;
+      }
+
+      if (phone === "") {
+        showMessage("Please enter phone number.", "error");
+        return;
+      }
+
+      if (!/^01[0-9]{9}$/.test(phone)) {
+        showMessage("Please enter a valid phone number.", "error");
+        return;
+      }
+
+      if (address === "") {
+        showMessage("Please enter address.", "error");
+        return;
+      }
+
+      const deliverySelect = document.getElementById("deliveryArea");
+      const deliveryArea = deliverySelect.options[deliverySelect.selectedIndex].text;
+      const deliveryCharge = parseInt(deliverySelect.value) || 80;
+
+      const subtotal = orderItems.reduce((sum, item) => {
+        return sum + (item.qty * item.price);
+      }, 0);
+
+      const totalAmount = subtotal + deliveryCharge;
+
+      const payload = {
+        customerName: customerName,
+        phone: phone,
+        address: address,
+        notes: notes,
+        items: orderItems,
+        subtotal: subtotal,
+        deliveryArea: deliveryArea,
+        deliveryCharge: deliveryCharge,
+        totalAmount: totalAmount
+      };
+
+      try {
+        showMessage("Submitting your order...", "success");
+
+        const response = await fetch(scriptURL, {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          showMessage("Order placed successfully.", "success");
+
+          orderItems = [];
+          renderOrderList();
+          updateOrderSummary();
+          renderVariants();
+          clearSelection(false);
+
+          document.getElementById("customerName").value = "";
+          document.getElementById("customerPhone").value = "";
+          document.getElementById("customerAddress").value = "";
+          document.getElementById("customerNotes").value = "";
+        } else {
+          showMessage("Order failed: " + result.message, "error");
+        }
+      } catch (error) {
+        console.error(error);
+        showMessage("Something went wrong while submitting order.", "error");
+      }
     }
 
     function showMessage(text, type) {
@@ -1236,7 +1345,7 @@
       box.innerText = "";
     }
 
-    /* touch swipe */
+    /* mobile swipe */
     let touchStartX = 0;
     let touchEndX = 0;
     const sliderArea = document.getElementById("sliderArea");
@@ -1251,12 +1360,8 @@
     });
 
     function handleSwipe() {
-      if (touchEndX < touchStartX - 40) {
-        nextSlide();
-      }
-      if (touchEndX > touchStartX + 40) {
-        prevSlide();
-      }
+      if (touchEndX < touchStartX - 40) nextSlide();
+      if (touchEndX > touchStartX + 40) prevSlide();
     }
 
     updateSlider();
