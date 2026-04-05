@@ -1,9 +1,10 @@
 :root {
-  --black: #080a09;
-  --offwhite: #f2f0ea;
+  --black: #0d0f0e;
+  --offwhite: #f4f1eb;
   --green: #7ea694;
-  --green-dark: #5f7e6f;
+  --green-dark: #5f7f6e;
   --text: #111;
+  --white: #ffffff;
 }
 
 * {
@@ -31,21 +32,23 @@ a {
 }
 
 .top-bar {
-  background: var(--black);
+  background: #132018;
   color: white;
   text-align: center;
   padding: 14px 16px;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
 }
 
 .site-header {
-  background: #0a0d0b;
-  color: white;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  color: #111;
   display: grid;
   grid-template-columns: 60px 1fr 60px;
   align-items: center;
-  padding: 18px 20px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e7e2d9;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -55,52 +58,54 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  color: white;
-  font-weight: 800;
+  gap: 14px;
+  color: #111;
+  font-weight: 900;
   letter-spacing: 1px;
-  font-size: 28px;
+  font-size: 34px;
 }
 
 .brand-logo {
-  width: 40px;
-  height: 40px;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
 }
 
 .icon-btn {
   background: transparent;
   border: none;
-  color: white;
-  font-size: 38px;
+  color: #111;
+  font-size: 34px;
   cursor: pointer;
 }
 
 .search-drawer,
 .mobile-menu {
-  background: #111612;
-  color: white;
+  background: white;
+  color: #111;
   padding: 18px 20px;
+  border-bottom: 1px solid #e8e2d9;
 }
 
 .search-drawer input {
   width: 100%;
   padding: 14px 16px;
-  border: 1px solid #2d392f;
-  background: black;
-  color: white;
+  border: 1px solid #dcd6cc;
+  background: #faf8f3;
+  color: #111;
   font-size: 16px;
 }
 
 .mobile-menu {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .mobile-menu a {
-  color: white;
+  color: #111;
   padding: 10px 0;
-  border-bottom: 1px solid #1e241f;
+  border-bottom: 1px solid #ece6dc;
+  font-weight: 600;
 }
 
 .hidden {
@@ -117,7 +122,15 @@ a {
   background-size: cover;
   display: none;
   align-items: end;
-  padding: 0 0 34px;
+  padding: 0 0 36px;
+  position: relative;
+}
+
+.hero-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.38));
 }
 
 .hero-slide.active {
@@ -128,19 +141,20 @@ a {
   width: 100%;
   text-align: center;
   color: white;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
-  padding: 40px 20px 20px;
+  position: relative;
+  z-index: 1;
+  padding: 30px 20px 20px;
 }
 
 .hero-content h1 {
   margin: 0 0 10px;
-  font-size: 52px;
+  font-size: 56px;
   line-height: 1.05;
   font-weight: 900;
 }
 
 .hero-content p {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto 18px;
   font-size: 20px;
   line-height: 1.5;
@@ -150,13 +164,19 @@ a {
 .shop-btn,
 .dark-btn {
   display: inline-block;
-  background: #b10000;
+  background: var(--green);
   color: white;
   padding: 16px 28px;
   font-weight: 800;
   letter-spacing: 1px;
   border: none;
   cursor: pointer;
+}
+
+.cta-btn:hover,
+.shop-btn:hover,
+.dark-btn:hover {
+  background: var(--green-dark);
 }
 
 .featured-slider-section,
@@ -168,7 +188,7 @@ a {
 .section-head,
 .catalog-head {
   text-align: center;
-  margin-bottom: 26px;
+  margin-bottom: 28px;
 }
 
 .section-head h2,
@@ -244,13 +264,22 @@ a {
   display: flex;
   align-items: end;
   padding: 40px 20px;
+  position: relative;
+}
+
+.editorial-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.35));
 }
 
 .editorial-content {
   width: 100%;
   text-align: center;
   color: white;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.28));
+  position: relative;
+  z-index: 1;
 }
 
 .editorial-content h2 {
@@ -278,12 +307,12 @@ a {
 .mini-label {
   display: inline-block;
   margin-bottom: 20px;
-  font-size: 20px;
-  letter-spacing: 6px;
+  font-size: 18px;
+  letter-spacing: 5px;
 }
 
 .about-copy h2 {
-  font-size: 72px;
+  font-size: 64px;
   margin-bottom: 18px;
 }
 
@@ -294,7 +323,7 @@ a {
 }
 
 .dark-btn {
-  background: black;
+  background: #111;
   padding: 18px 34px;
 }
 
@@ -328,7 +357,7 @@ a {
 }
 
 .site-footer {
-  background: black;
+  background: #0a0d0b;
   color: white;
   padding: 60px 20px 30px;
 }
@@ -340,7 +369,7 @@ a {
 }
 
 .footer-logo {
-  width: 90px;
+  width: 100px;
 }
 
 .footer-columns {
@@ -350,7 +379,7 @@ a {
 }
 
 .footer-columns details {
-  border-bottom: 1px solid #202020;
+  border-bottom: 1px solid #1d231f;
   padding: 10px 0 18px;
 }
 
@@ -378,7 +407,7 @@ a {
 }
 
 .subscribe-box h3 {
-  font-size: 44px;
+  font-size: 42px;
   margin: 0 0 12px;
 }
 
@@ -423,6 +452,7 @@ a {
 @media (min-width: 900px) {
   .site-header {
     grid-template-columns: 80px 1fr 80px;
+    padding: 18px 34px;
   }
 
   .featured-slider-section,
