@@ -381,15 +381,6 @@ a {
   transition: 0.3s;
 }
 
-.order-btn:hover {
-  background-color: #5aa88b;
-}
-</style>
-
-.banner-card {
-  max-width: 1100px;
-  margin: 0 auto;
-}
 
 .about {
   display: grid;
