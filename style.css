@@ -147,28 +147,43 @@ a {
 }
 
 .hero {
-  min-height: 78vh;
-  background: url("images/hero-1.jpg") center/cover no-repeat;
-  display: flex;
-  align-items: end;
   position: relative;
+  height: 80vh;
+  overflow: hidden;
 }
 
-.hero-overlay {
+.slide {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(36, 49, 41, 0.08) 0%, rgba(36, 49, 41, 0.5) 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease;
 }
 
-.hero-content {
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.content {
   position: relative;
-  z-index: 1;
-  width: 100%;
-  text-align: center;
+  z-index: 2;
   color: white;
-  padding: 34px 20px 42px;
+  text-align: center;
+  padding: 20px;
 }
-
 .hero-mini {
   font-size: 14px;
   letter-spacing: 2px;
