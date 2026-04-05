@@ -155,8 +155,6 @@ a {
 .slide {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
   opacity: 0;
   transition: opacity 1s ease;
   display: flex;
@@ -168,16 +166,29 @@ a {
   opacity: 1;
 }
 
+/* 🔥 THIS FIXES YOUR ISSUE */
+.bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
 .overlay {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.35);
+  z-index: 1;
 }
 
 .content {
   position: relative;
+  z-index: 2;
   color: white;
   text-align: center;
+  padding: 20px;
 }
 .hero-mini {
   font-size: 14px;
