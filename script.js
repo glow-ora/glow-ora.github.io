@@ -41,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menuToggle");
   const searchDrawer = document.getElementById("searchDrawer");
   const mobileMenu = document.getElementById("mobileMenu");
+  const searchInput = document.getElementById("searchInput");
+  const products = document.querySelectorAll(".searchable");
 
   if (searchToggle && searchDrawer) {
     searchToggle.addEventListener("click", () => {
@@ -48,6 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (mobileMenu) {
         mobileMenu.classList.add("hidden");
+      }
+
+      if (!searchDrawer.classList.contains("hidden") && searchInput) {
+        searchInput.focus();
       }
     });
   }
@@ -84,6 +90,22 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      const value = searchInput.value.toLowerCase().trim();
+
+      products.forEach((product) => {
+        const text = product.innerText.toLowerCase();
+
+        if (text.includes(value)) {
+          product.style.display = "";
+        } else {
+          product.style.display = "none";
+        }
+      });
+    });
+  }
 
   slides.forEach((slide) => {
     slide.addEventListener("mouseenter", stopSlider);
