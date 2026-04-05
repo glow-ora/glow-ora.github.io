@@ -1,11 +1,13 @@
 :root {
-  --brand-dark: #2b3b34;
-  --brand-green: #89a99b;
-  --brand-green-dark: #6e8a7d;
-  --brand-light: #f6f2eb;
+  --brand-dark: #2f4339;
+  --brand-green: #90b1a2;
+  --brand-green-dark: #6f8f81;
+  --brand-light: #f7f1e9;
+  --brand-cream: #efe7dc;
   --brand-white: #ffffff;
-  --text-dark: #1f2a24;
-  --border-soft: #e8e0d5;
+  --text-dark: #223129;
+  --text-soft: #56635a;
+  --border-soft: #e6ddd1;
 }
 
 * {
@@ -19,7 +21,7 @@ html {
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: var(--brand-light);
+  background: linear-gradient(180deg, #f8f3ec 0%, #f3ede3 100%);
   color: var(--text-dark);
 }
 
@@ -33,59 +35,64 @@ a {
 }
 
 .top-bar {
-  background: var(--brand-dark);
-  color: var(--brand-white);
+  background: linear-gradient(90deg, #355044 0%, #2b3d35 100%);
+  color: white;
   text-align: center;
-  padding: 14px 16px;
-  font-weight: 700;
+  padding: 16px 14px;
+  font-weight: 800;
   letter-spacing: 0.4px;
+  font-size: 15px;
 }
 
 .site-header {
-  background: rgba(246, 242, 235, 0.96);
+  background: rgba(247, 241, 233, 0.95);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-soft);
   display: grid;
-  grid-template-columns: 70px 1fr 70px;
+  grid-template-columns: 72px 1fr 72px;
   align-items: center;
-  padding: 16px 20px;
+  padding: 20px 24px;
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 8px 18px rgba(111, 143, 129, 0.08);
 }
 
 .brand {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 18px;
   color: var(--text-dark);
-  text-align: left;
 }
 
 .brand-logo {
-  width: 72px;
-  height: 72px;
+  width: 82px;
+  height: 82px;
   object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  padding: 6px;
 }
 
 .brand-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.1;
+  line-height: 1.05;
 }
 
 .brand-name {
-  font-size: 34px;
+  font-size: 40px;
   font-weight: 900;
   letter-spacing: 1px;
 }
 
 .brand-tagline {
   font-size: 12px;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.6px;
   text-transform: uppercase;
-  color: #6f726d;
-  margin-top: 4px;
+  color: #738076;
+  margin-top: 6px;
 }
 
 .icon-btn {
@@ -98,18 +105,19 @@ a {
 
 .search-drawer,
 .mobile-menu {
-  background: var(--brand-white);
+  background: #fffdf9;
   color: var(--text-dark);
-  padding: 16px 20px;
+  padding: 16px 22px;
   border-bottom: 1px solid var(--border-soft);
 }
 
 .search-drawer input {
   width: 100%;
-  border: 1px solid #d8d0c5;
-  background: #fbf9f5;
-  padding: 14px 16px;
+  border: 1px solid #d8cec2;
+  background: #fbf8f2;
+  padding: 16px 18px;
   font-size: 16px;
+  border-radius: 14px;
   color: var(--text-dark);
 }
 
@@ -120,7 +128,7 @@ a {
 
 .mobile-menu a {
   color: var(--text-dark);
-  font-weight: 600;
+  font-weight: 700;
   padding: 10px 0;
   border-bottom: 1px solid #efe8de;
 }
@@ -150,7 +158,7 @@ a {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.42));
+  background: linear-gradient(180deg, rgba(36, 49, 41, 0.08) 0%, rgba(36, 49, 41, 0.5) 100%);
 }
 
 .hero-content {
@@ -159,43 +167,45 @@ a {
   width: 100%;
   text-align: center;
   color: white;
-  padding: 30px 20px 34px;
+  padding: 34px 20px 42px;
 }
 
 .hero-mini {
   font-size: 14px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   margin: 0 0 12px;
   text-transform: uppercase;
 }
 
 .hero-content h1 {
-  margin: 0 0 10px;
-  font-size: 56px;
-  line-height: 1.05;
+  margin: 0 0 12px;
+  font-size: 58px;
+  line-height: 1.02;
   font-weight: 900;
 }
 
 .hero-desc {
   max-width: 760px;
-  margin: 0 auto 20px;
-  font-size: 20px;
-  line-height: 1.5;
+  margin: 0 auto 22px;
+  font-size: 21px;
+  line-height: 1.55;
 }
 
 .btn-primary,
 .btn-dark {
   display: inline-block;
-  padding: 16px 28px;
+  padding: 16px 30px;
   font-weight: 800;
   letter-spacing: 1px;
+  border-radius: 0;
   border: none;
   cursor: pointer;
 }
 
 .btn-primary {
-  background: var(--brand-green);
+  background: linear-gradient(135deg, var(--brand-green) 0%, #7fa393 100%);
   color: white;
+  box-shadow: 0 10px 22px rgba(111, 143, 129, 0.18);
 }
 
 .btn-primary:hover {
@@ -210,65 +220,65 @@ a {
 .brand-highlights {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  padding: 28px 20px 10px;
+  gap: 20px;
+  padding: 32px 20px 10px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .highlight-card {
-  background: white;
+  background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.72) 100%);
   border: 1px solid var(--border-soft);
-  border-radius: 20px;
-  padding: 22px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 28px;
+  padding: 26px;
+  box-shadow: 0 10px 22px rgba(111, 143, 129, 0.08);
 }
 
 .highlight-card h3 {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   font-size: 22px;
 }
 
 .highlight-card p {
   margin: 0;
   font-size: 16px;
-  line-height: 1.6;
-  color: #5e635d;
+  line-height: 1.7;
+  color: var(--text-soft);
 }
 
 .featured-section,
 .catalog-section,
 .delivery-section {
-  padding: 70px 20px;
+  padding: 80px 20px;
 }
 
 .section-title {
   text-align: center;
-  max-width: 760px;
-  margin: 0 auto 30px;
+  max-width: 780px;
+  margin: 0 auto 34px;
 }
 
 .mini-heading {
   font-size: 13px;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--brand-green-dark);
   margin: 0 0 10px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .section-title h2,
 .about-text h2 {
-  margin: 0 0 10px;
-  font-size: 46px;
-  line-height: 1.1;
+  margin: 0 0 12px;
+  font-size: 50px;
+  line-height: 1.08;
 }
 
 .section-title p,
 .about-text p {
   font-size: 18px;
-  line-height: 1.7;
-  color: #565d58;
+  line-height: 1.8;
+  color: var(--text-soft);
 }
 
 .product-slider {
@@ -276,7 +286,7 @@ a {
   grid-template-columns: 50px 1fr 50px;
   gap: 12px;
   align-items: center;
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
@@ -299,22 +309,23 @@ a {
 
 .product-card {
   min-width: 100%;
-  background: var(--brand-light);
+  background: transparent;
   text-align: center;
   padding: 20px;
 }
 
 .product-card img {
   width: 100%;
-  max-width: 420px;
+  max-width: 430px;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   margin: 0 auto 18px;
-  background: #f0efec;
+  background: #f1eee7;
+  border-radius: 18px;
 }
 
 .product-card h3 {
-  font-size: 26px;
+  font-size: 28px;
   margin: 0 0 10px;
 }
 
@@ -337,7 +348,7 @@ a {
 .editorial-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.35));
+  background: linear-gradient(180deg, rgba(36,49,41,0.08) 0%, rgba(36,49,41,0.45) 100%);
 }
 
 .editorial-content {
@@ -346,33 +357,34 @@ a {
   width: 100%;
   color: white;
   text-align: center;
-  padding: 30px 20px 34px;
+  padding: 34px 20px 40px;
 }
 
 .editorial-content h2 {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   font-size: 54px;
   font-weight: 900;
 }
 
 .editorial-content p {
   max-width: 760px;
-  margin: 0 auto 18px;
+  margin: 0 auto 20px;
   font-size: 20px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .about-section {
-  background: #ede9e2;
-  padding: 70px 20px;
+  background: linear-gradient(180deg, #efeae1 0%, #f6f1e8 100%);
+  padding: 80px 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 42px;
   align-items: center;
 }
 
 .about-image img {
   width: 100%;
+  border-radius: 18px;
 }
 
 .about-text h2 {
@@ -385,21 +397,24 @@ a {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 26px;
 }
 
 .catalog-card {
-  background: white;
+  background: rgba(255,255,255,0.76);
   border: 1px solid var(--border-soft);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(111, 143, 129, 0.06);
 }
 
 .catalog-card img {
   width: 100%;
-  background: #f1f0ec;
+  background: #f2efe9;
 }
 
 .catalog-content {
-  padding: 22px;
+  padding: 24px;
 }
 
 .catalog-content h3 {
@@ -416,8 +431,8 @@ a {
 
 .catalog-content p {
   font-size: 17px;
-  line-height: 1.7;
-  color: #59605a;
+  line-height: 1.75;
+  color: var(--text-soft);
 }
 
 .delivery-grid {
@@ -429,10 +444,11 @@ a {
 }
 
 .delivery-card {
-  background: white;
+  background: rgba(255,255,255,0.8);
   border: 1px solid var(--border-soft);
-  border-radius: 20px;
-  padding: 26px;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 10px 24px rgba(111, 143, 129, 0.06);
 }
 
 .delivery-card h3 {
@@ -443,14 +459,14 @@ a {
 .delivery-card p,
 .delivery-card li {
   font-size: 17px;
-  line-height: 1.7;
-  color: #59605a;
+  line-height: 1.75;
+  color: var(--text-soft);
 }
 
 .site-footer {
-  background: var(--brand-dark);
+  background: linear-gradient(180deg, #31483d 0%, #26352d 100%);
   color: white;
-  padding: 60px 20px 30px;
+  padding: 64px 20px 30px;
 }
 
 .footer-logo-area {
@@ -459,7 +475,7 @@ a {
 }
 
 .footer-logo {
-  width: 96px;
+  width: 100px;
   margin: 0 auto 14px;
 }
 
@@ -470,7 +486,7 @@ a {
 
 .footer-logo-area p {
   margin: 0;
-  color: #d4d8d3;
+  color: #dce4de;
 }
 
 .footer-columns {
@@ -481,7 +497,7 @@ a {
 }
 
 .footer-columns details {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   padding: 10px 0 18px;
 }
 
@@ -497,7 +513,7 @@ a {
 }
 
 .footer-columns p {
-  color: #d4d8d3;
+  color: #dce4de;
   font-size: 18px;
   line-height: 1.7;
 }
@@ -514,7 +530,7 @@ a {
 }
 
 .subscribe-box p {
-  color: #d4d8d3;
+  color: #dce4de;
   font-size: 18px;
   line-height: 1.7;
 }
@@ -524,7 +540,9 @@ a {
   display: grid;
   grid-template-columns: 1fr 90px;
   max-width: 560px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .subscribe-form input {
@@ -545,25 +563,38 @@ a {
 
 .footer-bottom {
   text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
   padding-top: 24px;
-  color: #d4d8d3;
+  color: #dce4de;
   font-size: 17px;
 }
 
 @media (max-width: 900px) {
+  .site-header {
+    grid-template-columns: 56px 1fr 56px;
+    padding: 14px 14px;
+  }
+
   .brand {
-    font-size: 26px;
     gap: 10px;
   }
 
   .brand-logo {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-name {
+    font-size: 22px;
   }
 
   .brand-tagline {
-    display: none;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .icon-btn {
+    font-size: 28px;
   }
 
   .hero-content h1,
@@ -588,6 +619,6 @@ a {
   }
 
   .product-slider {
-    grid-template-columns: 40px 1fr 40px;
+    grid-template-columns: 36px 1fr 36px;
   }
 }
