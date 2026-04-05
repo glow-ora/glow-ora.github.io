@@ -47,14 +47,14 @@ function updateProductSlider() {
   }
 }
 
-if (prevProduct) {
+if (prevProduct && productSlides.length > 0) {
   prevProduct.addEventListener("click", () => {
     productIndex = (productIndex - 1 + productSlides.length) % productSlides.length;
     updateProductSlider();
   });
 }
 
-if (nextProduct) {
+if (nextProduct && productSlides.length > 0) {
   nextProduct.addEventListener("click", () => {
     productIndex = (productIndex + 1) % productSlides.length;
     updateProductSlider();
