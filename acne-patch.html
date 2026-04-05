@@ -1,18 +1,27 @@
+import { useState } from "react";
+
 export default function GloworaOrderPage() {
   const product = {
     name: "Hydrocolloid Acne Patch",
     price: 150,
     currency: "tk",
     image:
-      "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=80",
+      "/images/acne-patch-main.jpg", // use your real product image here
+    gallery: [
+      "/images/acne-patch-main.jpg",
+      "/images/acne-patch-2.jpg",
+      "/images/acne-patch-3.jpg",
+      "/images/acne-patch-4.jpg",
+    ],
     description:
-      "Hydrocolloid Acne Patch helps absorb pimple fluid, protect skin, and support faster skin recovery. It is thin, breathable, comfortable, and suitable for day or night use.",
+      "Cute star-shaped hydrocolloid acne patches that help absorb pimple fluid, protect skin, and support faster recovery while adding a fun aesthetic touch.",
     benefits: [
       "Absorbs acne fluid and reduces swelling",
       "Protects from dust and bacteria",
       "Thin and breathable design",
       "Invisible cover for day use",
       "Helps faster skin recovery",
+      "Comfortable and skin-friendly",
     ],
     howToUse: [
       "Clean your skin first",
@@ -25,65 +34,126 @@ export default function GloworaOrderPage() {
       "Strong absorption power",
       "Day and night use",
       "Multiple colors available",
-      "Comfortable and skin-friendly",
+      "Cute star design",
+      "Easy to carry and use",
     ],
     details: [
       ["Type", "Acne Patch"],
       ["Material", "Hydrocolloid"],
       ["Use", "Acne treatment"],
       ["Skin Type", "All skin types"],
+      ["Style", "Star-shaped colorful patches"],
+      ["Brand", "Glowora"],
     ],
   };
 
+  const [quantity, setQuantity] = useState(1);
+  const [selectedImage, setSelectedImage] = useState(product.image);
+
+  const totalPrice = product.price * quantity;
+
   return (
-    <div className="min-h-screen bg-[#f7f5ef] px-4 py-8 md:px-8">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-8 rounded-[28px] bg-gradient-to-r from-[#0e9f96] to-[#22c7b8] p-6 text-white shadow-lg md:p-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/80">
-            Glowora
-          </p>
-          <div className="mt-3 grid items-center gap-6 md:grid-cols-2">
+    <div className="min-h-screen bg-[#f8f4ee] py-8 px-4 md:px-8">
+      <div className="mx-auto max-w-7xl">
+        {/* Top Hero */}
+        <section className="overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0e9f96] via-[#18b8ad] to-[#7be3d6] shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
+          <div className="grid items-center gap-8 px-6 py-8 md:px-10 md:py-10 lg:grid-cols-2">
             <div>
-              <h1 className="text-3xl font-black leading-tight md:text-5xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/80">
+                Glowora Skincare
+              </p>
+
+              <h1 className="mt-3 text-4xl font-black leading-tight text-white md:text-5xl">
                 {product.name}
               </h1>
-              <p className="mt-4 max-w-xl text-sm leading-7 text-white/90 md:text-base">
+
+              <p className="mt-4 max-w-xl text-base leading-7 text-white/90">
                 {product.description}
               </p>
-              <div className="mt-6 flex items-center gap-4">
-                <div className="rounded-2xl bg-white px-5 py-3 text-[#0e9f96] shadow-sm">
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <span className="rounded-full bg-white px-4 py-2 text-sm font-bold text-[#0e9f96]">
+                  Best Seller
+                </span>
+                <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm">
+                  In Stock
+                </span>
+                <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm">
+                  Day & Night Use
+                </span>
+              </div>
+
+              <div className="mt-8 flex items-center gap-4">
+                <div className="rounded-2xl bg-white px-5 py-4 shadow-md">
                   <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
                     Price
                   </p>
-                  <p className="text-2xl font-extrabold">
+                  <p className="text-3xl font-black text-[#0e9f96]">
                     {product.price} {product.currency}
                   </p>
                 </div>
-                <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur-sm">
-                  In Stock
-                </span>
+
+                <button className="rounded-2xl bg-[#111827] px-6 py-4 text-sm font-bold text-white transition hover:scale-[1.02]">
+                  Shop Now
+                </button>
               </div>
             </div>
 
             <div className="rounded-[28px] bg-white/15 p-4 backdrop-blur-sm">
               <img
-                src={product.image}
+                src={selectedImage}
                 alt={product.name}
-                className="h-[320px] w-full rounded-[24px] object-cover shadow-lg md:h-[380px]"
+                className="h-[340px] w-full rounded-[24px] object-cover shadow-xl md:h-[420px]"
               />
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
+        {/* Main Content */}
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1.35fr_0.65fr]">
+          {/* Left Side */}
           <div className="space-y-8">
+            {/* Image Gallery */}
             <section className="rounded-[28px] bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-8">
-              <h2 className="text-2xl font-black text-neutral-900">Key Benefits</h2>
+              <div className="grid gap-4 md:grid-cols-[1fr_120px]">
+                <img
+                  src={selectedImage}
+                  alt={product.name}
+                  className="h-[420px] w-full rounded-[24px] object-cover"
+                />
+
+                <div className="grid grid-cols-4 gap-3 md:grid-cols-1">
+                  {product.gallery.map((img) => (
+                    <button
+                      key={img}
+                      onClick={() => setSelectedImage(img)}
+                      className={`overflow-hidden rounded-2xl border-2 ${
+                        selectedImage === img
+                          ? "border-[#0e9f96]"
+                          : "border-transparent"
+                      }`}
+                    >
+                      <img
+                        src={img}
+                        alt="Product preview"
+                        className="h-20 w-full object-cover md:h-24"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Benefits */}
+            <section className="rounded-[28px] bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-8">
+              <h2 className="text-2xl font-black text-neutral-900">
+                Key Benefits
+              </h2>
               <div className="mt-5 grid gap-4 md:grid-cols-2">
                 {product.benefits.map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-[#d9f4ef] bg-[#f3fffc] p-4 text-sm font-medium text-neutral-700"
+                    className="rounded-2xl border border-[#dff6f2] bg-[#f4fffd] p-4 text-sm font-medium text-neutral-700 shadow-sm"
                   >
                     <span className="mr-2 text-[#0e9f96]">✓</span>
                     {item}
@@ -92,23 +162,33 @@ export default function GloworaOrderPage() {
               </div>
             </section>
 
+            {/* How to Use + Features */}
             <section className="grid gap-8 md:grid-cols-2">
               <div className="rounded-[28px] bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-8">
-                <h2 className="text-2xl font-black text-neutral-900">How to Use</h2>
+                <h2 className="text-2xl font-black text-neutral-900">
+                  How to Use
+                </h2>
                 <div className="mt-5 space-y-4">
                   {product.howToUse.map((step, index) => (
-                    <div key={step} className="flex items-start gap-4 rounded-2xl bg-neutral-50 p-4">
+                    <div
+                      key={step}
+                      className="flex items-start gap-4 rounded-2xl bg-neutral-50 p-4"
+                    >
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0e9f96] text-sm font-bold text-white">
                         {index + 1}
                       </div>
-                      <p className="pt-2 text-sm font-medium text-neutral-700">{step}</p>
+                      <p className="pt-2 text-sm font-medium text-neutral-700">
+                        {step}
+                      </p>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div className="rounded-[28px] bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-8">
-                <h2 className="text-2xl font-black text-neutral-900">Features</h2>
+                <h2 className="text-2xl font-black text-neutral-900">
+                  Features
+                </h2>
                 <ul className="mt-5 space-y-3">
                   {product.features.map((item) => (
                     <li
@@ -122,29 +202,49 @@ export default function GloworaOrderPage() {
               </div>
             </section>
 
+            {/* Details */}
             <section className="rounded-[28px] bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-8">
-              <h2 className="text-2xl font-black text-neutral-900">Product Details</h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <h2 className="text-2xl font-black text-neutral-900">
+                Product Details
+              </h2>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {product.details.map(([label, value]) => (
-                  <div key={label} className="rounded-2xl border border-neutral-200 p-4">
-                    <p className="text-sm font-semibold text-neutral-500">{label}</p>
-                    <p className="mt-2 text-base font-bold text-neutral-900">{value}</p>
+                  <div
+                    key={label}
+                    className="rounded-2xl border border-neutral-200 p-4"
+                  >
+                    <p className="text-sm font-semibold text-neutral-500">
+                      {label}
+                    </p>
+                    <p className="mt-2 text-base font-bold text-neutral-900">
+                      {value}
+                    </p>
                   </div>
                 ))}
               </div>
             </section>
           </div>
 
+          {/* Right Side */}
           <aside className="h-fit rounded-[28px] bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-8 lg:sticky lg:top-6">
-            <h2 className="text-2xl font-black text-neutral-900">Order Now</h2>
-            <p className="mt-2 text-sm leading-6 text-neutral-600">
-              Choose quantity and add this product to your cart.
-            </p>
+            <div className="mb-4">
+              <p className="text-sm font-semibold uppercase tracking-wide text-[#0e9f96]">
+                Order Panel
+              </p>
+              <h2 className="mt-1 text-3xl font-black text-neutral-900">
+                {product.name}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-neutral-600">
+                Choose quantity and add this product to your cart.
+              </p>
+            </div>
 
-            <div className="mt-6 rounded-3xl bg-[#f8fbfb] p-5 ring-1 ring-neutral-200">
+            <div className="rounded-3xl bg-[#f8fbfb] p-5 ring-1 ring-neutral-200">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-neutral-500">Unit Price</span>
-                <span className="text-xl font-black text-neutral-900">
+                <span className="text-sm font-medium text-neutral-500">
+                  Unit Price
+                </span>
+                <span className="text-2xl font-black text-neutral-900">
                   {product.price} {product.currency}
                 </span>
               </div>
@@ -153,21 +253,41 @@ export default function GloworaOrderPage() {
                 <label className="mb-2 block text-sm font-semibold text-neutral-700">
                   Quantity
                 </label>
+
                 <div className="flex items-center overflow-hidden rounded-2xl border border-neutral-300 bg-white">
-                  <button className="px-4 py-3 text-lg font-bold text-neutral-700">-</button>
+                  <button
+                    onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                    className="px-4 py-3 text-lg font-bold text-neutral-700"
+                  >
+                    -
+                  </button>
+
                   <input
                     type="number"
-                    defaultValue={1}
+                    value={quantity}
                     min={1}
+                    onChange={(e) =>
+                      setQuantity(Math.max(1, Number(e.target.value) || 1))
+                    }
                     className="w-full border-x border-neutral-200 px-4 py-3 text-center text-base font-semibold outline-none"
                   />
-                  <button className="px-4 py-3 text-lg font-bold text-neutral-700">+</button>
+
+                  <button
+                    onClick={() => setQuantity((q) => q + 1)}
+                    className="px-4 py-3 text-lg font-bold text-neutral-700"
+                  >
+                    +
+                  </button>
                 </div>
               </div>
 
               <div className="mt-5 rounded-2xl bg-white p-4 ring-1 ring-neutral-200">
-                <p className="text-sm font-medium text-neutral-500">Total Price</p>
-                <p className="mt-1 text-3xl font-black text-[#0e9f96]">150 tk</p>
+                <p className="text-sm font-medium text-neutral-500">
+                  Total Price
+                </p>
+                <p className="mt-1 text-3xl font-black text-[#0e9f96]">
+                  {totalPrice} {product.currency}
+                </p>
               </div>
             </div>
 
@@ -175,16 +295,22 @@ export default function GloworaOrderPage() {
               <button className="w-full rounded-2xl bg-[#0e9f96] px-6 py-4 text-base font-bold text-white shadow-md transition hover:translate-y-[-1px] hover:bg-[#0c8f87]">
                 Add to Cart
               </button>
-              <button className="w-full rounded-2xl border border-neutral-300 bg-white px-6 py-4 text-base font-bold text-neutral-900 transition hover:bg-neutral-50">
+
+              <button className="w-full rounded-2xl bg-[#111827] px-6 py-4 text-base font-bold text-white transition hover:bg-black">
                 Buy Now
               </button>
             </div>
 
-            <div className="mt-6 space-y-3 rounded-2xl bg-neutral-50 p-4">
-              <p className="text-sm font-semibold text-neutral-800">Why customers like it</p>
-              <p className="text-sm text-neutral-600">• Easy to use</p>
-              <p className="text-sm text-neutral-600">• Comfortable on skin</p>
-              <p className="text-sm text-neutral-600">• Fun colorful design</p>
+            <div className="mt-6 rounded-2xl bg-neutral-50 p-4">
+              <p className="text-sm font-semibold text-neutral-800">
+                Why customers like it
+              </p>
+              <div className="mt-3 space-y-2 text-sm text-neutral-600">
+                <p>• Easy to use</p>
+                <p>• Comfortable on skin</p>
+                <p>• Cute colorful design</p>
+                <p>• Great for day & night care</p>
+              </div>
             </div>
           </aside>
         </div>
