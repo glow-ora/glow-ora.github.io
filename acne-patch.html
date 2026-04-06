@@ -731,7 +731,6 @@
 </head>
 <body>
   <div class="container">
-
     <div class="topbar">
       <div class="brand-wrap">
         <img src="images/glowora-logo.png" alt="Glowora Logo">
@@ -891,22 +890,10 @@
       <div class="section-card">
         <h2>How to Use</h2>
         <div class="steps">
-          <div class="step">
-            <div class="step-no">1</div>
-            <div>Clean and dry the skin before use.</div>
-          </div>
-          <div class="step">
-            <div class="step-no">2</div>
-            <div>Select your preferred type and design/color.</div>
-          </div>
-          <div class="step">
-            <div class="step-no">3</div>
-            <div>Apply the patch directly on the acne area.</div>
-          </div>
-          <div class="step">
-            <div class="step-no">4</div>
-            <div>Replace when needed as part of your skincare routine.</div>
-          </div>
+          <div class="step"><div class="step-no">1</div><div>Clean and dry the skin before use.</div></div>
+          <div class="step"><div class="step-no">2</div><div>Select your preferred type and design/color.</div></div>
+          <div class="step"><div class="step-no">3</div><div>Apply the patch directly on the acne area.</div></div>
+          <div class="step"><div class="step-no">4</div><div>Replace when needed as part of your skincare routine.</div></div>
         </div>
       </div>
     </div>
@@ -935,7 +922,7 @@
   </div>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzfLmHmE-l-B-rm0hxe9ArRC8xy4_4EShJ-7SbJ61ItMGfmTn6lpr1W9av_8IhdaPl6/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyv7HM56z4VMYpwQJrIhmVyikCgUNe0sBg69WJf3OP6txrPsmZOhAyMJREzKoLKBTU5/exec";
     const basePrice = 150;
 
     let currentSlide = 0;
@@ -973,7 +960,6 @@
     function updateSlider() {
       document.getElementById("mainImage").src = images[currentSlide];
       document.getElementById("slideCount").innerText = (currentSlide + 1) + " / " + images.length;
-
       document.querySelectorAll(".thumb").forEach((thumb, index) => {
         thumb.classList.toggle("active", index === currentSlide);
       });
@@ -998,13 +984,8 @@
       selectedType = type;
       selectedVariantIndex = null;
       document.getElementById("qty").value = 1;
-
-      document.querySelectorAll("#typeButtons .option-btn").forEach(btn => {
-        btn.classList.remove("active");
-      });
-
+      document.querySelectorAll("#typeButtons .option-btn").forEach(btn => btn.classList.remove("active"));
       document.querySelector('[data-type="' + type + '"]').classList.add("active");
-
       renderVariants();
       resetStatus();
       updateSelectedPreview();
@@ -1032,9 +1013,7 @@
         if (item.stock <= getUsedCount(selectedType, item.name)) {
           btn.classList.add("disabled");
         } else {
-          btn.onclick = function() {
-            selectVariant(index);
-          };
+          btn.onclick = function() { selectVariant(index); };
         }
 
         variantButtons.appendChild(btn);
@@ -1053,14 +1032,12 @@
 
     function selectVariant(index) {
       selectedVariantIndex = index;
-
       document.querySelectorAll("#variantButtons .option-btn").forEach((btn, i) => {
         btn.classList.toggle("active", i === index);
       });
 
       const variant = getSelectedVariant();
       const remaining = variant.stock - getUsedCount(selectedType, variant.name);
-
       document.getElementById("qty").value = remaining > 0 ? 1 : 0;
       updateStatus();
       updateImageFromVariant();
@@ -1080,12 +1057,7 @@
 
       const remaining = variant.stock - getUsedCount(selectedType, variant.name);
       statusChip.innerText = selectedType.toUpperCase() + " / " + variant.name;
-
-      if (remaining <= 1 && remaining > 0) {
-        lowStockChip.style.display = "inline-block";
-      } else {
-        lowStockChip.style.display = "none";
-      }
+      lowStockChip.style.display = (remaining <= 1 && remaining > 0) ? "inline-block" : "none";
     }
 
     function resetStatus() {
@@ -1096,7 +1068,6 @@
     function updateImageFromVariant() {
       const variant = getSelectedVariant();
       if (!variant) return;
-
       const index = images.indexOf(variant.image);
       if (index !== -1) {
         currentSlide = index;
@@ -1127,9 +1098,7 @@
     function decreaseQty() {
       const input = document.getElementById("qty");
       let qty = parseInt(input.value, 10) || 1;
-      if (qty > 1) {
-        input.value = qty - 1;
-      }
+      if (qty > 1) input.value = qty - 1;
       updateSelectedPreview();
     }
 
@@ -1144,14 +1113,8 @@
         const remaining = variant.stock - getUsedCount(selectedType, variant.name);
         if (qty > remaining) qty = remaining > 0 ? remaining : 1;
         input.value = qty;
-
         document.getElementById("selectedPreviewText").innerText =
-          selectedType.charAt(0).toUpperCase() +
-          selectedType.slice(1) +
-          " / " +
-          variant.name +
-          " x " +
-          qty;
+          selectedType.charAt(0).toUpperCase() + selectedType.slice(1) + " / " + variant.name + " x " + qty;
       } else {
         document.getElementById("selectedPreviewText").innerText = "No item selected";
         input.value = qty;
@@ -1183,9 +1146,8 @@
 
       const existing = orderItems.find(item => item.type === selectedType && item.name === variant.name);
 
-      if (existing) {
-        existing.qty += qty;
-      } else {
+      if (existing) existing.qty += qty;
+      else {
         orderItems.push({
           type: selectedType,
           name: variant.name,
@@ -1205,17 +1167,10 @@
     function clearSelection(showMsg = true) {
       selectedVariantIndex = null;
       document.getElementById("qty").value = 1;
-
-      document.querySelectorAll("#variantButtons .option-btn").forEach(btn => {
-        btn.classList.remove("active");
-      });
-
+      document.querySelectorAll("#variantButtons .option-btn").forEach(btn => btn.classList.remove("active"));
       resetStatus();
       updateSelectedPreview();
-
-      if (showMsg) {
-        clearMessage();
-      }
+      if (showMsg) clearMessage();
     }
 
     function renderOrderList() {
@@ -1240,7 +1195,6 @@
           '<div>' + item.price + ' tk</div>' +
           '<div><strong>' + (item.qty * item.price) + ' tk</strong></div>' +
           '<div><button class="remove-btn" type="button" onclick="removeItem(' + index + ')">Remove</button></div>';
-
         cartList.appendChild(div);
       });
     }
@@ -1268,7 +1222,6 @@
     function setSubmitButtonState(isLoading) {
       const submitBtn = document.getElementById("submitBtn");
       if (!submitBtn) return;
-
       submitBtn.disabled = isLoading;
       submitBtn.innerText = isLoading ? "Submitting..." : "Place Order";
     }
@@ -1312,15 +1265,15 @@
       const totalAmount = subtotal + deliveryCharge;
 
       const payload = {
-        customerName: customerName,
-        phone: phone,
-        address: address,
-        notes: notes,
+        customerName,
+        phone,
+        address,
+        notes,
         items: JSON.stringify(orderItems),
-        subtotal: subtotal,
-        deliveryArea: deliveryArea,
-        deliveryCharge: deliveryCharge,
-        totalAmount: totalAmount
+        subtotal,
+        deliveryArea,
+        deliveryCharge,
+        totalAmount
       };
 
       try {
@@ -1348,15 +1301,7 @@
           throw new Error(result.message || "Order submission failed.");
         }
 
-        let successText = result.message || "Order placed successfully.";
-        if (result.orderId) {
-          successText += "\nOrder ID: " + result.orderId;
-        }
-        if (result.emailStatus) {
-          successText += "\nEmail Status: " + result.emailStatus;
-        }
-
-        showMessage(successText, "success");
+        showMessage(result.message || "Order placed successfully.", "success");
 
         orderItems = [];
         renderOrderList();
