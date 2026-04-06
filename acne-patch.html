@@ -1264,44 +1264,59 @@
       const subtotal = orderItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
       const totalAmount = subtotal + deliveryCharge;
 
-      const payload = {
-        customerName,
-        phone,
-        address,
-        notes,
-        items: JSON.stringify(orderItems),
-        subtotal,
-        deliveryArea,
-        deliveryCharge,
-        totalAmount
+     const payload = {
+  customerName,
+  phone,
+  address,
+  notes,
+  items: JSON.stringify(orderItems),
+  subtotal,
+  deliveryArea,
+  deliveryCharge,
+  totalAmount
+};
+
+try {
+  setSubmitButtonState(true);
+  showMessage("Submitting your order...", "success");
+
+  const response = await fetch(scriptURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+    },
+    body: new URLSearchParams(payload).toString()
+  });
+
+  const text = await response.text();
+
+  let result;
+
+  try {
+    result = JSON.parse(text);
+  } catch (parseError) {
+    // Handle plain text response like "Success"
+    if (text.trim().toLowerCase() === "success") {
+      result = {
+        success: true,
+        message: "Order placed successfully."
       };
+    } else {
+      throw new Error("Server returned invalid response: " + text);
+    }
+  }
 
-      try {
-        setSubmitButtonState(true);
-        showMessage("Submitting your order...", "success");
+  if (!result.success) {
+    throw new Error(result.message || "Order submission failed.");
+  }
 
-        const response = await fetch(scriptURL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-          },
-          body: new URLSearchParams(payload).toString()
-        });
+  showMessage(result.message || "Order placed successfully.", "success");
 
-        const text = await response.text();
-
-        let result;
-        try {
-          result = JSON.parse(text);
-        } catch (parseError) {
-          throw new Error("Server returned invalid response: " + text);
-        }
-
-        if (!result.success) {
-          throw new Error(result.message || "Order submission failed.");
-        }
-
-        showMessage(result.message || "Order placed successfully.", "success");
+} catch (error) {
+  showMessage("Submission failed: " + error.message, "error");
+} finally {
+  setSubmitButtonState(false);
+}
 
         orderItems = [];
         renderOrderList();
