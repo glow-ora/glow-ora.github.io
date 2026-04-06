@@ -921,300 +921,48 @@
     </div>
   </div>
 
-<script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbyv7HM56z4VMYpwQJrIhmVyikCgUNe0sBg69WJf3OP6txrPsmZOhAyMJREzKoLKBTU5/exec";
+<script>    
+const scriptURL = "https://script.google.com/macros/s/AKfycbyv7HM56z4VMYpwQJrIhmVyikCgUNe0sBg69WJf3OP6txrPsmZOhAyMJREzKoLKBTU5/exec";    
 const basePrice = 150;
-
-let currentSlide = 0;
-let selectedType = "star";
-let selectedVariantIndex = null;
+    let currentSlide = 0;    
+let selectedType = "star";    
+let selectedVariantIndex = null;    
 let orderItems = [];
-
-const images = [
-  "images/acne-patch-main.jpg",
-  "images/acne-patch-2.jpg",
-  "images/acne-patch-3.jpg",
-  "images/acne-patch-4.jpg"
+    const images = [      
+"images/acne-patch-main.jpg",      
+"images/acne-patch-2.jpg",      
+"images/acne-patch-3.jpg",      
+"images/acne-patch-4.jpg"    
 ];
-
-const productData = {
-  star: [
-    { name: "Green", stock: 0, image: "images/acne-patch-main.jpg" },
-    { name: "Olive", stock: 1, image: "images/acne-patch-main.jpg" },
-    { name: "Pink", stock: 1, image: "images/acne-patch-main.jpg" },
-    { name: "Black", stock: 0, image: "images/acne-patch-main.jpg" },
-    { name: "Yellow", stock: 1, image: "images/acne-patch-main.jpg" },
-    { name: "Transparent", stock: 0, image: "images/acne-patch-main.jpg" }
-  ],
-  cartoon: [
-    { name: "Hello Kitty", stock: 6, image: "images/acne-patch-2.jpg" },
-    { name: "Cute Cat", stock: 2, image: "images/acne-patch-3.jpg" }
-  ]
+    const productData = {      
+star: [        
+{ name: "Green", stock: 0, image: "images/acne-patch-main.jpg" },        
+{ name: "Olive", stock: 1, image: "images/acne-patch-main.jpg" },        
+{ name: "Pink", stock: 1, image: "images/acne-patch-main.jpg" },        
+{ name: "Black", stock: 0, image: "images/acne-patch-main.jpg" },        
+{ name: "Yellow", stock: 1, image: "images/acne-patch-main.jpg" },        
+{ name: "Transparent", stock: 0, image: "images/acne-patch-main.jpg" }      
+],      
+cartoon: [        
+{ name: "Hello Kitty", stock: 6, image: "images/acne-patch-2.jpg" },        
+{ name: "Cute Cat", stock: 2, image: "images/acne-patch-3.jpg" }      
+]    
 };
-
-function getSelectedVariant() {
-  if (selectedVariantIndex === null) return null;
-  return productData[selectedType][selectedVariantIndex];
+    function getSelectedVariant() {      
+if (selectedVariantIndex === null) return null;      
+return productData[selectedType][selectedVariantIndex];    
 }
-
-function updateSlider() {
-  document.getElementById("mainImage").src = images[currentSlide];
-  document.getElementById("slideCount").innerText = (currentSlide + 1) + " / " + images.length;
-  document.querySelectorAll(".thumb").forEach((thumb, index) => {
-    thumb.classList.toggle("active", index === currentSlide);
-  });
+    function updateSlider() {      
+document.getElementById("mainImage").src = images[currentSlide];      
+document.getElementById("slideCount").innerText = (currentSlide + 1) + " / " + images.length;      
+document.querySelectorAll(".thumb").forEach((thumb, index) => {        
+thumb.classList.toggle("active", index === currentSlide);      
+});    
 }
-
-function showSlide(index) {
-  currentSlide = index;
-  updateSlider();
+    function showSlide(index) {      
+currentSlide = index;      
+updateSlider();    
 }
-
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % images.length;
-  updateSlider();
-}
-
-function prevSlide() {
-  currentSlide = (currentSlide - 1 + images.length) % images.length;
-  updateSlider();
-}
-
-function selectType(type) {
-  selectedType = type;
-  selectedVariantIndex = null;
-  document.getElementById("qty").value = 1;
-  document.querySelectorAll("#typeButtons .option-btn").forEach(btn => btn.classList.remove("active"));
-  document.querySelector('[data-type="' + type + '"]').classList.add("active");
-  renderVariants();
-  resetStatus();
-  updateSelectedPreview();
-  clearMessage();
-}
-
-function getUsedCount(type, name) {
-  return orderItems
-    .filter(item => item.type === type && item.name === name)
-    .reduce((sum, item) => sum + item.qty, 0);
-}
-
-function renderVariants() {
-  const variantButtons = document.getElementById("variantButtons");
-  const stockList = document.getElementById("stockList");
-  variantButtons.innerHTML = "";
-  stockList.innerHTML = "";
-
-  productData[selectedType].forEach((item, index) => {
-    const btn = document.createElement("button");
-    btn.className = "option-btn";
-    btn.type = "button";
-    btn.innerText = item.name;
-
-    if (item.stock <= getUsedCount(selectedType, item.name)) {
-      btn.classList.add("disabled");
-    } else {
-      btn.onclick = function () { selectVariant(index); };
-    }
-
-    variantButtons.appendChild(btn);
-
-    const remaining = item.stock - getUsedCount(selectedType, item.name);
-    const row = document.createElement("div");
-    row.className = "stock-item";
-    row.innerHTML =
-      '<span>' + item.name + '</span>' +
-      '<span class="stock-badge ' + (remaining > 0 ? 'in-stock' : 'out-stock') + '">' +
-      (remaining > 0 ? 'In Stock (' + remaining + ')' : 'Stock Out') +
-      '</span>';
-    stockList.appendChild(row);
-  });
-}
-
-function selectVariant(index) {
-  selectedVariantIndex = index;
-  document.querySelectorAll("#variantButtons .option-btn").forEach((btn, i) => {
-    btn.classList.toggle("active", i === index);
-  });
-
-  const variant = getSelectedVariant();
-  const remaining = variant.stock - getUsedCount(selectedType, variant.name);
-  document.getElementById("qty").value = remaining > 0 ? 1 : 0;
-  updateStatus();
-  updateImageFromVariant();
-  updateSelectedPreview();
-  clearMessage();
-}
-
-function updateStatus() {
-  const statusChip = document.getElementById("statusChip");
-  const lowStockChip = document.getElementById("lowStockChip");
-  const variant = getSelectedVariant();
-
-  if (!variant) {
-    resetStatus();
-    return;
-  }
-
-  const remaining = variant.stock - getUsedCount(selectedType, variant.name);
-  statusChip.innerText = selectedType.toUpperCase() + " / " + variant.name;
-  lowStockChip.style.display = (remaining <= 1 && remaining > 0) ? "inline-block" : "none";
-}
-
-function resetStatus() {
-  document.getElementById("statusChip").innerText = "Select a type and option";
-  document.getElementById("lowStockChip").style.display = "none";
-}
-
-function updateImageFromVariant() {
-  const variant = getSelectedVariant();
-  if (!variant) return;
-  const index = images.indexOf(variant.image);
-  if (index !== -1) {
-    currentSlide = index;
-    updateSlider();
-  }
-}
-
-function increaseQty() {
-  const variant = getSelectedVariant();
-  if (!variant) {
-    showMessage("Please select type and option first.", "error");
-    return;
-  }
-
-  const input = document.getElementById("qty");
-  let qty = parseInt(input.value, 10) || 1;
-  const remaining = variant.stock - getUsedCount(selectedType, variant.name);
-
-  if (qty < remaining) {
-    input.value = qty + 1;
-  } else {
-    showMessage("Only " + remaining + " piece(s) remaining.", "error");
-  }
-
-  updateSelectedPreview();
-}
-
-function decreaseQty() {
-  const input = document.getElementById("qty");
-  let qty = parseInt(input.value, 10) || 1;
-  if (qty > 1) input.value = qty - 1;
-  updateSelectedPreview();
-}
-
-function updateSelectedPreview() {
-  const input = document.getElementById("qty");
-  let qty = parseInt(input.value, 10) || 1;
-  const variant = getSelectedVariant();
-
-  if (variant) {
-    document.getElementById("selectedPreviewText").innerText =
-      selectedType + " / " + variant.name + " x " + qty;
-  } else {
-    document.getElementById("selectedPreviewText").innerText = "No item selected";
-  }
-
-  document.getElementById("selectedItemTotal").innerText = (qty * basePrice) + " tk";
-}
-
-function addItemToOrder() {
-  const variant = getSelectedVariant();
-  if (!variant) return;
-
-  const qty = parseInt(document.getElementById("qty").value, 10) || 1;
-
-  orderItems.push({
-    type: selectedType,
-    name: variant.name,
-    qty,
-    price: basePrice
-  });
-
-  renderOrderList();
-  updateOrderSummary();
-}
-
-function renderOrderList() {
-  const cartList = document.getElementById("cartList");
-
-  if (orderItems.length === 0) {
-    cartList.innerHTML = '<div class="cart-empty">No item added yet.</div>';
-    return;
-  }
-
-  cartList.innerHTML = "";
-
-  orderItems.forEach((item) => {
-    const div = document.createElement("div");
-    div.className = "cart-item";
-    div.innerHTML =
-      item.name + " x " + item.qty + " = " + (item.qty * item.price) + " tk";
-    cartList.appendChild(div);
-  });
-}
-
-function updateOrderSummary() {
-  const subtotal = orderItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
-  document.getElementById("itemsSubtotal").innerText = subtotal + " tk";
-}
-
-function setSubmitButtonState(isLoading) {
-  const submitBtn = document.getElementById("submitBtn");
-  submitBtn.disabled = isLoading;
-}
-
-async function submitOrder() {
-  if (orderItems.length === 0) {
-    showMessage("Add item first", "error");
-    return;
-  }
-
-  const payload = {
-    customerName: document.getElementById("customerName").value,
-    phone: document.getElementById("customerPhone").value,
-    address: document.getElementById("customerAddress").value,
-    notes: document.getElementById("customerNotes").value,
-    items: JSON.stringify(orderItems)
-  };
-
-  try {
-    setSubmitButtonState(true);
-
-    const response = await fetch(scriptURL, {
-      method: "POST",
-      body: new URLSearchParams(payload)
-    });
-
-    const text = (await response.text()).trim();
-
-    let result;
-    try {
-      result = JSON.parse(text);
-    } catch {
-      if (text.toLowerCase() === "success") {
-        result = { success: true };
-      } else {
-        throw new Error(text);
-      }
-    }
-
-    showMessage("Order placed successfully", "success");
-
-  } catch (error) {
-    showMessage("Submission failed: " + error.message, "error");
-  } finally {
-    setSubmitButtonState(false);
-  }
-}
-
-function showMessage(text, type) {
-  const box = document.getElementById("messageBox");
-  box.className = "message " + type;
-  box.innerText = text;
-}
-
-updateSlider();
-renderVariants();
-</script>
+  </script>
 </body>
 </html>
