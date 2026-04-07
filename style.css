@@ -120,6 +120,7 @@ a {
   box-shadow: var(--shadow-soft);
 }
 
+/* BRAND CONTAINER */
 .brand {
   display: flex;
   align-items: center;
@@ -127,9 +128,10 @@ a {
   gap: 14px;
   flex: 1;
   min-width: 0;
-  color: var(--text-dark);
+  color: var(--primary-color);
 }
 
+/* LOGO IMAGE */
 .brand img {
   width: 60px;
   height: 60px;
@@ -139,27 +141,31 @@ a {
   padding: 6px;
   border: 1px solid #dbe7df;
   box-shadow:
-    0 0 0 3px rgba(111, 143, 129, 0.12),
-    0 10px 24px rgba(79, 106, 94, 0.16);
+    0 0 0 3px rgba(127, 167, 150, 0.15),
+    0 10px 24px rgba(127, 167, 150, 0.25);
 }
 
+/* TEXT WRAPPER */
 .brand-text {
   min-width: 0;
 }
 
+/* BRAND NAME */
 .brand-name {
   font-size: 30px;
   font-weight: 900;
   line-height: 1;
   letter-spacing: 2px;
-  color: #15211b;
+  color: var(--primary-color);
 }
 
+/* TAGLINE */
 .brand-tagline {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 2.4px;
-  color: #6f8f81;
+  color: var(--primary-color);
+  opacity: 0.85; /* subtle hierarchy */
   margin-top: 6px;
 }
 
