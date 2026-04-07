@@ -93,13 +93,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (searchToggle && searchDrawer) {
-    searchToggle.addEventListener("click", () => {
+    searchToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
       togglePanel(searchDrawer, mobileMenu);
     });
   }
 
   if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener("click", () => {
+    menuToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
       togglePanel(mobileMenu, searchDrawer);
     });
   }
@@ -141,10 +143,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("click", (event) => {
     const clickedInsideSearch =
-      searchDrawer?.contains(event.target) || searchToggle?.contains(event.target);
+      (searchDrawer && searchDrawer.contains(event.target)) ||
+      (searchToggle && searchToggle.contains(event.target));
 
     const clickedInsideMenu =
-      mobileMenu?.contains(event.target) || menuToggle?.contains(event.target);
+      (mobileMenu && mobileMenu.contains(event.target)) ||
+      (menuToggle && menuToggle.contains(event.target));
 
     if (!clickedInsideSearch) {
       closePanel(searchDrawer);
