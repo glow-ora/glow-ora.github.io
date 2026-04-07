@@ -96,19 +96,23 @@ a {
   min-width: 0;
 }
 
+/* BRAND NAME → OLIVE */
 .brand-name {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 900;
   line-height: 1;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  color: var(--olive-color);
 }
 
+/* TAGLINE → OLIVE (lighter feel) */
 .brand-tagline {
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: #6e7a73;
-  margin-top: 4px;
+  letter-spacing: 2.4px;
+  color: var(--olive-color);
+  opacity: 0.8;
+  margin-top: 6px;
 }
 
 .search-drawer,
