@@ -4,28 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Know More | Glowora</title>
-  <link rel="stylesheet" href="style.css" />
+
   <style>
     :root {
-      --brand-dark: #2f4339;
-      --brand-green: #90b1a2;
-      --brand-green-dark: #6f8f81;
-      --brand-light: #f7f1e9;
+      --brand-dark: #24332c;
+      --brand-green: #8fad9f;
+      --brand-green-dark: #6e8a7c;
+      --brand-green-deep: #3b5247;
+      --brand-green-soft: #edf4f0;
+      --brand-light: #f8f4ee;
       --brand-white: #ffffff;
-      --text-dark: #223129;
-      --text-soft: #56635a;
-      --border-soft: #e6ddd1;
 
-      --lux-blackish: #1f2a24;
-      --lux-green-dark: #2f4339;
-      --lux-green-mid: #6f8f81;
-      --lux-green-soft: #eef3ef;
-      --lux-white: #fffdf9;
-      --lux-red: #9f2f2f;
-      --lux-red-deep: #7f2323;
+      --text-dark: #223129;
+      --text-soft: #5f6d65;
+      --text-muted: #7b877f;
+      --border-soft: #e4ddd2;
+
+      --lux-blackish: #1c2420;
+      --lux-whiteish: #fffdf9;
+      --lux-green-soft: #f3f8f4;
+
+      --accent-red: #a13838;
+      --accent-red-deep: #812929;
+
+      --shadow-soft: 0 10px 30px rgba(28, 36, 32, 0.06);
+      --shadow-medium: 0 16px 38px rgba(28, 36, 32, 0.1);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+
+      --container: 1180px;
     }
 
-    * {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -38,8 +51,11 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #f8f3ec 0%, #f3ede3 100%);
       color: var(--text-dark);
+      background:
+        radial-gradient(circle at top right, rgba(143, 173, 159, 0.08), transparent 22%),
+        linear-gradient(180deg, #fbf8f3 0%, #f4eee5 100%);
+      line-height: 1.6;
     }
 
     img {
@@ -53,68 +69,84 @@
     }
 
     .container {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
+      width: min(var(--container), calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    .hidden {
+      display: none !important;
     }
 
     /* =========================
        TOP BAR
        ========================= */
     .top-bar {
-      background: linear-gradient(90deg, #355044 0%, #2b3d35 100%);
-      color: white;
+      background: linear-gradient(90deg, #355044 0%, #283a32 100%);
+      color: #ffffff;
       text-align: center;
-      padding: 16px 14px;
-      font-weight: 800;
+      padding: 12px 14px;
+      font-weight: 700;
       letter-spacing: 0.4px;
-      font-size: 15px;
+      font-size: 13px;
     }
 
     .top-bar .offer-badge {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.14);
       color: #fff;
-      padding: 4px 10px;
+      padding: 5px 10px;
       border-radius: 999px;
       margin-right: 8px;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 800;
-      letter-spacing: 0.6px;
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
 
     /* =========================
-       HEADER
+       HEADER / LOGO BAR
        ========================= */
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding: 14px 16px;
-      background: rgba(247, 241, 233, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-soft);
+      gap: 14px;
+      padding: 12px 18px;
+      background: rgba(248, 244, 238, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(36, 51, 44, 0.08);
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 8px 18px rgba(111, 143, 129, 0.08);
+      box-shadow: 0 8px 24px rgba(36, 51, 44, 0.06);
     }
 
     .header-side {
-      width: 40px;
-      text-align: center;
-      color: var(--brand-dark);
+      width: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
     }
 
     .icon-btn {
       background: transparent;
       border: none;
-      font-size: 26px;
+      font-size: 24px;
       cursor: pointer;
-      padding: 0;
+      padding: 6px;
       color: var(--brand-dark);
+      border-radius: 999px;
+      transition:
+        transform 0.28s ease,
+        opacity 0.28s ease,
+        background 0.28s ease;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.88;
+      background: rgba(143, 173, 159, 0.1);
     }
 
     .brand {
@@ -128,12 +160,13 @@
     }
 
     .brand img {
-      width: 54px;
-      height: 54px;
+      width: 48px;
+      height: 48px;
       object-fit: contain;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.65);
+      background: rgba(255, 255, 255, 0.72);
       padding: 4px;
+      box-shadow: 0 6px 14px rgba(36, 51, 44, 0.08);
     }
 
     .brand-text {
@@ -141,17 +174,17 @@
     }
 
     .brand-name {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 900;
       line-height: 1;
-      letter-spacing: 1px;
+      letter-spacing: 1.8px;
     }
 
     .brand-tagline {
-      font-size: 10px;
+      font-size: 9px;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: #6e7a73;
+      letter-spacing: 1.7px;
+      color: var(--text-muted);
       margin-top: 4px;
     }
 
@@ -166,60 +199,65 @@
       justify-content: center;
       overflow: hidden;
       background:
-        linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.38)),
+        linear-gradient(
+          180deg,
+          rgba(20, 24, 22, 0.18) 0%,
+          rgba(20, 24, 22, 0.24) 36%,
+          rgba(20, 24, 22, 0.48) 100%
+        ),
         url("images/beauty-banner.jpg") center/cover no-repeat;
     }
 
     .hero-inner {
       position: relative;
       z-index: 2;
+      color: #ffffff;
       text-align: center;
-      color: white;
-      width: min(860px, calc(100% - 32px));
+      width: min(760px, calc(100% - 34px));
       margin: 0 auto;
-      padding: 48px 20px;
+      padding: 24px;
     }
 
     .hero-badge {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.14);
-      color: #fff;
+      margin-bottom: 14px;
       padding: 7px 14px;
       border-radius: 999px;
-      margin-bottom: 16px;
+      background: rgba(255, 255, 255, 0.13);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.18);
     }
 
     .hero h1 {
-      font-size: clamp(34px, 6vw, 60px);
       margin: 0 0 14px;
-      line-height: 1.05;
-      letter-spacing: 0.8px;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: 1.02;
+      letter-spacing: 1px;
+      font-weight: 900;
     }
 
     .hero p {
-      max-width: 800px;
       margin: 0 auto;
-      font-size: clamp(16px, 2vw, 20px);
-      line-height: 1.9;
-      color: rgba(255,255,255,0.92);
+      max-width: 580px;
+      font-size: clamp(15px, 2vw, 18px);
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.92);
     }
 
     /* =========================
-       SECTIONS
+       SECTION
        ========================= */
     .section {
-      padding: 54px 18px;
+      padding: clamp(34px, 5vw, 64px) 18px;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 26px;
-      max-width: 750px;
+      margin-bottom: 30px;
+      max-width: 760px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -227,24 +265,27 @@
     .section-title small {
       display: block;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #6f8f81;
-      font-weight: 700;
+      letter-spacing: 2.2px;
+      color: var(--brand-green-dark);
+      font-weight: 800;
       margin-bottom: 8px;
+      font-size: 11px;
     }
 
     .section-title h2 {
-      margin: 0 0 10px;
-      font-size: 34px;
-      line-height: 1.1;
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4.2vw, 46px);
+      line-height: 1.08;
+      letter-spacing: 0.4px;
+      color: var(--lux-blackish);
     }
 
     .section-title p {
       margin: 0 auto;
-      max-width: 750px;
+      max-width: 700px;
       color: var(--text-soft);
-      line-height: 1.7;
-      font-size: 17px;
+      line-height: 1.8;
+      font-size: clamp(15px, 2vw, 17px);
     }
 
     /* =========================
@@ -261,27 +302,20 @@
 
     .about img {
       width: 100%;
-      border-radius: 18px;
-      display: block;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
     }
 
     .about-title {
       text-align: left;
-      margin-bottom: 18px;
-    }
-
-    .about-title h2 {
-      margin: 0 0 12px;
-      font-size: 34px;
-      line-height: 1.1;
+      margin-bottom: 16px;
     }
 
     .about-text-paragraph {
       color: var(--text-soft);
       line-height: 1.9;
-      font-size: 17px;
-      margin: 0 0 18px;
+      font-size: 16px;
+      margin: 0 0 16px;
     }
 
     /* =========================
@@ -296,45 +330,58 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid var(--border-soft);
-      border-radius: 22px;
+      background: linear-gradient(180deg, #ffffff 0%, #f7f4ee 100%);
+      border: 1px solid #ddd4c8;
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: var(--shadow-soft);
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 34px rgba(34, 49, 41, 0.12);
+      transform: translateY(-5px);
+      box-shadow:
+        0 20px 40px rgba(28, 36, 32, 0.1),
+        0 8px 16px rgba(28, 36, 32, 0.05);
     }
 
     .card img {
       width: 100%;
       height: 240px;
       object-fit: cover;
-      background: #f2efe9;
+      background: #f4efe8;
+      transition: transform 0.55s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.04);
     }
 
     .card-content {
-      padding: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(247,241,233,0.96) 100%);
+      padding: 22px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(247, 241, 233, 0.98) 100%
+      );
     }
 
     .card-content h3 {
       margin: 0 0 10px;
-      font-size: 24px;
+      font-size: clamp(20px, 2.4vw, 24px);
       line-height: 1.3;
       font-weight: 800;
       color: var(--lux-blackish);
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
     }
 
     .card-content p {
       margin: 0;
-      color: #4f5b53;
+      color: #4f5d56;
       line-height: 1.8;
-      font-size: 16px;
+      font-size: 15px;
     }
 
     /* =========================
@@ -346,304 +393,366 @@
     }
 
     .highlight {
-      border: 1px solid rgba(159, 47, 47, 0.15);
-      border-radius: 24px;
-      box-shadow: 0 16px 30px rgba(159, 47, 47, 0.06), 0 10px 20px rgba(34, 49, 41, 0.06);
-      background:
-        linear-gradient(180deg, rgba(184, 64, 64, 0.05) 0%, rgba(255,255,255,0.94) 40%, rgba(239,243,239,0.96) 100%);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(161, 56, 56, 0.2);
+      border-radius: var(--radius-lg);
+      box-shadow:
+        0 18px 34px rgba(161, 56, 56, 0.08),
+        0 10px 22px rgba(28, 36, 32, 0.06);
       text-align: center;
       padding: 56px 22px;
+      background:
+        linear-gradient(180deg, rgba(161, 56, 56, 0.06) 0%, rgba(255, 255, 255, 0.96) 45%, rgba(243, 248, 244, 0.95) 100%);
     }
 
     .highlight h2 {
-      font-size: 40px;
       margin: 0 0 15px;
-      color: #222;
+      font-size: clamp(28px, 4vw, 44px);
       line-height: 1.1;
+      color: var(--lux-blackish);
     }
 
     .highlight p {
       max-width: 850px;
       margin: 0 auto;
-      font-size: 18px;
+      font-size: 17px;
       line-height: 1.9;
-      color: #555;
+      color: var(--text-soft);
     }
 
     /* =========================
-       BUTTON
+       BUTTONS
        ========================= */
     .btn {
-      display: inline-block;
-      padding: 16px 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 14px 28px;
       font-weight: 800;
       letter-spacing: 1px;
       border: none;
       cursor: pointer;
-      background: linear-gradient(135deg, var(--brand-green) 0%, #7fa393 100%);
-      color: white;
-      box-shadow: 0 10px 22px rgba(111, 143, 129, 0.18);
-      border-radius: 8px;
-      text-decoration: none;
-      transition: 0.3s ease;
+      background: linear-gradient(135deg, var(--brand-green) 0%, #779687 100%);
+      color: #ffffff;
+      border-radius: 999px;
+      box-shadow: 0 12px 24px rgba(59, 82, 71, 0.18);
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        opacity 0.28s ease,
+        background 0.28s ease;
     }
 
     .btn:hover {
-      background: var(--brand-green-dark);
-      transform: translateY(-2px);
+      background: linear-gradient(135deg, var(--brand-green-dark) 0%, #5f7a6d 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(59, 82, 71, 0.2);
+      opacity: 0.98;
     }
 
     .back-home {
       text-align: center;
-      padding: 26px 20px 10px;
+      padding: 10px 20px 26px;
     }
 
     /* =========================
-       FOOTER
+       BOTTOM BAR / FOOTER
        ========================= */
     .footer {
-      background: linear-gradient(180deg, #31483d 0%, #26352d 100%);
+      background: linear-gradient(180deg, #30453b 0%, #222f29 100%);
       color: #fff;
       text-align: center;
-      padding: 40px 18px;
-      margin-top: 40px;
+      padding: 42px 18px;
+      margin-top: 36px;
     }
 
     .footer img {
-      width: 72px;
+      width: 70px;
       margin: 0 auto 12px;
-      display: block;
-      background: #fff;
+      background: #ffffff;
       border-radius: 50%;
       padding: 4px;
     }
 
     .footer h3 {
-      margin: 0 0 8px;
-      font-size: 24px;
+      margin: 0 0 10px;
+      font-size: 22px;
     }
 
     .footer p {
       margin: 6px 0;
-      color: #d8e1dc;
+      color: #d9e2dc;
       line-height: 1.7;
+      font-size: 14px;
     }
 
     .footer .btn {
-      margin: 14px 0;
+      margin: 14px 0 0;
     }
 
     /* =========================
        RESPONSIVE
        ========================= */
+    @media (min-width: 700px) {
+      .hero {
+        min-height: 62vh;
+      }
+    }
+
     @media (min-width: 800px) {
       .cards {
         grid-template-columns: repeat(3, 1fr);
       }
 
       .about {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .brand-name {
-        font-size: 36px;
+        grid-template-columns: 1.02fr 0.98fr;
       }
     }
 
-    @media (max-width: 900px) {
-      .hero h1,
-      .section-title h2,
-      .about-title h2,
-      .highlight h2 {
-        font-size: 34px;
-      }
-
-      .hero p,
-      .section-title p,
-      .about-text-paragraph,
-      .highlight p {
-        font-size: 16px;
+    @media (min-width: 992px) {
+      .brand-name {
+        font-size: 30px;
       }
 
       .header {
-        padding: 14px;
-      }
-
-      .brand img {
-        width: 48px;
-        height: 48px;
-      }
-
-      .brand-name {
-        font-size: 22px;
-      }
-
-      .brand-tagline {
-        font-size: 9px;
-        letter-spacing: 1px;
-      }
-
-      .icon-btn {
-        font-size: 24px;
+        padding: 14px 24px;
       }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 699px) {
+      .top-bar {
+        font-size: 11px;
+        padding: 10px 12px;
+      }
+
+      .header {
+        padding: 10px 12px;
+      }
+
+      .header-side {
+        width: 38px;
+      }
+
+      .icon-btn {
+        font-size: 22px;
+        padding: 4px;
+      }
+
+      .brand {
+        gap: 9px;
+      }
+
+      .brand img {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand-name {
+        font-size: 19px;
+        letter-spacing: 1.2px;
+      }
+
+      .brand-tagline {
+        font-size: 8px;
+        letter-spacing: 1.2px;
+      }
+
       .hero {
-        min-height: 48vh;
+        min-height: 50vh;
+      }
+
+      .hero-inner {
+        width: min(100% - 24px, 560px);
+        padding: 18px 14px;
+      }
+
+      .hero h1 {
+        font-size: clamp(28px, 9vw, 42px);
+        line-height: 1.06;
+      }
+
+      .hero p {
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+        min-height: 46px;
+        padding: 13px 22px;
+        font-size: 13px;
+      }
+
+      .section {
+        padding: 32px 14px;
       }
 
       .card img {
         height: 220px;
       }
 
-      .section {
-        padding: 40px 16px;
+      .footer {
+        padding: 34px 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Top announcement bar -->
   <div class="top-bar">
     <span class="offer-badge">Glowora</span>
-    <span class="offer-text">Elegant beauty, skincare & lifestyle picks for your everyday glow</span>
+    <span>Elegant beauty, skincare & lifestyle picks for your everyday glow</span>
   </div>
 
+  <!-- Top logo/header bar -->
   <header class="header">
     <div class="header-side">
       <a href="index.html" class="icon-btn" aria-label="Back to home">&#8592;</a>
     </div>
 
-    <div class="brand">
-      <img src="images/glowora-logo.png" alt="Glowora Logo">
+    <a href="index.html" class="brand" aria-label="Glowora Home">
+      <img src="images/glowora-logo.png" alt="Glowora Logo" />
       <div class="brand-text">
         <div class="brand-name">GLOWORA</div>
         <div class="brand-tagline">THE ART OF RADIENT SKIN</div>
       </div>
-    </div>
+    </a>
 
     <div class="header-side"></div>
   </header>
 
-  <div class="knowmore-page">
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-badge">Beauty • Skincare • Lifestyle</span>
+      <h1>Welcome to Glowora</h1>
+      <p>
+        Your destination for trendy beauty, skincare, and lifestyle products—sourced directly from China.
+        We bring you quality, style, and affordability to help you glow confidently every day.
+      </p>
+    </div>
+  </section>
 
-    <section class="hero">
-      <div class="hero-inner">
-        <span class="hero-badge">Beauty • Skincare • Lifestyle</span>
-        <h1>Welcome to Glowora</h1>
-        <p>
-          Your destination for trendy beauty, skincare, and lifestyle products—sourced directly from China.
-          We bring you quality, style, and affordability to help you glow confidently every day.
+  <section class="section">
+    <div class="about">
+      <img src="images/glowora-about.jpg" alt="Glowora beauty products" />
+      <div>
+        <div class="about-title">
+          <h2>About Glowora</h2>
+        </div>
+        <p class="about-text-paragraph">
+          Glowora is a modern beauty and lifestyle brand created for people who love stylish,
+          useful, and affordable products. We carefully source trendy beauty, skincare, and
+          lifestyle essentials directly from China so you can enjoy quality products at great prices.
+        </p>
+        <p class="about-text-paragraph">
+          Our goal is simple: to make beauty feel exciting, easy, and accessible. From everyday
+          self-care to trendy new finds, Glowora helps you express your style and glow with confidence.
         </p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <div class="about">
-        <img src="images/glowora-about.jpg" alt="Glowora beauty products">
-        <div>
-          <div class="about-title">
-            <h2>About Glowora</h2>
-          </div>
-          <p class="about-text-paragraph">
-            Glowora is a modern beauty and lifestyle brand created for people who love stylish,
-            useful, and affordable products. We carefully source trendy beauty, skincare, and
-            lifestyle essentials directly from China so you can enjoy quality products at great prices.
-          </p>
-          <p class="about-text-paragraph">
-            Our goal is simple: to make beauty feel exciting, easy, and accessible. From everyday
-            self-care to trendy new finds, Glowora helps you express your style and glow with confidence.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">
-        <small>Glowora Collection</small>
-        <h2>What We Offer</h2>
-        <p>Discover the products that make Glowora special</p>
-      </div>
-
-      <div class="cards">
-        <div class="card">
-          <img src="images/beauty-products.jpg" alt="Beauty products">
-          <div class="card-content">
-            <h3>Trendy Beauty</h3>
-            <p>
-              Explore stylish beauty products chosen to match modern trends. We bring you items
-              that feel elegant, fun, and perfect for everyday beauty routines.
-            </p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/skincare.jpg" alt="Skincare collection">
-          <div class="card-content">
-            <h3>Skincare Essentials</h3>
-            <p>
-              Discover skincare products that support fresh, healthy-looking skin. Glowora helps
-              you build a simple self-care routine that feels both relaxing and effective.
-            </p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/lifestyle.jpg" alt="Lifestyle products">
-          <div class="card-content">
-            <h3>Lifestyle Picks</h3>
-            <p>
-              Beyond beauty, we also offer lifestyle products that are practical, aesthetic, and
-              easy to love. Every item is selected to add comfort and style to your daily life.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="highlight-wrap">
-        <div class="highlight">
-          <h2>Quality, Style, and Affordability</h2>
-          <p>
-            At Glowora, we believe you should not have to choose between looking good and spending wisely.
-            That is why we focus on bringing you trendy, high-quality products at affordable prices.
-            Every product is selected to help you feel confident, stylish, and ready to glow every day.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="about">
-        <div>
-          <div class="about-title">
-            <h2>Why Choose Glowora?</h2>
-          </div>
-          <p class="about-text-paragraph">
-            We understand that today’s customers want more than just products—they want value,
-            beauty, and trust. Glowora is built around those ideas. We search for products that
-            are fashionable, practical, and worth buying.
-          </p>
-          <p class="about-text-paragraph">
-            Whether you are shopping for beauty tools, skincare favorites, or aesthetic lifestyle
-            items, Glowora is here to give you a shopping experience that feels modern, exciting,
-            and full of glow.
-          </p>
-        </div>
-        <img src="images/why-glowora.jpg" alt="Woman with glowing skin">
-      </div>
-    </section>
-
-    <div class="back-home">
-      <a href="index.html" class="btn">Back to Home</a>
+  <section class="section">
+    <div class="section-title">
+      <small>Glowora Collection</small>
+      <h2>What We Offer</h2>
+      <p>Discover the products that make Glowora special</p>
     </div>
 
+    <div class="cards">
+      <div class="card">
+        <img src="images/beauty-products.jpg" alt="Beauty products" />
+        <div class="card-content">
+          <h3>Trendy Beauty</h3>
+          <p>
+            Explore stylish beauty products chosen to match modern trends. We bring you items
+            that feel elegant, fun, and perfect for everyday beauty routines.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/skincare.jpg" alt="Skincare collection" />
+        <div class="card-content">
+          <h3>Skincare Essentials</h3>
+          <p>
+            Discover skincare products that support fresh, healthy-looking skin. Glowora helps
+            you build a simple self-care routine that feels both relaxing and effective.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/lifestyle.jpg" alt="Lifestyle products" />
+        <div class="card-content">
+          <h3>Lifestyle Picks</h3>
+          <p>
+            Beyond beauty, we also offer lifestyle products that are practical, aesthetic, and
+            easy to love. Every item is selected to add comfort and style to your daily life.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="highlight-wrap">
+      <div class="highlight">
+        <h2>Quality, Style, and Affordability</h2>
+        <p>
+          At Glowora, we believe you should not have to choose between looking good and spending wisely.
+          That is why we focus on bringing you trendy, high-quality products at affordable prices.
+          Every product is selected to help you feel confident, stylish, and ready to glow every day.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="about">
+      <div>
+        <div class="about-title">
+          <h2>Why Choose Glowora?</h2>
+        </div>
+        <p class="about-text-paragraph">
+          We understand that today’s customers want more than just products—they want value,
+          beauty, and trust. Glowora is built around those ideas. We search for products that
+          are fashionable, practical, and worth buying.
+        </p>
+        <p class="about-text-paragraph">
+          Whether you are shopping for beauty tools, skincare favorites, or aesthetic lifestyle
+          items, Glowora is here to give you a shopping experience that feels modern, exciting,
+          and full of glow.
+        </p>
+      </div>
+      <img src="images/why-glowora.jpg" alt="Woman with glowing skin" />
+    </div>
+  </section>
+
+  <div class="back-home">
+    <a href="index.html" class="btn">Back to Home</a>
   </div>
 
+  <!-- Bottom bar / footer -->
   <footer class="footer">
-    <img src="images/glowora-logo.png" alt="Glowora Logo">
+    <img src="images/glowora-logo.png" alt="Glowora Logo" />
     <h3>Glowora</h3>
     <p>Elegant beauty, skincare, and lifestyle essentials for your everyday glow.</p>
     <p>Carefully selected products that feel stylish, useful, and affordable.</p>
