@@ -9,15 +9,38 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     :root {
+      --brand-dark: #24332c;
+      --brand-green: #8fad9f;
+      --brand-green-dark: #6e8a7c;
+      --brand-green-deep: #3b5247;
+      --brand-green-soft: #edf4f0;
+      --brand-light: #f8f4ee;
+      --brand-white: #ffffff;
+
+      --text-dark: #223129;
+      --text-soft: #5f6d65;
+      --text-muted: #7b877f;
+      --border-soft: #e4ddd2;
+
+      --lux-blackish: #1c2420;
+      --lux-whiteish: #fffdf9;
+      --lux-green-soft: #f3f8f4;
+
+      --accent-red: #a13838;
+      --accent-red-deep: #812929;
+
       --sage-1: #f6f5ef;
       --sage-2: #eef1e6;
       --sage-3: #dfe6d8;
       --sage-4: #a8bea9;
       --sage-5: #7f9a82;
       --sage-6: #667f69;
+
       --black: #171717;
       --gray: #666;
       --border: #e2e4db;
@@ -25,18 +48,39 @@
       --danger: #b53c3c;
       --success: #356142;
       --warning: #9c6a19;
+
       --shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+      --shadow-soft: 0 10px 30px rgba(28, 36, 32, 0.06);
+      --shadow-medium: 0 16px 38px rgba(28, 36, 32, 0.1);
+
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+
+      --container: 1320px;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #fbfbf7 0%, #f4f4ee 100%);
-      color: var(--black);
+      color: var(--text-dark);
+      background:
+        radial-gradient(circle at top right, rgba(143, 173, 159, 0.08), transparent 22%),
+        linear-gradient(180deg, #fbf8f3 0%, #f4eee5 100%);
+      line-height: 1.6;
     }
 
     img {
       display: block;
       max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     button,
@@ -46,64 +90,143 @@
       font-family: inherit;
     }
 
-    .container {
-      width: 94%;
-      max-width: 1320px;
-      margin: 22px auto 48px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 18px;
-      background: rgba(255,255,255,0.75);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 12px 18px;
-      backdrop-filter: blur(8px);
-    }
-
-    .brand-wrap {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .brand-wrap img {
-      width: 54px;
-      height: 54px;
-      object-fit: contain;
-      border-radius: 14px;
-      background: var(--sage-1);
-      padding: 4px;
-    }
-
-    .brand-text h1 {
-      font-size: 32px;
-      letter-spacing: 2px;
-      color: var(--sage-5);
-      line-height: 1;
+    /* =========================
+       TOP BAR
+       ========================= */
+    .top-bar {
+      background: linear-gradient(90deg, #355044 0%, #283a32 100%);
+      color: #ffffff;
+      text-align: center;
+      padding: 12px 14px;
       font-weight: 700;
+      letter-spacing: 0.4px;
+      font-size: 13px;
     }
 
-    .brand-text p {
-      font-size: 11px;
-      letter-spacing: 3px;
-      color: var(--sage-5);
-      margin-top: 6px;
+    .top-bar .offer-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 999px;
+      margin-right: 8px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
 
+    .top-bar .offer-text strong {
+      font-weight: 900;
+    }
+
+    /* =========================
+       HEADER
+       ========================= */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 18px;
+      background: rgba(248, 244, 238, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(36, 51, 44, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 8px 24px rgba(36, 51, 44, 0.06);
+    }
+
+    .header-side {
+      min-width: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-btn {
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 6px;
+      color: var(--brand-dark);
+      border-radius: 999px;
+      transition:
+        transform 0.28s ease,
+        opacity 0.28s ease,
+        background 0.28s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.88;
+      background: rgba(143, 173, 159, 0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+      color: var(--text-dark);
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.72);
+      padding: 4px;
+      box-shadow: 0 6px 14px rgba(36, 51, 44, 0.08);
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 1.8px;
+      color: var(--text-dark);
+    }
+
+    .brand-tagline {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
     .cart-pill {
-      background: var(--black);
-      color: white;
+      background: linear-gradient(135deg, var(--brand-green) 0%, #779687 100%);
+      color: #ffffff;
       padding: 10px 16px;
       border-radius: 999px;
-      font-size: 14px;
-      font-weight: bold;
+      font-size: 13px;
+      font-weight: 800;
       white-space: nowrap;
+      box-shadow: 0 10px 22px rgba(59, 82, 71, 0.16);
+    }
+
+    /* =========================
+       PAGE CONTENT
+       ========================= */
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      max-width: 1320px;
+      margin: 22px auto 48px;
     }
 
     .hero {
@@ -117,10 +240,11 @@
     .product-card,
     .section-card,
     .order-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
     }
 
     .gallery-card {
@@ -220,9 +344,9 @@
     }
 
     .tag {
-      background: var(--sage-2);
-      border: 1px solid var(--sage-3);
-      color: var(--sage-6);
+      background: var(--brand-green-soft);
+      border: 1px solid #dbe6df;
+      color: var(--brand-green-deep);
       padding: 8px 13px;
       border-radius: 999px;
       font-size: 13px;
@@ -233,10 +357,11 @@
       font-size: 42px;
       line-height: 1.08;
       margin-bottom: 10px;
+      color: var(--lux-blackish);
     }
 
     .subtitle {
-      color: var(--gray);
+      color: var(--text-soft);
       font-size: 15px;
       line-height: 1.8;
       margin-bottom: 18px;
@@ -253,8 +378,8 @@
     .price {
       font-size: 42px;
       line-height: 1;
-      font-weight: 800;
-      color: var(--sage-6);
+      font-weight: 900;
+      color: var(--brand-green-deep);
     }
 
     .status-chip {
@@ -280,6 +405,7 @@
       font-size: 15px;
       font-weight: 700;
       margin-bottom: 10px;
+      color: var(--lux-blackish);
     }
 
     .form-block {
@@ -294,7 +420,7 @@
 
     .option-btn {
       min-width: 110px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       background: var(--white);
       color: var(--black);
       padding: 11px 14px;
@@ -336,7 +462,7 @@
       align-items: center;
       gap: 12px;
       background: #fafaf6;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 14px;
       padding: 10px 12px;
       font-size: 14px;
@@ -363,7 +489,7 @@
     .selector-box {
       margin-top: 22px;
       background: #f7f7f1;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 22px;
       padding: 18px;
     }
@@ -377,7 +503,7 @@
     .qty-box {
       display: flex;
       align-items: center;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       overflow: hidden;
       background: var(--white);
@@ -398,8 +524,8 @@
       width: 100%;
       height: 50px;
       border: none;
-      border-left: 1px solid var(--border);
-      border-right: 1px solid var(--border);
+      border-left: 1px solid var(--border-soft);
+      border-right: 1px solid var(--border-soft);
       text-align: center;
       font-size: 16px;
       font-weight: 700;
@@ -410,7 +536,7 @@
     input[type="text"],
     textarea {
       width: 100%;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       padding: 14px 16px;
       font-size: 15px;
@@ -438,7 +564,7 @@
     .mini-total {
       margin-top: 16px;
       background: var(--white);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       padding: 14px;
       font-size: 15px;
@@ -450,7 +576,7 @@
     }
 
     .mini-total strong {
-      color: var(--sage-6);
+      color: var(--brand-green-deep);
       font-size: 20px;
     }
 
@@ -464,33 +590,42 @@
     .btn {
       flex: 1;
       min-width: 150px;
-      height: 52px;
+      min-height: 48px;
+      padding: 14px 28px;
       border: none;
-      border-radius: 16px;
+      border-radius: 999px;
       font-size: 15px;
       font-weight: 800;
+      letter-spacing: 0.5px;
       cursor: pointer;
-      transition: 0.2s;
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        opacity 0.28s ease,
+        background 0.28s ease;
     }
 
     .btn-dark {
-      background: var(--black);
+      background: linear-gradient(135deg, var(--brand-green-deep) 0%, #2b3f36 100%);
       color: white;
+      box-shadow: 0 12px 24px rgba(59, 82, 71, 0.18);
     }
 
     .btn-olive {
-      background: var(--sage-6);
+      background: linear-gradient(135deg, var(--brand-green) 0%, #779687 100%);
       color: white;
+      box-shadow: 0 12px 24px rgba(59, 82, 71, 0.18);
     }
 
     .btn-light {
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.92);
       color: var(--black);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
     }
 
     .btn:hover {
       transform: translateY(-1px);
+      opacity: 0.98;
     }
 
     .btn:disabled {
@@ -531,6 +666,7 @@
     .order-card h2 {
       font-size: 28px;
       margin-bottom: 14px;
+      color: var(--lux-blackish);
     }
 
     .cart-list {
@@ -544,7 +680,7 @@
       gap: 12px;
       align-items: center;
       background: #fafaf6;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       padding: 12px;
       font-size: 14px;
@@ -567,7 +703,7 @@
 
     .cart-empty {
       background: #fafaf6;
-      border: 1px dashed var(--border);
+      border: 1px dashed var(--border-soft);
       border-radius: 16px;
       padding: 18px;
       color: var(--gray);
@@ -585,7 +721,7 @@
     .delivery-box,
     .total-box {
       background: #fafaf6;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 18px;
       padding: 16px;
     }
@@ -601,7 +737,7 @@
 
     .summary-line.total {
       padding-top: 10px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-soft);
       font-size: 21px;
       font-weight: 800;
       color: var(--black);
@@ -622,6 +758,7 @@
     .section-card h2 {
       font-size: 26px;
       margin-bottom: 16px;
+      color: var(--lux-blackish);
     }
 
     .benefit-grid {
@@ -634,7 +771,7 @@
     .feature-item,
     .detail-item {
       background: #fafaf6;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       padding: 14px 16px;
       font-size: 15px;
@@ -651,7 +788,7 @@
       gap: 14px;
       align-items: flex-start;
       background: #fafaf6;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       padding: 14px;
     }
@@ -669,6 +806,49 @@
       flex-shrink: 0;
     }
 
+    /* =========================
+       FOOTER
+       ========================= */
+    .footer {
+      background: linear-gradient(180deg, #30453b 0%, #222f29 100%);
+      color: #fff;
+      text-align: center;
+      padding: 42px 18px;
+      margin-top: 36px;
+    }
+
+    .footer img {
+      width: 70px;
+      margin: 0 auto 12px;
+      background: #ffffff;
+      border-radius: 50%;
+      padding: 4px;
+    }
+
+    .footer h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .footer p {
+      margin: 6px 0;
+      color: #d9e2dc;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .footer .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      margin: 14px 0 0;
+      min-width: auto;
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
     @media (max-width: 1100px) {
       .hero,
       .summary-panel,
@@ -687,13 +867,51 @@
     }
 
     @media (max-width: 700px) {
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
+      .top-bar {
+        font-size: 11px;
+        padding: 10px 12px;
       }
 
-      .brand-text h1 {
-        font-size: 26px;
+      .header {
+        padding: 10px 12px;
+      }
+
+      .header-side {
+        min-width: 42px;
+      }
+
+      .icon-btn {
+        font-size: 22px;
+        padding: 4px;
+      }
+
+      .brand {
+        gap: 9px;
+      }
+
+      .brand img {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand-name {
+        font-size: 19px;
+        letter-spacing: 1.2px;
+      }
+
+      .brand-tagline {
+        font-size: 8px;
+        letter-spacing: 1.2px;
+      }
+
+      .cart-pill {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      .container {
+        width: min(var(--container), calc(100% - 24px));
+        margin: 18px auto 36px;
       }
 
       .title {
@@ -726,25 +944,56 @@
       .cart-item {
         grid-template-columns: 1fr;
       }
+
+      .footer {
+        padding: 34px 14px;
+      }
+
+      .footer .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="topbar">
-      <a href="index.html">&#8592;</a>
-      <div class="brand-wrap">
-        <a href="index.html"
-          style="text-decoration: none; color: inherit;">
-        <img src="images/glowora-logo.png" alt="Glowora Logo">
-        <div class="brand-text">
-          <h1>GLOWORA</h1>
-          <p>THE ART OF RADIENT SKIN</p>
-        </div>
-      </div>
-      <div class="cart-pill" id="cartCount">Items in Order: 0</div>
+  <div class="top-bar">
+    <span class="offer-badge">Glowora</span>
+    <span class="offer-text">Elegant beauty, skincare & lifestyle picks for your everyday glow</span>
+  </div>
+
+  <header class="header">
+    <div class="header-side">
+      <a href="index.html" class="icon-btn" aria-label="Back to home">&#8592;</a>
     </div>
 
+    <a href="index.html" class="brand" aria-label="Glowora Home">
+      <img src="images/glowora-logo.png" alt="Glowora Logo">
+      <div class="brand-text">
+        <div class="brand-name">GLOWORA</div>
+        <div class="brand-tagline">THE ART OF RADIENT SKIN</div>
+      </div>
+    </a>
+
+    <div class="header-side">
+      <div class="cart-pill" id="cartCount">Items in Order: 0</div>
+    </div>
+  </header>
+
+  <div class="container">
     <section class="hero">
       <div class="gallery-card">
         <div class="slider" id="sliderArea">
@@ -944,6 +1193,14 @@
       </div>
     </div>
   </div>
+
+  <footer class="footer">
+    <img src="images/glowora-logo.png" alt="Glowora Logo">
+    <h3>Glowora</h3>
+    <p>Elegant beauty, skincare, and lifestyle essentials for your everyday glow.</p>
+    <p>Carefully selected products that feel stylish, useful, and affordable.</p>
+    <a href="index.html" class="btn btn-olive">Explore Collection</a>
+  </footer>
 
 <script>
   const scriptURL = "https://script.google.com/macros/s/AKfycbyv7HM56z4VMYpwQJrIhmVyikCgUNe0sBg69WJf3OP6txrPsmZOhAyMJREzKoLKBTU5/exec";
