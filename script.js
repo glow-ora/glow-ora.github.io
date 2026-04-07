@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentSlide = 0;
   let sliderInterval = null;
   const SLIDE_DELAY = 5500;
-  const PANEL_ANIMATION_DURATION = 400;
+  const PANEL_ANIMATION_DURATION = 350;
 
   function showSlide(index) {
     slides.forEach((slide, i) => {
