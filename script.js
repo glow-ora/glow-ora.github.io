@@ -2,26 +2,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelectorAll(".slide");
   let currentSlide = 0;
   let sliderInterval = null;
+  const SLIDE_DELAY = 5000;
 
   function showSlide(index) {
-    slides.forEach((slide) => {
-      slide.classList.remove("active");
-    });
+    slides.forEach((slide, i) => {
+      slide.classList.remove("active", "prev", "next");
 
-    if (slides[index]) {
-      slides[index].classList.add("active");
-    }
+      if (i === index) {
+        slide.classList.add("active");
+      } else if (i < index) {
+        slide.classList.add("prev");
+      } else {
+        slide.classList.add("next");
+      }
+    });
   }
 
   function nextSlide() {
-    if (slides.length === 0) return;
+    if (slides.length <= 1) return;
     currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
   }
 
   function startSlider() {
     if (slides.length > 1 && !sliderInterval) {
-      sliderInterval = setInterval(nextSlide, 4000);
+      sliderInterval = setInterval(nextSlide, SLIDE_DELAY);
     }
   }
 
@@ -29,6 +34,29 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sliderInterval) {
       clearInterval(sliderInterval);
       sliderInterval = null;
+    }
+  }
+
+  function togglePanel(panelToToggle, panelToClose) {
+    if (!panelToToggle) return;
+
+    const isHidden = panelToToggle.classList.contains("hidden");
+
+    if (panelToClose) {
+      panelToClose.classList.add("hidden");
+      panelToClose.classList.remove("is-visible");
+    }
+
+    if (isHidden) {
+      panelToToggle.classList.remove("hidden");
+      requestAnimationFrame(() => {
+        panelToToggle.classList.add("is-visible");
+      });
+    } else {
+      panelToToggle.classList.remove("is-visible");
+      setTimeout(() => {
+        panelToToggle.classList.add("hidden");
+      }, 350);
     }
   }
 
@@ -44,21 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (searchToggle && searchDrawer) {
     searchToggle.addEventListener("click", () => {
-      searchDrawer.classList.toggle("hidden");
-
-      if (mobileMenu) {
-        mobileMenu.classList.add("hidden");
-      }
+      togglePanel(searchDrawer, mobileMenu);
     });
   }
 
   if (menuToggle && mobileMenu) {
     menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-
-      if (searchDrawer) {
-        searchDrawer.classList.add("hidden");
-      }
+      togglePanel(mobileMenu, searchDrawer);
     });
   }
 
@@ -71,16 +91,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const catalogSection = document.getElementById("catalog");
       if (catalogSection) {
         catalogSection.scrollIntoView({
-          behavior: "smooth"
+          behavior: "smooth",
+          block: "start"
         });
       }
 
       if (mobileMenu) {
-        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("is-visible");
+        setTimeout(() => mobileMenu.classList.add("hidden"), 300);
       }
 
       if (searchDrawer) {
-        searchDrawer.classList.add("hidden");
+        searchDrawer.classList.remove("is-visible");
+        setTimeout(() => searchDrawer.classList.add("hidden"), 300);
       }
     });
   });
