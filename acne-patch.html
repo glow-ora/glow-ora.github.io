@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glowora | Oil Absorbing Blotting Paper</title>
+  <title>Glowora | Hydrocolloid Acne Patch</title>
   <style>
     * {
       box-sizing: border-box;
@@ -21,11 +21,33 @@
       --brand-green-soft: #edf4f0;
       --brand-light: #f8f4ee;
       --brand-white: #ffffff;
+
       --text-dark: #223129;
       --text-soft: #5f6d65;
       --text-muted: #7b877f;
       --border-soft: #e4ddd2;
+
       --lux-blackish: #1c2420;
+      --lux-whiteish: #fffdf9;
+      --lux-green-soft: #f3f8f4;
+      --lux-green-pale: #e7f0ea;
+
+      --accent-red: #a13838;
+      --accent-red-deep: #812929;
+      --accent-red-soft: #f9ecec;
+
+      --accent-gold-soft: #c9b08c;
+      --accent-peach-soft: #f3ddd4;
+      --accent-lilac-soft: #ece7f6;
+
+      --shadow-soft: 0 10px 30px rgba(28, 36, 32, 0.06);
+      --shadow-medium: 0 16px 38px rgba(28, 36, 32, 0.1);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+
+      --container: 1320px;
+
       --sage-1: #f6f5ef;
       --sage-2: #eef1e6;
       --sage-3: #dfe6d8;
@@ -40,9 +62,6 @@
       --success: #356142;
       --warning: #9c6a19;
       --shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
-      --shadow-soft: 0 10px 30px rgba(28, 36, 32, 0.06);
-      --radius-lg: 24px;
-      --container: 1320px;
     }
 
     html {
@@ -51,8 +70,11 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #fbfbf7 0%, #f4f4ee 100%);
-      color: var(--black);
+      color: var(--text-dark);
+      background:
+        radial-gradient(circle at top right, rgba(143, 173, 159, 0.08), transparent 22%),
+        linear-gradient(180deg, #fbf8f3 0%, #f4eee5 100%);
+      line-height: 1.6;
     }
 
     img {
@@ -72,8 +94,13 @@
       font-family: inherit;
     }
 
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 22px auto 48px;
+    }
+
     /* =========================
-       TOP ANNOUNCEMENT BAR
+       TOP BAR
        ========================= */
     .top-bar {
       background: linear-gradient(90deg, #355044 0%, #283a32 100%);
@@ -99,7 +126,7 @@
     }
 
     /* =========================
-       TOP LOGO BAR / HEADER
+       HEADER
        ========================= */
     .header {
       display: flex;
@@ -117,7 +144,7 @@
     }
 
     .header-side {
-      min-width: 60px;
+      width: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -125,9 +152,6 @@
     }
 
     .icon-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       background: transparent;
       border: none;
       font-size: 24px;
@@ -176,7 +200,6 @@
       font-weight: 900;
       line-height: 1;
       letter-spacing: 1.8px;
-      color: var(--text-dark);
     }
 
     .brand-tagline {
@@ -188,22 +211,19 @@
     }
 
     .cart-pill {
-      background: linear-gradient(135deg, var(--brand-green) 0%, #779687 100%);
-      color: #ffffff;
+      background: linear-gradient(135deg, var(--brand-green-deep) 0%, #2d4037 100%);
+      color: white;
       padding: 10px 16px;
       border-radius: 999px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 800;
       white-space: nowrap;
       box-shadow: 0 10px 22px rgba(59, 82, 71, 0.16);
     }
 
-    .container {
-      width: min(var(--container), calc(100% - 32px));
-      max-width: 1320px;
-      margin: 22px auto 48px;
-    }
-
+    /* =========================
+       PAGE CONTENT
+       ========================= */
     .hero {
       display: grid;
       grid-template-columns: 1.08fr 0.92fr;
@@ -215,10 +235,10 @@
     .product-card,
     .section-card,
     .order-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
     }
 
     .gallery-card {
@@ -318,9 +338,9 @@
     }
 
     .tag {
-      background: var(--sage-2);
-      border: 1px solid var(--sage-3);
-      color: var(--sage-6);
+      background: var(--brand-green-soft);
+      border: 1px solid #d5e3db;
+      color: var(--brand-green-deep);
       padding: 8px 13px;
       border-radius: 999px;
       font-size: 13px;
@@ -331,10 +351,11 @@
       font-size: 42px;
       line-height: 1.08;
       margin-bottom: 10px;
+      color: var(--lux-blackish);
     }
 
     .subtitle {
-      color: var(--gray);
+      color: var(--text-soft);
       font-size: 15px;
       line-height: 1.8;
       margin-bottom: 18px;
@@ -345,7 +366,7 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 14px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .price {
@@ -360,14 +381,11 @@
       font-size: 42px;
       line-height: 1;
       font-weight: 800;
-      color: var(--sage-6);
+      color: var(--brand-green-deep);
     }
 
     .price-old {
-      font-size: 18px;
-      font-weight: 700;
-      color: #888;
-      text-decoration: line-through;
+      display: none;
     }
 
     .offer-badge {
@@ -379,6 +397,30 @@
       font-weight: 800;
       letter-spacing: 0.5px;
       text-transform: uppercase;
+    }
+
+    .promo-banner {
+      margin-bottom: 18px;
+      border-radius: 20px;
+      padding: 16px 18px;
+      background: linear-gradient(135deg, #171717 0%, #485d49 55%, #667f69 100%);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 14px 34px rgba(23, 23, 23, 0.12);
+    }
+
+    .promo-banner strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 6px;
+      letter-spacing: 0.4px;
+    }
+
+    .promo-banner span {
+      display: block;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.92);
     }
 
     .status-chip {
@@ -404,6 +446,7 @@
       font-size: 15px;
       font-weight: 700;
       margin-bottom: 10px;
+      color: var(--lux-blackish);
     }
 
     .form-block {
@@ -418,7 +461,7 @@
 
     .option-btn {
       min-width: 110px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       background: var(--white);
       color: var(--black);
       padding: 11px 14px;
@@ -460,7 +503,7 @@
       align-items: center;
       gap: 12px;
       background: #fafaf6;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 14px;
       padding: 10px 12px;
       font-size: 14px;
@@ -487,7 +530,7 @@
     .selector-box {
       margin-top: 22px;
       background: #f7f7f1;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 22px;
       padding: 18px;
     }
@@ -501,7 +544,7 @@
     .qty-box {
       display: flex;
       align-items: center;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       overflow: hidden;
       background: var(--white);
@@ -522,8 +565,8 @@
       width: 100%;
       height: 50px;
       border: none;
-      border-left: 1px solid var(--border);
-      border-right: 1px solid var(--border);
+      border-left: 1px solid var(--border-soft);
+      border-right: 1px solid var(--border-soft);
       text-align: center;
       font-size: 16px;
       font-weight: 700;
@@ -534,7 +577,7 @@
     input[type="text"],
     textarea {
       width: 100%;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       padding: 14px 16px;
       font-size: 15px;
@@ -562,7 +605,7 @@
     .mini-total {
       margin-top: 16px;
       background: var(--white);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       padding: 14px;
       font-size: 15px;
@@ -574,8 +617,20 @@
     }
 
     .mini-total strong {
-      color: var(--sage-6);
+      color: var(--brand-green-deep);
       font-size: 20px;
+    }
+
+    .free-delivery-note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #eef4ea;
+      border: 1px solid var(--sage-3);
+      color: var(--sage-6);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
     }
 
     .actions {
@@ -588,33 +643,42 @@
     .btn {
       flex: 1;
       min-width: 150px;
-      height: 52px;
+      min-height: 48px;
+      padding: 14px 28px;
       border: none;
-      border-radius: 16px;
+      border-radius: 999px;
       font-size: 15px;
       font-weight: 800;
+      letter-spacing: 0.5px;
       cursor: pointer;
-      transition: 0.2s;
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        opacity 0.28s ease,
+        background 0.28s ease;
     }
 
     .btn-dark {
-      background: var(--black);
+      background: linear-gradient(135deg, var(--brand-green-deep) 0%, #2c3f36 100%);
       color: white;
+      box-shadow: 0 12px 24px rgba(59, 82, 71, 0.18);
     }
 
     .btn-olive {
-      background: var(--sage-6);
+      background: linear-gradient(135deg, var(--brand-green) 0%, #779687 100%);
       color: white;
+      box-shadow: 0 12px 24px rgba(59, 82, 71, 0.18);
     }
 
     .btn-light {
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.9);
       color: var(--black);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
     }
 
     .btn:hover {
       transform: translateY(-1px);
+      opacity: 0.98;
     }
 
     .btn:disabled {
@@ -655,6 +719,7 @@
     .order-card h2 {
       font-size: 28px;
       margin-bottom: 14px;
+      color: var(--lux-blackish);
     }
 
     .cart-list {
@@ -664,11 +729,11 @@
 
     .cart-item {
       display: grid;
-      grid-template-columns: 1.4fr 0.8fr 0.8fr 0.6fr 0.6fr auto;
+      grid-template-columns: 1.2fr 1fr 0.8fr 0.8fr 0.7fr auto;
       gap: 12px;
       align-items: center;
       background: #fafaf6;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       padding: 12px;
       font-size: 14px;
@@ -691,7 +756,7 @@
 
     .cart-empty {
       background: #fafaf6;
-      border: 1px dashed var(--border);
+      border: 1px dashed var(--border-soft);
       border-radius: 16px;
       padding: 18px;
       color: var(--gray);
@@ -709,9 +774,20 @@
     .delivery-box,
     .total-box {
       background: #fafaf6;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 18px;
       padding: 16px;
+    }
+
+    .delivery-offer {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #171717;
+      color: #fff;
+      font-size: 13px;
+      line-height: 1.7;
+      font-weight: 700;
     }
 
     .summary-line {
@@ -725,11 +801,16 @@
 
     .summary-line.total {
       padding-top: 10px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-soft);
       font-size: 21px;
       font-weight: 800;
       color: var(--black);
       margin-bottom: 0;
+    }
+
+    .delivery-free-text {
+      color: var(--success);
+      font-weight: 800;
     }
 
     .content-grid {
@@ -746,6 +827,7 @@
     .section-card h2 {
       font-size: 26px;
       margin-bottom: 16px;
+      color: var(--lux-blackish);
     }
 
     .benefit-grid {
@@ -758,7 +840,7 @@
     .feature-item,
     .detail-item {
       background: #fafaf6;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       padding: 14px 16px;
       font-size: 15px;
@@ -775,7 +857,7 @@
       gap: 14px;
       align-items: flex-start;
       background: #fafaf6;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       border-radius: 16px;
       padding: 14px;
     }
@@ -815,7 +897,6 @@
     .footer h3 {
       margin: 0 0 10px;
       font-size: 22px;
-      letter-spacing: 0.6px;
     }
 
     .footer p {
@@ -840,19 +921,7 @@
       color: #ffffff;
       border-radius: 999px;
       box-shadow: 0 12px 24px rgba(59, 82, 71, 0.18);
-      margin-top: 14px;
-      transition:
-        transform 0.28s ease,
-        box-shadow 0.28s ease,
-        opacity 0.28s ease,
-        background 0.28s ease;
-    }
-
-    .footer .footer-btn:hover {
-      background: linear-gradient(135deg, var(--brand-green-dark) 0%, #5f7a6d 100%);
-      transform: translateY(-1px);
-      box-shadow: 0 16px 30px rgba(59, 82, 71, 0.2);
-      opacity: 0.98;
+      margin: 14px 0 0;
     }
 
     @media (max-width: 1100px) {
@@ -873,17 +942,12 @@
     }
 
     @media (max-width: 700px) {
-      .top-bar {
-        font-size: 11px;
-        padding: 10px 12px;
-      }
-
       .header {
         padding: 10px 12px;
       }
 
       .header-side {
-        min-width: 42px;
+        width: 38px;
       }
 
       .icon-btn {
@@ -910,9 +974,9 @@
         letter-spacing: 1.2px;
       }
 
-      .cart-pill {
-        padding: 8px 12px;
-        font-size: 12px;
+      .container {
+        width: min(var(--container), calc(100% - 24px));
+        margin: 18px auto 36px;
       }
 
       .title {
@@ -946,13 +1010,13 @@
         grid-template-columns: 1fr;
       }
 
-      .footer {
-        padding: 34px 14px;
+      .top-bar {
+        font-size: 11px;
+        padding: 10px 12px;
       }
 
-      .footer .footer-btn {
-        width: 100%;
-        max-width: 280px;
+      .footer {
+        padding: 34px 14px;
       }
     }
   </style>
@@ -986,48 +1050,54 @@
       <div class="gallery-card">
         <div class="slider" id="sliderArea">
           <button class="slider-btn left" type="button" onclick="prevSlide()">‹</button>
-          <img id="mainImage" src="images/blotting-paper-main.jpg" alt="Oil Absorbing Blotting Paper">
+          <img id="mainImage" src="images/acne-patch-main.jpg" alt="Hydrocolloid Acne Patch">
           <button class="slider-btn right" type="button" onclick="nextSlide()">›</button>
           <div class="slide-count" id="slideCount">1 / 4</div>
         </div>
 
-        <div class="thumbs">
-          <img src="images/blotting-paper-main.jpg" class="thumb active" onclick="showSlide(0)" alt="Oil Absorbing Blotting Paper Main">
-          <img src="images/blotting-paper-2.jpg" class="thumb" onclick="showSlide(1)" alt="Oil Absorbing Blotting Paper View 2">
-          <img src="images/blotting-paper-3.jpg" class="thumb" onclick="showSlide(2)" alt="Oil Absorbing Blotting Paper View 3">
-          <img src="images/blotting-paper-4.jpg" class="thumb" onclick="showSlide(3)" alt="Oil Absorbing Blotting Paper View 4">
+        <div class="thumbs" id="thumbsContainer">
+          <img src="images/acne-patch-main.jpg" class="thumb active" onclick="showSlide(0)" alt="Hydrocolloid Acne Patch Main">
+          <img src="images/acne-patch-2.jpg" class="thumb" onclick="showSlide(1)" alt="Hydrocolloid Acne Patch View 2">
+          <img src="images/acne-patch-3.jpg" class="thumb" onclick="showSlide(2)" alt="Hydrocolloid Acne Patch View 3">
+          <img src="images/acne-patch-4.jpg" class="thumb" onclick="showSlide(3)" alt="Hydrocolloid Acne Patch View 4">
         </div>
       </div>
 
       <div class="product-card">
         <div class="tag-row">
-          <div class="tag">Oil Control</div>
-          <div class="tag">100 Sheets</div>
-          <div class="tag">Travel Friendly</div>
+          <div class="tag">Hydrocolloid Care</div>
+          <div class="tag">Day & Night Use</div>
+          <div class="tag">Invisible Coverage</div>
         </div>
 
-        <h1 class="title">Oil Absorbing Blotting Paper</h1>
+        <h1 class="title">Hydrocolloid Acne Patch</h1>
 
         <p class="subtitle">
-          Instantly lift away excess oil, refresh shine-prone skin, and keep your makeup looking soft, fresh, and polished throughout the day.
-          Each pack includes 100 lightweight sheets designed to absorb surface oil without disturbing foundation, sunscreen, or your natural finish.
-          Perfect for handbag touch-ups, office use, travel, and daily skincare routines.
+          Calm breakouts beautifully with our Hydrocolloid Acne Patch — a skin-loving spot care essential designed to absorb excess oil,
+          protect blemishes from dirt and touching, and support faster-looking healing. Lightweight, breathable, and comfortable for both
+          day and night wear, these patches help your skin look cleaner, smoother, and more confident with every use.
         </p>
 
         <div class="price-row">
           <div class="price">
-            <span class="price-main">299 tk</span>
-            <span class="price-old">399 tk</span>
-            <span class="offer-badge">Offer Price</span>
+            <span class="price-main">150৳ only</span>
+            <span class="price-old">199৳</span>
+            <span class="offer-badge">Luxury Spot Care</span>
           </div>
           <div class="status-chip status-ok" id="statusChip">Select a type and option</div>
           <div class="status-chip status-low" id="lowStockChip">Low Stock</div>
         </div>
 
+        <div class="promo-banner">
+          <strong>✨ Special Offer: Buy 4 pcs & get FREE delivery</strong>
+          <span>Build your glow kit with your favorite acne patch styles. Add any 4 pieces from any available type and your delivery charge becomes 0৳ automatically.</span>
+        </div>
+
         <div class="form-block">
-          <label class="label" id="typeLabel">Product Type</label>
+          <label class="label" id="typeLabel">Patch Type</label>
           <div class="option-grid" id="typeButtons">
-            <button class="option-btn active" data-type="oil-control-sheet" type="button" onclick="selectType('oil-control-sheet')">Oil Control Sheet</button>
+            <button class="option-btn active" data-type="star" type="button" onclick="selectType('star')">Star</button>
+            <button class="option-btn" data-type="cartoon" type="button" onclick="selectType('cartoon')">Cartoon</button>
           </div>
         </div>
 
@@ -1046,13 +1116,16 @@
                 <input type="number" id="qty" value="1" min="1" onchange="updateSelectedPreview()">
                 <button type="button" onclick="increaseQty()">+</button>
               </div>
+              <div class="free-delivery-note">
+                Buy any 4 pcs total from your cart to unlock <strong>FREE delivery</strong>.
+              </div>
             </div>
 
             <div>
               <label class="label">Selected Item Total</label>
               <div class="mini-total">
                 <span id="selectedPreviewText">No item selected</span>
-                <strong id="selectedItemTotal">299 tk</strong>
+                <strong id="selectedItemTotal">150৳</strong>
               </div>
             </div>
           </div>
@@ -1082,13 +1155,20 @@
               <option value="80">Inside Dhaka - 80 tk</option>
               <option value="120">Outside Dhaka - 120 tk</option>
             </select>
+
+            <div class="delivery-offer">
+              🚚 Delivery charge is automatic.<br>
+              Inside Dhaka: 80৳<br>
+              Outside Dhaka: 120৳<br>
+              <strong>Buy 4 pcs or more = FREE delivery anywhere.</strong>
+            </div>
           </div>
 
           <div class="delivery-box" style="margin-top:18px;">
-            <label class="label">Customer Name</label>
+            <label class="label">Name</label>
             <input type="text" id="customerName" placeholder="Enter your full name">
 
-            <label class="label" style="margin-top:14px;">Phone Number</label>
+            <label class="label" style="margin-top:14px;">Phone</label>
             <input type="text" id="customerPhone" placeholder="Enter your phone number">
 
             <label class="label" style="margin-top:14px;">Address</label>
@@ -1108,6 +1188,10 @@
             <span>Delivery Charge</span>
             <strong id="deliveryCharge">0 tk</strong>
           </div>
+          <div class="summary-line">
+            <span>Offer</span>
+            <strong id="offerStatus">Add 4 pcs for free delivery</strong>
+          </div>
           <div class="summary-line total">
             <span>Total Amount</span>
             <strong id="grandTotal">0 tk</strong>
@@ -1124,20 +1208,20 @@
       <div class="section-card">
         <h2>Key Benefits</h2>
         <div class="benefit-grid">
-          <div class="benefit-item">Instantly absorbs excess facial oil to reduce unwanted shine without smearing makeup.</div>
-          <div class="benefit-item">Keeps skin looking fresh, matte, and clean during long office hours, travel, or humid days.</div>
-          <div class="benefit-item">Soft lightweight sheets feel gentle on the skin and work well for oily and combination skin types.</div>
-          <div class="benefit-item">Portable 100-sheet pack is easy to carry in your purse, vanity pouch, or skincare kit.</div>
+          <div class="benefit-item">Helps absorb excess oil and fluid from active pimples for a cleaner, calmer look.</div>
+          <div class="benefit-item">Creates a protective barrier that helps keep your blemish safe from touching, dirt, and friction.</div>
+          <div class="benefit-item">Blends comfortably onto skin with lightweight, breathable coverage for day or overnight wear.</div>
+          <div class="benefit-item">Makes targeted spot care feel cute, stylish, and confidence-boosting with Star and Cartoon options.</div>
         </div>
       </div>
 
       <div class="section-card">
         <h2>How to Use</h2>
         <div class="steps">
-          <div class="step"><div class="step-no">1</div><div>Start with clean hands and take out one blotting sheet from the pack.</div></div>
-          <div class="step"><div class="step-no">2</div><div>Gently press the sheet on oily areas like the forehead, nose, chin, and around the cheeks.</div></div>
-          <div class="step"><div class="step-no">3</div><div>Do not rub. Lightly press and lift to absorb excess oil while keeping makeup in place.</div></div>
-          <div class="step"><div class="step-no">4</div><div>Repeat with a fresh sheet whenever needed for an instant soft-matte touch-up.</div></div>
+          <div class="step"><div class="step-no">1</div><div>Cleanse and dry your skin completely before applying the acne patch.</div></div>
+          <div class="step"><div class="step-no">2</div><div>Select the patch style you love and place it directly over the pimple.</div></div>
+          <div class="step"><div class="step-no">3</div><div>Leave it on for several hours or overnight to help absorb oil and protect the area.</div></div>
+          <div class="step"><div class="step-no">4</div><div>Remove gently and replace with a fresh patch when needed for continued care.</div></div>
         </div>
       </div>
     </div>
@@ -1146,42 +1230,42 @@
       <div class="section-card">
         <h2>Features</h2>
         <div class="steps">
-          <div class="feature-item">100 sheets per pack for long-lasting daily use</div>
-          <div class="feature-item">Color options: Green and Black</div>
-          <div class="feature-item">Live stock status with in-stock and out-of-stock visibility</div>
-          <div class="feature-item">Supports multiple item additions and automatic delivery total update</div>
+          <div class="feature-item">Premium hydrocolloid patch designed for spot care and skin protection</div>
+          <div class="feature-item">Two style collections: Star and Cartoon</div>
+          <div class="feature-item">Live stock visibility with clear green In Stock and red Out of Stock status</div>
+          <div class="feature-item">Supports multiple different items in one cart with automatic delivery calculation</div>
         </div>
       </div>
 
       <div class="section-card">
         <h2>Product Details</h2>
         <div class="steps">
-          <div class="detail-item"><strong>Product Name:</strong> Oil Absorbing Blotting Paper</div>
-          <div class="detail-item"><strong>Pack Size:</strong> 100 sheets per product</div>
-          <div class="detail-item"><strong>Best For:</strong> Oily, combination, and shine-prone skin</div>
-          <div class="detail-item"><strong>Delivery:</strong> Inside Dhaka 80 tk, Outside Dhaka 120 tk</div>
+          <div class="detail-item"><strong>Product Name:</strong> Hydrocolloid Acne Patch</div>
+          <div class="detail-item"><strong>Price:</strong> 150৳ per piece</div>
+          <div class="detail-item"><strong>Types:</strong> Star and Cartoon</div>
+          <div class="detail-item"><strong>Delivery:</strong> Inside Dhaka 80৳, Outside Dhaka 120৳, free on 4 pcs+</div>
         </div>
       </div>
     </div>
 
     <div class="content-grid">
       <div class="section-card">
-        <h2>Additional Notes</h2>
+        <h2>Style Options</h2>
         <div class="steps">
-          <div class="detail-item">A quick beauty essential for midday touch-ups before meetings, outings, or events.</div>
-          <div class="detail-item">Helps keep sunscreen, base makeup, and light glam looking smoother for longer.</div>
-          <div class="detail-item">Unavailable variants are clearly shown in red and cannot be added to the cart.</div>
-          <div class="detail-item">The page remains reusable for future products by changing only product data and content.</div>
+          <div class="detail-item"><strong>Star Colors:</strong> Green, Olive, Pink, Black, Yellow, Transparent</div>
+          <div class="detail-item"><strong>Cartoon Designs:</strong> Hello Kitty, Cute Cat</div>
+          <div class="detail-item">Unavailable options are disabled automatically and cannot be added to cart.</div>
+          <div class="detail-item">Low-stock options remain visible so customers can quickly grab the last available pieces.</div>
         </div>
       </div>
 
       <div class="section-card">
         <h2>Why Customers Love It</h2>
         <div class="steps">
-          <div class="feature-item">Fast oil control without washing the face</div>
-          <div class="feature-item">Elegant compact pack for beauty bags</div>
-          <div class="feature-item">Simple one-page ordering experience</div>
-          <div class="feature-item">Clean premium presentation with practical stock visibility</div>
+          <div class="feature-item">Fast, stylish blemish coverage with a cute premium look</div>
+          <div class="feature-item">Easy to wear during the day or overnight</div>
+          <div class="feature-item">Perfect for acne care lovers who want function and beauty together</div>
+          <div class="feature-item">Free delivery on 4 pcs makes it easy to stock up and save more</div>
         </div>
       </div>
     </div>
@@ -1197,32 +1281,43 @@
 
 <script>
   const scriptURL = "https://script.google.com/macros/s/AKfycbyv7HM56z4VMYpwQJrIhmVyikCgUNe0sBg69WJf3OP6txrPsmZOhAyMJREzKoLKBTU5/exec";
-  const basePrice = 299;
+  const basePrice = 150;
 
   const productConfig = {
-    productName: "Oil Absorbing Blotting Paper",
+    productName: "Hydrocolloid Acne Patch",
     optionLabels: {
-      type: "Product Type",
-      variant: "Choose Color"
+      type: "Patch Type",
+      variantByType: {
+        star: "Choose Color",
+        cartoon: "Choose Design"
+      }
     }
   };
 
   let currentSlide = 0;
-  let selectedType = "oil-control-sheet";
+  let selectedType = "star";
   let selectedVariantIndex = null;
   let orderItems = [];
 
   const images = [
-    "images/blotting-paper-main.jpg",
-    "images/blotting-paper-2.jpg",
-    "images/blotting-paper-3.jpg",
-    "images/blotting-paper-4.jpg"
+    "images/acne-patch-main.jpg",
+    "images/acne-patch-2.jpg",
+    "images/acne-patch-3.jpg",
+    "images/acne-patch-4.jpg"
   ];
 
   const productData = {
-    "oil-control-sheet": [
-      { name: "Green", stock: 3, image: "images/blotting-paper-main.jpg" },
-      { name: "Black", stock: 4, image: "images/blotting-paper-2.jpg" }
+    star: [
+      { name: "Green", stock: 0, image: "images/acne-patch-main.jpg" },
+      { name: "Olive", stock: 1, image: "images/acne-patch-2.jpg" },
+      { name: "Pink", stock: 1, image: "images/acne-patch-3.jpg" },
+      { name: "Black", stock: 0, image: "images/acne-patch-4.jpg" },
+      { name: "Yellow", stock: 1, image: "images/acne-patch-2.jpg" },
+      { name: "Transparent", stock: 0, image: "images/acne-patch-main.jpg" }
+    ],
+    cartoon: [
+      { name: "Hello Kitty", stock: 6, image: "images/acne-patch-3.jpg" },
+      { name: "Cute Cat", stock: 2, image: "images/acne-patch-4.jpg" }
     ]
   };
 
@@ -1236,6 +1331,10 @@
   function getSelectedVariant() {
     if (selectedVariantIndex === null) return null;
     return productData[selectedType][selectedVariantIndex];
+  }
+
+  function getCartItemCount() {
+    return orderItems.reduce((sum, item) => sum + item.quantity, 0);
   }
 
   function updateSlider() {
@@ -1265,19 +1364,27 @@
     selectedType = type;
     selectedVariantIndex = null;
     document.getElementById("qty").value = 1;
+
     document.querySelectorAll("#typeButtons .option-btn").forEach(btn => btn.classList.remove("active"));
     const activeTypeBtn = document.querySelector('[data-type="' + type + '"]');
     if (activeTypeBtn) activeTypeBtn.classList.add("active");
+
+    updateVariantLabel();
     renderVariants();
     resetStatus();
     updateSelectedPreview();
     clearMessage();
   }
 
+  function updateVariantLabel() {
+    const variantLabel = document.getElementById("variantLabel");
+    variantLabel.innerText = productConfig.optionLabels.variantByType[selectedType] || "Choose Option";
+  }
+
   function getUsedCount(type, name) {
     return orderItems
       .filter(item => item.type === type && item.name === name)
-      .reduce((sum, item) => sum + item.qty, 0);
+      .reduce((sum, item) => sum + item.quantity, 0);
   }
 
   function renderVariants() {
@@ -1310,18 +1417,21 @@
         '<span class="stock-badge ' + (remaining > 0 ? 'in-stock' : 'out-stock') + '">' +
         (remaining > 0 ? 'In Stock (' + remaining + ')' : 'Out of Stock') +
         '</span>';
+
       stockList.appendChild(row);
     });
   }
 
   function selectVariant(index) {
     selectedVariantIndex = index;
+
     document.querySelectorAll("#variantButtons .option-btn").forEach((btn, i) => {
       btn.classList.toggle("active", i === index);
     });
 
     const variant = getSelectedVariant();
     const remaining = variant.stock - getUsedCount(selectedType, variant.name);
+
     document.getElementById("qty").value = remaining > 0 ? 1 : 0;
     updateStatus();
     updateImageFromVariant();
@@ -1340,8 +1450,8 @@
     }
 
     const remaining = variant.stock - getUsedCount(selectedType, variant.name);
-    statusChip.innerText = formatTypeName(selectedType) + " / " + variant.name;
-    lowStockChip.style.display = (remaining <= 2 && remaining > 0) ? "inline-block" : "none";
+    statusChip.innerText = formatTypeName(selectedType) + " / " + variant.name + " - " + (remaining > 0 ? "In Stock" : "Out of Stock");
+    lowStockChip.style.display = (remaining > 0 && remaining <= 2) ? "inline-block" : "none";
   }
 
   function resetStatus() {
@@ -1362,8 +1472,9 @@
 
   function increaseQty() {
     const variant = getSelectedVariant();
+
     if (!variant) {
-      showMessage("Please select type and option first.", "error");
+      showMessage("Please select patch type and option first.", "error");
       return;
     }
 
@@ -1388,7 +1499,11 @@
   function decreaseQty() {
     const input = document.getElementById("qty");
     let qty = parseInt(input.value, 10) || 1;
-    if (qty > 1) input.value = qty - 1;
+
+    if (qty > 1) {
+      input.value = qty - 1;
+    }
+
     updateSelectedPreview();
   }
 
@@ -1401,7 +1516,13 @@
 
     if (variant) {
       const remaining = variant.stock - getUsedCount(selectedType, variant.name);
-      if (qty > remaining) qty = remaining > 0 ? remaining : 1;
+
+      if (remaining <= 0) {
+        qty = 1;
+      } else if (qty > remaining) {
+        qty = remaining;
+      }
+
       input.value = qty;
       document.getElementById("selectedPreviewText").innerText =
         formatTypeName(selectedType) + " / " + variant.name + " x " + qty;
@@ -1410,18 +1531,18 @@
       input.value = qty;
     }
 
-    document.getElementById("selectedItemTotal").innerText = (qty * basePrice) + " tk";
+    document.getElementById("selectedItemTotal").innerText = (qty * basePrice) + "৳";
   }
 
   function addItemToOrder() {
     const variant = getSelectedVariant();
 
     if (!variant) {
-      showMessage("Please select type and option first.", "error");
+      showMessage("Please select patch type and option first.", "error");
       return;
     }
 
-    const qty = parseInt(document.getElementById("qty").value, 10) || 1;
+    const quantity = parseInt(document.getElementById("qty").value, 10) || 1;
     const remaining = variant.stock - getUsedCount(selectedType, variant.name);
 
     if (remaining <= 0) {
@@ -1429,7 +1550,7 @@
       return;
     }
 
-    if (qty > remaining) {
+    if (quantity > remaining) {
       showMessage("Only " + remaining + " piece(s) remaining for this option.", "error");
       return;
     }
@@ -1437,12 +1558,12 @@
     const existing = orderItems.find(item => item.type === selectedType && item.name === variant.name);
 
     if (existing) {
-      existing.qty += qty;
+      existing.quantity += quantity;
     } else {
       orderItems.push({
         type: selectedType,
         name: variant.name,
-        qty: qty,
+        quantity: quantity,
         price: basePrice
       });
     }
@@ -1461,12 +1582,13 @@
     document.querySelectorAll("#variantButtons .option-btn").forEach(btn => btn.classList.remove("active"));
     resetStatus();
     updateSelectedPreview();
+
     if (showMsg) clearMessage();
   }
 
   function renderOrderList() {
     const cartList = document.getElementById("cartList");
-    const count = orderItems.reduce((sum, item) => sum + item.qty, 0);
+    const count = getCartItemCount();
     document.getElementById("cartCount").innerText = "Items in Order: " + count;
 
     if (orderItems.length === 0) {
@@ -1482,10 +1604,11 @@
       div.innerHTML =
         '<div><strong>' + formatTypeName(item.type) + '</strong></div>' +
         '<div>' + item.name + '</div>' +
-        '<div>' + item.qty + ' pc(s)</div>' +
-        '<div>' + item.price + ' tk</div>' +
-        '<div><strong>' + (item.qty * item.price) + ' tk</strong></div>' +
+        '<div>' + item.quantity + ' pc(s)</div>' +
+        '<div>' + item.price + '৳</div>' +
+        '<div><strong>' + (item.quantity * item.price) + '৳</strong></div>' +
         '<div><button class="remove-btn" type="button" onclick="removeItem(' + index + ')">Remove</button></div>';
+
       cartList.appendChild(div);
     });
   }
@@ -1500,19 +1623,28 @@
   }
 
   function updateOrderSummary() {
-    const subtotal = orderItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
-    const delivery = parseInt(document.getElementById("deliveryArea").value, 10) || 80;
-    const deliveryApplied = subtotal > 0 ? delivery : 0;
+    const subtotal = orderItems.reduce((sum, item) => sum + (item.quantity * item.price), 0);
+    const totalPieces = getCartItemCount();
+    const selectedDelivery = parseInt(document.getElementById("deliveryArea").value, 10) || 80;
+    const deliveryApplied = subtotal > 0 ? (totalPieces >= 4 ? 0 : selectedDelivery) : 0;
     const total = subtotal + deliveryApplied;
 
     document.getElementById("itemsSubtotal").innerText = subtotal + " tk";
-    document.getElementById("deliveryCharge").innerText = deliveryApplied + " tk";
+    document.getElementById("deliveryCharge").innerHTML = deliveryApplied === 0 && subtotal > 0
+      ? '<span class="delivery-free-text">FREE</span>'
+      : deliveryApplied + " tk";
+
+    document.getElementById("offerStatus").innerHTML = totalPieces >= 4
+      ? '<span class="delivery-free-text">Free delivery unlocked</span>'
+      : "Add " + (4 - totalPieces > 0 ? (4 - totalPieces) : 0) + " more pc(s) for free delivery";
+
     document.getElementById("grandTotal").innerText = total + " tk";
   }
 
   function setSubmitButtonState(isLoading) {
     const submitBtn = document.getElementById("submitBtn");
     if (!submitBtn) return;
+
     submitBtn.disabled = isLoading;
     submitBtn.innerText = isLoading ? "Submitting..." : "Place Order";
   }
@@ -1550,9 +1682,10 @@
 
     const deliverySelect = document.getElementById("deliveryArea");
     const deliveryArea = deliverySelect.options[deliverySelect.selectedIndex].text;
-    const deliveryCharge = parseInt(deliverySelect.value, 10) || 80;
-
-    const subtotal = orderItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
+    const selectedDeliveryCharge = parseInt(deliverySelect.value, 10) || 80;
+    const subtotal = orderItems.reduce((sum, item) => sum + (item.quantity * item.price), 0);
+    const totalPieces = getCartItemCount();
+    const deliveryCharge = totalPieces >= 4 ? 0 : selectedDeliveryCharge;
     const totalAmount = subtotal + deliveryCharge;
 
     const payload = {
@@ -1650,13 +1783,10 @@
     if (touchEndX > touchStartX + 40) prevSlide();
   }
 
-  const typeLabel = document.getElementById("typeLabel");
-  const variantLabel = document.getElementById("variantLabel");
-
-  if (typeLabel) typeLabel.innerText = productConfig.optionLabels.type;
-  if (variantLabel) variantLabel.innerText = productConfig.optionLabels.variant;
+  document.getElementById("typeLabel").innerText = productConfig.optionLabels.type;
 
   updateSlider();
+  updateVariantLabel();
   renderVariants();
   updateSelectedPreview();
   updateOrderSummary();
