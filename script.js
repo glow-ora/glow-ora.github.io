@@ -1,8 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelectorAll(".slide");
+  const searchToggle = document.getElementById("searchToggle");
+  const menuToggle = document.getElementById("menuToggle");
+  const searchDrawer = document.getElementById("searchDrawer");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const catalogLinks = document.querySelectorAll('a[href="#catalog"]');
+
   let currentSlide = 0;
   let sliderInterval = null;
-  const SLIDE_DELAY = 5000;
+  const SLIDE_DELAY = 5500;
+  const PANEL_ANIMATION_DURATION = 400;
 
   function showSlide(index) {
     slides.forEach((slide, i) => {
@@ -10,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (i === index) {
         slide.classList.add("active");
-      } else if (i < index) {
+      } else if (i === (index - 1 + slides.length) % slides.length) {
         slide.classList.add("prev");
       } else {
         slide.classList.add("next");
@@ -37,38 +44,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function openPanel(panelToOpen, panelToClose) {
+    if (!panelToOpen) return;
+
+    if (panelToClose) {
+      closePanel(panelToClose);
+    }
+
+    panelToOpen.classList.remove("hidden");
+
+    requestAnimationFrame(() => {
+      panelToOpen.classList.add("is-visible");
+    });
+  }
+
+  function closePanel(panel) {
+    if (!panel || panel.classList.contains("hidden")) return;
+
+    panel.classList.remove("is-visible");
+
+    setTimeout(() => {
+      panel.classList.add("hidden");
+    }, PANEL_ANIMATION_DURATION);
+  }
+
   function togglePanel(panelToToggle, panelToClose) {
     if (!panelToToggle) return;
 
-    const isHidden = panelToToggle.classList.contains("hidden");
+    const isOpen =
+      !panelToToggle.classList.contains("hidden") &&
+      panelToToggle.classList.contains("is-visible");
 
-    if (panelToClose) {
-      panelToClose.classList.add("hidden");
-      panelToClose.classList.remove("is-visible");
-    }
-
-    if (isHidden) {
-      panelToToggle.classList.remove("hidden");
-      requestAnimationFrame(() => {
-        panelToToggle.classList.add("is-visible");
-      });
+    if (isOpen) {
+      closePanel(panelToToggle);
     } else {
-      panelToToggle.classList.remove("is-visible");
-      setTimeout(() => {
-        panelToToggle.classList.add("hidden");
-      }, 350);
+      openPanel(panelToToggle, panelToClose);
     }
+  }
+
+  function closeAllPanels() {
+    closePanel(searchDrawer);
+    closePanel(mobileMenu);
   }
 
   if (slides.length > 0) {
     showSlide(currentSlide);
     startSlider();
   }
-
-  const searchToggle = document.getElementById("searchToggle");
-  const menuToggle = document.getElementById("menuToggle");
-  const searchDrawer = document.getElementById("searchDrawer");
-  const mobileMenu = document.getElementById("mobileMenu");
 
   if (searchToggle && searchDrawer) {
     searchToggle.addEventListener("click", () => {
@@ -82,8 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const catalogLinks = document.querySelectorAll('a[href="#catalog"]');
-
   catalogLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
@@ -92,19 +112,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (catalogSection) {
         catalogSection.scrollIntoView({
           behavior: "smooth",
-          block: "start"
+          block: "start",
         });
       }
 
-      if (mobileMenu) {
-        mobileMenu.classList.remove("is-visible");
-        setTimeout(() => mobileMenu.classList.add("hidden"), 300);
-      }
-
-      if (searchDrawer) {
-        searchDrawer.classList.remove("is-visible");
-        setTimeout(() => searchDrawer.classList.add("hidden"), 300);
-      }
+      closeAllPanels();
     });
   });
 
@@ -118,6 +130,28 @@ document.addEventListener("DOMContentLoaded", () => {
       stopSlider();
     } else {
       startSlider();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeAllPanels();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    const clickedInsideSearch =
+      searchDrawer?.contains(event.target) || searchToggle?.contains(event.target);
+
+    const clickedInsideMenu =
+      mobileMenu?.contains(event.target) || menuToggle?.contains(event.target);
+
+    if (!clickedInsideSearch) {
+      closePanel(searchDrawer);
+    }
+
+    if (!clickedInsideMenu) {
+      closePanel(mobileMenu);
     }
   });
 });
