@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchDrawer = document.getElementById("searchDrawer");
   const mobileMenu = document.getElementById("mobileMenu");
   const catalogLinks = document.querySelectorAll('a[href="#catalog"]');
+  const orderButtons = document.querySelectorAll(".order-btn");
+  const searchInput = document.querySelector("#searchDrawer input");
+  const productCards = document.querySelectorAll(".product-card");
 
   let currentSlide = 0;
   let sliderInterval = null;
@@ -87,6 +90,16 @@ document.addEventListener("DOMContentLoaded", () => {
     closePanel(mobileMenu);
   }
 
+  function orderNow(name, price) {
+    const product = {
+      name: name,
+      price: Number(price)
+    };
+
+    localStorage.setItem("selectedProduct", JSON.stringify(product));
+    window.location.href = "checkout.html";
+  }
+
   if (slides.length > 0) {
     showSlide(currentSlide);
     startSlider();
@@ -158,4 +171,29 @@ document.addEventListener("DOMContentLoaded", () => {
       closePanel(mobileMenu);
     }
   });
+
+  orderButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const name = button.dataset.name;
+      const price = button.dataset.price;
+      orderNow(name, price);
+    });
+  });
+
+  if (searchInput && productCards.length > 0) {
+    searchInput.addEventListener("input", () => {
+      const searchText = searchInput.value.toLowerCase().trim();
+
+      productCards.forEach((card) => {
+        const title = card.querySelector("h3")?.textContent.toLowerCase() || "";
+        const text = card.textContent.toLowerCase();
+
+        if (title.includes(searchText) || text.includes(searchText)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  }
 });
