@@ -159,3 +159,71 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/* =========================
+   GLOBAL FLOATING CART SYSTEM
+========================= */
+function getCart() {
+  try {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateFloatingCart();
+}
+
+function addToGlobalCart(item) {
+  let cart = getCart();
+
+  const existingIndex = cart.findIndex(cartItem =>
+    cartItem.name === item.name &&
+    cartItem.variant === item.variant
+  );
+
+  if (existingIndex > -1) {
+    cart[existingIndex].quantity += item.quantity;
+  } else {
+    cart.push(item);
+  }
+
+  saveCart(cart);
+}
+
+function removeFromGlobalCart(index) {
+  let cart = getCart();
+  cart.splice(index, 1);
+  saveCart(cart);
+}
+
+function clearGlobalCart() {
+  localStorage.removeItem("cart");
+  updateFloatingCart();
+}
+
+function updateFloatingCart() {
+  const cart = getCart();
+
+  let totalItems = 0;
+  let totalPrice = 0;
+
+  cart.forEach(item => {
+    const qty = Number(item.quantity) || 1;
+    const price = Number(item.price) || 0;
+
+    totalItems += qty;
+    totalPrice += price * qty;
+  });
+
+  const countEl = document.getElementById("floatingCartCount");
+  const totalEl = document.getElementById("floatingCartTotal");
+
+  if (countEl) countEl.textContent = totalItems + " ITEMS";
+  if (totalEl) totalEl.textContent = "৳" + totalPrice;
+}
+
+document.addEventListener("DOMContentLoaded", updateFloatingCart);
+window.addEventListener("storage", updateFloatingCart);
