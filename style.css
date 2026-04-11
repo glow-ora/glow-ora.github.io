@@ -65,3 +65,101 @@
 .floating-chat:hover {
   transform: scale(1.1);
 }
+/* =========================
+   FLOATING CART + FACEBOOK
+========================= */
+.floating-cart {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100px;
+  z-index: 9999;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
+.floating-cart-top {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 12px 8px;
+}
+
+.floating-cart-top .cart-icon {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.floating-cart-top span {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.floating-cart-bottom {
+  background: #ff4f8b;
+  color: #fff;
+  text-align: center;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.floating-facebook {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 58px;
+  height: 58px;
+  background: #1877f2;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  text-decoration: none;
+  z-index: 9999;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+.floating-facebook:hover {
+  transform: scale(1.08);
+}
+
+@media (max-width: 768px) {
+  .floating-cart {
+    right: 10px;
+    width: 90px;
+  }
+
+  .floating-cart-top {
+    padding: 10px 6px;
+  }
+
+  .floating-cart-top .cart-icon {
+    font-size: 18px;
+  }
+
+  .floating-cart-top span {
+    font-size: 11px;
+  }
+
+  .floating-cart-bottom {
+    font-size: 14px;
+    padding: 7px;
+  }
+
+  .floating-facebook {
+    right: 14px;
+    bottom: 14px;
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+}
