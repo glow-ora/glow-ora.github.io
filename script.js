@@ -1,11 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // =========================
-  // ELEMENTS
-  // =========================
-  const searchDrawer = document.querySelector(".search-drawer");
-  const mobileMenu = document.querySelector(".mobile-menu");
-  const searchToggle = document.querySelector(".search-toggle");
-  const menuToggle = document.querySelector(".menu-toggle");
+  const searchDrawer = document.getElementById("searchDrawer");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const searchToggle = document.getElementById("searchToggle");
+  const menuToggle = document.getElementById("menuToggle");
   const slides = document.querySelectorAll(".slide");
   const catalogLinks = document.querySelectorAll('a[href="#catalog"]');
   const cartCount = document.getElementById("cart-count");
@@ -14,18 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const deliveryEl = document.getElementById("delivery");
   const totalEl = document.getElementById("total");
 
-  // =========================
-  // SLIDER
-  // =========================
   let currentSlide = 0;
   let sliderInterval = null;
   const sliderDelay = 3000;
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   function showSlide(index) {
     if (!slides.length) return;
 
     slides.forEach((slide, i) => {
       slide.style.display = i === index ? "block" : "none";
+      slide.classList.toggle("active", i === index);
     });
   }
 
@@ -48,9 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // =========================
-  // PANELS
-  // =========================
   function openPanel(panelToOpen, panelToClose = null) {
     if (!panelToOpen) return;
 
@@ -58,12 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
       closePanel(panelToClose);
     }
 
+    panelToOpen.classList.remove("hidden");
     panelToOpen.classList.add("is-visible");
   }
 
   function closePanel(panel) {
     if (!panel) return;
     panel.classList.remove("is-visible");
+    panel.classList.add("hidden");
   }
 
   function togglePanel(panelToToggle, panelToClose = null) {
@@ -83,18 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
     closePanel(mobileMenu);
   }
 
-  // =========================
-  // CART
-  // =========================
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
   function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   function updateCartCount() {
     if (!cartCount) return;
-
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCount.textContent = count;
   }
@@ -107,13 +97,13 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       cart.push({
         ...product,
-        quantity: 1,
+        quantity: 1
       });
     }
 
     saveCart();
     updateCartCount();
-    alert(`${product.name} added to cart`);
+    alert(product.name + " added to cart");
   }
 
   function removeFromCart(productId) {
@@ -124,12 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function changeQuantity(productId, change) {
-    const product = cart.find((item) => item.id === productId);
-    if (!product) return;
+    const item = cart.find((product) => product.id === productId);
+    if (!item) return;
 
-    product.quantity += change;
+    item.quantity += change;
 
-    if (product.quantity <= 0) {
+    if (item.quantity <= 0) {
       removeFromCart(productId);
       return;
     }
@@ -145,9 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function calculateDelivery(subtotal) {
     if (subtotal === 0) return 0;
-
-    // One delivery charge only
-    // Change this rule if needed
     return 80;
   }
 
@@ -158,10 +145,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (cart.length === 0) {
       cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
-
-      if (subtotalEl) subtotalEl.textContent = "Subtotal: 0";
-      if (deliveryEl) deliveryEl.textContent = "Delivery: 0";
-      if (totalEl) totalEl.textContent = "Total: 0";
+      if (subtotalEl) subtotalEl.textContent = "Subtotal: ৳0";
+      if (deliveryEl) deliveryEl.textContent = "Delivery: ৳0";
+      if (totalEl) totalEl.textContent = "Total: ৳0";
       return;
     }
 
@@ -176,9 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>Quantity: ${item.quantity}</p>
         </div>
         <div class="cart-item-actions">
-          <button class="qty-minus" data-id="${item.id}">-</button>
-          <button class="qty-plus" data-id="${item.id}">+</button>
-          <button class="remove-item" data-id="${item.id}">Remove</button>
+          <button class="qty-btn minus-btn" data-id="${item.id}">-</button>
+          <button class="qty-btn plus-btn" data-id="${item.id}">+</button>
+          <button class="remove-btn" data-id="${item.id}">Remove</button>
         </div>
       `;
 
@@ -193,19 +179,19 @@ document.addEventListener("DOMContentLoaded", () => {
     if (deliveryEl) deliveryEl.textContent = `Delivery: ৳${delivery}`;
     if (totalEl) totalEl.textContent = `Total: ৳${total}`;
 
-    document.querySelectorAll(".qty-minus").forEach((button) => {
+    document.querySelectorAll(".minus-btn").forEach((button) => {
       button.addEventListener("click", () => {
         changeQuantity(button.dataset.id, -1);
       });
     });
 
-    document.querySelectorAll(".qty-plus").forEach((button) => {
+    document.querySelectorAll(".plus-btn").forEach((button) => {
       button.addEventListener("click", () => {
         changeQuantity(button.dataset.id, 1);
       });
     });
 
-    document.querySelectorAll(".remove-item").forEach((button) => {
+    document.querySelectorAll(".remove-btn").forEach((button) => {
       button.addEventListener("click", () => {
         removeFromCart(button.dataset.id);
       });
@@ -219,16 +205,12 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCart();
   }
 
-  // Make functions available to inline HTML onclick
   window.addToCart = addToCart;
   window.clearCart = clearCart;
   window.goToCart = function () {
     window.location.href = "cart.html";
   };
 
-  // =========================
-  // INIT
-  // =========================
   if (slides.length > 0) {
     showSlide(currentSlide);
     startSlider();
@@ -256,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (catalogSection) {
         catalogSection.scrollIntoView({
           behavior: "smooth",
-          block: "start",
+          block: "start"
         });
       }
 
