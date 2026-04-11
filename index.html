@@ -107,6 +107,8 @@
           cleaner separation, and an elegant long-look finish without heaviness.
         </p>
         <a href="mascara.html" class="btn">ORDER NOW</a>
+        <input type="number" id="mascara-qty" value="1" min="1">
+        <button onclick="addToCart('Judydoll Iron Mascara', 999, 'mascara-qty')" class="btn">ADD TO CART</button>
       </div>
     </article>
       
@@ -124,6 +126,8 @@
           Buy <strong>4 pcs</strong> and get <strong>free delivery charge</strong>.
         </div>
         <a href="acne-patch.html" class="btn">ORDER NOW</a>
+        <input type="number" id="acne-qty" value="1" min="1">
+        <button onclick="addToCart('Hydrocolloid Acne Patch', 150, 'acne-qty')" class="btn">ADD TO CART</button>
       </div>
     </article>
       
@@ -137,6 +141,8 @@
           daily beauty, soft glam, and polished eye looks.
         </p>
         <a href="eyeshadow.html" class="btn">ORDER NOW</a>
+        <input type="number" id="eye-qty" value="1" min="1">
+        <button onclick="addToCart('Hisyi 9-Colour Eye Shadow Palette', 299, 'eye-qty')" class="btn">ADD TO CART</button>
       </div>
     </article>
 
@@ -157,6 +163,8 @@
           Save <strong>100 tk</strong> on the current offer.
         </div>
         <a href="blotting-paper.html" class="btn">ORDER NOW</a>
+        <input type="number" id="blot-qty" value="1" min="1">
+        <button onclick="addToCart('Oil Absorbing Blotting Paper', 299, 'blot-qty')" class="btn">ADD TO CART</button>
       </div>
     </article>
   </div>
@@ -239,6 +247,27 @@
   <p>Bashundhara, Dhaka, Bangladesh</p>
   <p>&copy; 2026 Glowora Official</p>
 </footer>
+
+<div id="floatingCart" class="floating-cart" onclick="toggleCart()">
+  🛍️ <span id="cartCount">0</span>
+</div>
+
+<div id="cartPanel" class="cart-panel hidden">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button onclick="toggleCart()">✕</button>
+  </div>
+
+  <div id="cartItems"></div>
+
+  <div class="cart-summary">
+    <p><strong>Products Total:</strong> <span id="subtotal">0</span> tk</p>
+    <p><strong>Delivery:</strong> <span id="deliveryCharge">80</span> tk</p>
+    <p><strong>Grand Total:</strong> <span id="grandTotal">0</span> tk</p>
+  </div>
+
+  <button class="btn" onclick="checkout()">Order via WhatsApp</button>
+</div>
 
 <script src="script.js"></script>
 </body>
