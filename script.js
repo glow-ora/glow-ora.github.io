@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const catalogLinks = document.querySelectorAll('a[href="#catalog"]');
   const orderButtons = document.querySelectorAll(".order-btn");
   const searchInput = document.querySelector("#searchDrawer input");
-  const productCards = document.querySelectorAll(".product-card");
+  const productCards = document.querySelectorAll("#catalog .product-card");
 
   let currentSlide = 0;
   let sliderInterval = null;
