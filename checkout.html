@@ -3,79 +3,171 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checkout</title>
+  <title>Checkout - Glowora</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
+    .checkout-page {
+      min-height: 100vh;
+      padding: 30px 16px;
     }
 
-    input, textarea, button {
+    .checkout-box {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .checkout-box h1 {
+      margin: 0 0 20px;
+      text-align: center;
+      color: var(--lux-blackish);
+    }
+
+    .checkout-box input,
+    .checkout-box textarea,
+    .checkout-box button {
       width: 100%;
-      padding: 12px;
-      margin: 8px 0;
+      padding: 12px 14px;
+      margin-bottom: 14px;
       box-sizing: border-box;
+      font-size: 16px;
+      border: 1px solid #d9d1c6;
+      border-radius: 12px;
+      background: #fffdfa;
     }
 
-    button {
-      cursor: pointer;
+    .checkout-box input[readonly] {
+      background: #f4efe8;
+    }
+
+    .checkout-box textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .checkout-summary {
+      background: linear-gradient(180deg, #ffffff 0%, #f7f4ee 100%);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .checkout-summary p {
+      margin: 8px 0;
+      color: var(--text-dark);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 16px;
+      font-weight: 700;
+      color: var(--brand-green-deep);
     }
 
     #msg {
-      margin-top: 15px;
-      font-weight: bold;
+      margin-top: 8px;
+      font-weight: 700;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>Checkout</h1>
+  <div class="checkout-page">
+    <div class="checkout-box">
+      <a class="back-link" href="index.html">← Back to shop</a>
+      <h1>Place Your Order</h1>
 
-  <form id="orderForm">
-    <input type="text" id="name" placeholder="Your Name" required />
-    <input type="text" id="phone" placeholder="Phone Number" required />
-    <textarea id="address" placeholder="Address" required></textarea>
+      <div class="checkout-summary">
+        <p><strong>Product:</strong> <span id="productText">-</span></p>
+        <p><strong>Price:</strong> <span id="priceText">0</span> tk</p>
+        <p><strong>Delivery:</strong> <span id="deliveryText">0</span> tk</p>
+        <p><strong>Total:</strong> <span id="totalText">0</span> tk</p>
+      </div>
 
-    <input type="text" id="product" placeholder="Product Name" readonly />
-    <input type="number" id="price" placeholder="Price" readonly />
-    <input type="number" id="quantity" placeholder="Quantity" min="1" value="1" required />
+      <form id="orderForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="text" id="phone" placeholder="Phone Number" required>
+        <textarea id="address" placeholder="Full Address" required></textarea>
 
-    <input type="text" id="total" placeholder="Total" readonly />
+        <input type="text" id="product" placeholder="Product" readonly>
+        <input type="number" id="price" placeholder="Price" readonly>
+        <input type="number" id="quantity" min="1" value="1" required>
+        <input type="number" id="delivery" placeholder="Delivery Charge" readonly>
+        <input type="number" id="total" placeholder="Total" readonly>
 
-    <button type="submit">Place Order</button>
-  </form>
+        <button type="submit" class="btn">CONFIRM ORDER</button>
+      </form>
 
-  <p id="msg"></p>
+      <p id="msg"></p>
+    </div>
+  </div>
 
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbwpT3WYf9ZCEK5Qhb5hWBTBipBHYl0LOiNN6-hIJAW0cWA2Nh_l5j2Yo73Rbr-jcSZg/exec";
 
+    const selectedProduct = JSON.parse(localStorage.getItem("selectedProduct"));
+
     const productInput = document.getElementById("product");
     const priceInput = document.getElementById("price");
     const quantityInput = document.getElementById("quantity");
+    const deliveryInput = document.getElementById("delivery");
     const totalInput = document.getElementById("total");
+    const addressInput = document.getElementById("address");
     const msg = document.getElementById("msg");
 
-    const selectedProduct = JSON.parse(localStorage.getItem("selectedProduct"));
+    const productText = document.getElementById("productText");
+    const priceText = document.getElementById("priceText");
+    const deliveryText = document.getElementById("deliveryText");
+    const totalText = document.getElementById("totalText");
 
     if (selectedProduct) {
       productInput.value = selectedProduct.name;
       priceInput.value = selectedProduct.price;
       updateTotal();
     } else {
-      msg.innerText = "No product selected.";
+      msg.textContent = "No product selected. Please go back and choose a product.";
+      msg.style.color = "red";
+    }
+
+    function getDeliveryCharge(address) {
+      const text = address.toLowerCase();
+
+      if (productInput.value === "Hydrocolloid Acne Patch" && Number(quantityInput.value) >= 4) {
+        return 0;
+      }
+
+      if (text.includes("dhaka")) {
+        return 80;
+      }
+
+      return 120;
     }
 
     function updateTotal() {
       const price = Number(priceInput.value) || 0;
-      const quantity = Number(quantityInput.value) || 0;
-      totalInput.value = price * quantity;
+      const quantity = Number(quantityInput.value) || 1;
+      const address = addressInput.value || "";
+      const delivery = getDeliveryCharge(address);
+      const total = (price * quantity) + delivery;
+
+      deliveryInput.value = delivery;
+      totalInput.value = total;
+
+      productText.textContent = productInput.value || "-";
+      priceText.textContent = price || 0;
+      deliveryText.textContent = delivery || 0;
+      totalText.textContent = total || 0;
     }
 
     quantityInput.addEventListener("input", updateTotal);
+    addressInput.addEventListener("input", updateTotal);
 
-    document.getElementById("orderForm").addEventListener("submit", async function(e) {
+    document.getElementById("orderForm").addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const orderData = {
@@ -85,25 +177,41 @@
         product: productInput.value,
         quantity: Number(quantityInput.value),
         price: Number(priceInput.value),
+        delivery: Number(deliveryInput.value),
         total: Number(totalInput.value)
       };
 
       try {
         const response = await fetch(scriptURL, {
           method: "POST",
-          body: JSON.stringify(orderData),
           headers: {
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(orderData)
         });
 
-        const result = await response.text();
-        msg.innerText = "Order placed successfully!";
-        document.getElementById("orderForm").reset();
+        await response.text();
+
+        msg.textContent = "Order placed successfully!";
+        msg.style.color = "green";
+
         localStorage.removeItem("selectedProduct");
+        document.getElementById("orderForm").reset();
+
+        productInput.value = "";
+        priceInput.value = "";
+        quantityInput.value = 1;
+        deliveryInput.value = "";
+        totalInput.value = "";
+
+        productText.textContent = "-";
+        priceText.textContent = "0";
+        deliveryText.textContent = "0";
+        totalText.textContent = "0";
       } catch (error) {
-        msg.innerText = "Order failed. Please try again.";
         console.error(error);
+        msg.textContent = "Order failed. Please try again.";
+        msg.style.color = "red";
       }
     });
   </script>
