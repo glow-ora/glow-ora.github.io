@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    #msg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Checkout</h1>
+
+  <form id="orderForm">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="text" id="phone" placeholder="Phone Number" required />
+    <textarea id="address" placeholder="Address" required></textarea>
+
+    <input type="text" id="product" placeholder="Product Name" readonly />
+    <input type="number" id="price" placeholder="Price" readonly />
+    <input type="number" id="quantity" placeholder="Quantity" min="1" value="1" required />
+
+    <input type="text" id="total" placeholder="Total" readonly />
+
+    <button type="submit">Place Order</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwpT3WYf9ZCEK5Qhb5hWBTBipBHYl0LOiNN6-hIJAW0cWA2Nh_l5j2Yo73Rbr-jcSZg/exec";
+
+    const productInput = document.getElementById("product");
+    const priceInput = document.getElementById("price");
+    const quantityInput = document.getElementById("quantity");
+    const totalInput = document.getElementById("total");
+    const msg = document.getElementById("msg");
+
+    const selectedProduct = JSON.parse(localStorage.getItem("selectedProduct"));
+
+    if (selectedProduct) {
+      productInput.value = selectedProduct.name;
+      priceInput.value = selectedProduct.price;
+      updateTotal();
+    } else {
+      msg.innerText = "No product selected.";
+    }
+
+    function updateTotal() {
+      const price = Number(priceInput.value) || 0;
+      const quantity = Number(quantityInput.value) || 0;
+      totalInput.value = price * quantity;
+    }
+
+    quantityInput.addEventListener("input", updateTotal);
+
+    document.getElementById("orderForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const orderData = {
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        address: document.getElementById("address").value,
+        product: productInput.value,
+        quantity: Number(quantityInput.value),
+        price: Number(priceInput.value),
+        total: Number(totalInput.value)
+      };
+
+      try {
+        const response = await fetch(scriptURL, {
+          method: "POST",
+          body: JSON.stringify(orderData),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+
+        const result = await response.text();
+        msg.innerText = "Order placed successfully!";
+        document.getElementById("orderForm").reset();
+        localStorage.removeItem("selectedProduct");
+      } catch (error) {
+        msg.innerText = "Order failed. Please try again.";
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
