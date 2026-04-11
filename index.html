@@ -8,262 +8,247 @@
 </head>
 <body>
   
-<div class="top-bar">
-  <span class="offer-badge">ONGOING OFFERS</span>
-  <span class="offer-text">
-    Blotting Paper: <strong>399tk</strong> → <strong>299tk</strong> |
-    Acne Patch: Buy 4 pcs & get <strong>Free Delivery</strong>
-  </span>
-</div>
+  <div class="top-bar">
+    <span class="offer-badge">ONGOING OFFERS</span>
+    <span class="offer-text">
+      Blotting Paper: <strong>399tk</strong> → <strong>299tk</strong> |
+      Acne Patch: Buy 4 pcs & get <strong>Free Delivery</strong>
+    </span>
+  </div>
 
-<header class="header">
-  <button class="header-side icon-btn" id="searchToggle" aria-label="Open search">⌕</button>
+  <header class="header">
+    <button class="header-side icon-btn" id="searchToggle" aria-label="Open search">⌕</button>
 
-  <div class="brand">
+    <div class="brand">
+      <img src="images/logo.png" alt="Glowora logo">
+      <div class="brand-text">
+        <div class="brand-name">GLOWORA</div>
+        <div class="brand-tagline">The Art of Radiant Skin</div>
+      </div>
+    </div>
+
+    <button class="header-side icon-btn" id="menuToggle" aria-label="Open menu">☰</button>
+  </header>
+
+  <div id="searchDrawer" class="search-drawer hidden">
+    <input type="text" placeholder="Search products...">
+  </div>
+
+  <nav id="mobileMenu" class="mobile-menu hidden">
+    <a href="#catalog">Shop</a>
+    <a href="#about">About</a>
+    <a href="#delivery">Delivery</a>
+    <a href="https://wa.me/8801581836550" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a>
+  </nav>
+
+  <section class="hero">
+    <div class="slide active">
+      <img src="images/hero-1.jpg" class="bg-img" alt="Glowora hero image 1">
+      <div class="overlay"></div>
+      <div class="content">
+        <h1>Modern Beauty, Soft Luxury</h1>
+        <p>Curated beauty essentials designed to help you glow confidently every day.</p>
+        <a href="#catalog" class="btn">SHOP NOW</a>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/hero-2.png" class="bg-img" alt="Glowora hero image 2">
+      <div class="overlay"></div>
+      <div class="content">
+        <h1>Radiant Skin Essentials</h1>
+        <p>Trendy skincare & beauty picks for your glow.</p>
+        <a href="#catalog" class="btn">SHOP NOW</a>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/hero-3.png" class="bg-img" alt="Glowora hero image 3">
+      <div class="overlay"></div>
+      <div class="content">
+        <h1>Soft Glam Collection</h1>
+        <p>Elegant beauty for everyday confidence.</p>
+        <a href="#catalog" class="btn">SHOP NOW</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cards three">
+      <div class="info-card">
+        <h3>Cash on Delivery</h3>
+        <p>Easy ordering across Bangladesh.</p>
+      </div>
+      <div class="info-card">
+        <h3>Directly sourced from China</h3>
+        <p>Authentic and Trusted products</p>
+      </div>
+      <div class="info-card">
+        <h3>Curated Picks</h3>
+        <p>Trendy beauty essentials for daily use.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="catalog">
+    <div class="section-title">
+      <small>Catalog</small>
+      <h2>Shop The Collection</h2>
+      <p>Explore beauty picks designed for confidence, convenience, and glow.</p>
+    </div>
+
+    <div class="cards two">
+      <article class="product-card">
+        <img src="images/mascara.png" alt="Judydoll Iron Mascara">
+        <div class="product-content">
+          <h3>Judydoll Iron Mascara</h3>
+          <div class="price">999 tk</div>
+          <p>
+            A slim metal wand mascara designed for precise lash definition,
+            cleaner separation, and an elegant long-look finish without heaviness.
+          </p>
+          <button class="btn order-btn" data-name="Judydoll Iron Mascara" data-price="999">
+            ORDER NOW
+          </button>
+        </div>
+      </article>
+        
+      <article class="product-card featured-offer">
+        <img src="images/acne-patch.png" alt="Hydrocolloid Acne Patch">
+        <div class="product-content">
+          <div class="product-offer-tag">FREE DELIVERY OFFER</div>
+          <h3>Hydrocolloid Acne Patch</h3>
+          <div class="price">150 tk</div>
+          <p>
+            Cute acne patches in star and cartoon-inspired designs that help protect
+            blemishes while adding a fun and aesthetic touch to your skincare routine.
+          </p>
+          <div class="special-offer-box">
+            Buy <strong>4 pcs</strong> and get <strong>free delivery charge</strong>.
+          </div>
+          <button class="btn order-btn" data-name="Hydrocolloid Acne Patch" data-price="150">
+            ORDER NOW
+          </button>
+        </div>
+      </article>
+        
+      <article class="product-card">
+        <img src="images/eyeshadow.png" alt="Hisyi 9-Colour Eye Shadow Palette">
+        <div class="product-content">
+          <h3>Hisyi 9-Colour Eye Shadow Palette</h3>
+          <div class="price">299 tk</div>
+          <p>
+            A wearable palette featuring soft neutrals and shimmer tones for effortless
+            daily beauty, soft glam, and polished eye looks.
+          </p>
+          <button class="btn order-btn" data-name="Hisyi 9-Colour Eye Shadow Palette" data-price="299">
+            ORDER NOW
+          </button>
+        </div>
+      </article>
+
+      <article class="product-card featured-offer">
+        <img src="images/blotting-paper1.png" alt="Oil Absorbing Blotting Paper">
+        <div class="product-content">
+          <div class="product-offer-tag">HOT OFFER</div>
+          <h3>Oil Absorbing Blotting Paper</h3>
+          <div class="price price-highlight">
+            <span class="old-price">399 tk</span>
+            <span class="new-price">299 tk</span>
+          </div>
+          <p>
+            A portable oil-control essential with 100 sheets per pack, perfect for
+            freshening up shine without disturbing makeup during the day.
+          </p>
+          <div class="special-offer-box">
+            Save <strong>100 tk</strong> on the current offer.
+          </div>
+          <button class="btn order-btn" data-name="Oil Absorbing Blotting Paper" data-price="299">
+            ORDER NOW
+          </button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <small>Glowora Mood</small>
+      <h2>Curated for Modern Beauty</h2>
+      <p>
+        Soft aesthetic, practical glam, and everyday beauty pieces designed to fit your mood,
+        your routine, and your glow.
+      </p>
+    </div>
+
+    <div class="product-card banner-card">
+      <img src="images/editorial-1.jpg" alt="Glowora editorial image">
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="about">
+      <img src="images/about.jpg" alt="Glowora beauty image">
+
+      <div>
+        <div class="section-title about-title">
+          <small>About Glowora</small>
+          <h2>The art of glowing skin</h2>
+        </div>
+
+        <p class="about-text-paragraph">
+          Glowora is a beauty and lifestyle destination created for customers who love modern,
+          aesthetic, and wearable products. We bring together trendy beauty picks, skincare helpers,
+          and practical everyday essentials that feel stylish, useful, and affordable.
+        </p>
+
+        <p class="about-text-paragraph">
+          Inspired by soft glam and radiant confidence, Glowora focuses on products that help you
+          express your beauty effortlessly.
+        </p>
+
+        <a href="know-more.html" class="btn">KNOW MORE</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="delivery">
+    <div class="section-title">
+      <small>Delivery & Payment</small>
+      <h2>Simple ordering, clear charges</h2>
+    </div>
+
+    <div class="cards two">
+      <div class="info-card">
+        <h3>Delivery Charges</h3>
+        <p>Inside Dhaka: <strong>80 tk</strong></p>
+        <p>Outside Dhaka: <strong>120 tk</strong></p>
+        <p>Delivery area: <strong>Bangladesh</strong></p>
+      </div>
+
+      <div class="info-card">
+        <h3>Payment Methods</h3>
+        <p>Cash on Delivery</p>
+        <p>bKash</p>
+        <p>For orders, kindly reach out via our Facebook page or experience seamless ordering through our website.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
     <img src="images/logo.png" alt="Glowora logo">
-    <div class="brand-text">
-      <div class="brand-name">GLOWORA</div>
-      <div class="brand-tagline">The Art of Radiant Skin</div>
-    </div>
-  </div>
+    <h3>Glowora</h3>
+    <p>The Art of Radiant Skin</p>
+    <p>WhatsApp: +8801581836550</p>
 
-  <button class="header-side icon-btn" id="menuToggle" aria-label="Open menu">☰</button>
-</header>
+    <a href="https://www.facebook.com/profile.php?id=61587342929671" target="_blank" rel="noopener noreferrer" class="btn">
+      Follow us on Facebook
+    </a>
 
-<div id="searchDrawer" class="search-drawer hidden">
-  <input type="text" placeholder="Search products...">
-</div>
+    <p>Bashundhara, Dhaka, Bangladesh</p>
+    <p>&copy; 2026 Glowora Official</p>
+  </footer>
 
-<nav id="mobileMenu" class="mobile-menu hidden">
-  <a href="#catalog">Shop</a>
-  <a href="#about">About</a>
-  <a href="#delivery">Delivery</a>
-  <a href="https://wa.me/8801581836550" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a>
-</nav>
-
-<section class="hero">
-
-  <div class="slide active">
-    <img src="images/hero-1.jpg" class="bg-img" alt="Glowora hero image 1">
-    <div class="overlay"></div>
-    <div class="content">
-      <h1>Modern Beauty, Soft Luxury</h1>
-      <p>Curated beauty essentials designed to help you glow confidently every day.</p>
-      <a href="#catalog" class="btn">SHOP NOW</a>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img src="images/hero-2.png" class="bg-img" alt="Glowora hero image 2">
-    <div class="overlay"></div>
-    <div class="content">
-      <h1>Radiant Skin Essentials</h1>
-      <p>Trendy skincare & beauty picks for your glow.</p>
-      <a href="#catalog" class="btn">SHOP NOW</a>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img src="images/hero-3.png" class="bg-img" alt="Glowora hero image 3">
-    <div class="overlay"></div>
-    <div class="content">
-      <h1>Soft Glam Collection</h1>
-      <p>Elegant beauty for everyday confidence.</p>
-      <a href="#catalog" class="btn">SHOP NOW</a>
-    </div>
-  </div>
-
-</section>
-
-<section class="section">
-  <div class="cards three">
-    <div class="info-card">
-      <h3>Cash on Delivery</h3>
-      <p>Easy ordering across Bangladesh.</p>
-    </div>
-    <div class="info-card">
-      <h3>Directly sourced from China</h3>
-      <p>Authentic and Trusted products</p>
-    </div>
-    <div class="info-card">
-      <h3>Curated Picks</h3>
-      <p>Trendy beauty essentials for daily use.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="catalog">
-  <div class="section-title">
-    <small>Catalog</small>
-    <h2>Shop The Collection</h2>
-    <p>Explore beauty picks designed for confidence, convenience, and glow.</p>
-  </div>
-
-  <div class="cards two">
-    <article class="product-card">
-      <img src="images/mascara.png" alt="Judydoll Iron Mascara">
-      <div class="product-content">
-        <h3>Judydoll Iron Mascara</h3>
-        <div class="price">999 tk</div>
-        <p>
-          A slim metal wand mascara designed for precise lash definition,
-          cleaner separation, and an elegant long-look finish without heaviness.
-        </p>
-        <button class="btn order-btn" onclick="orderNow('Judydoll Iron Mascara', 999)">
-          ORDER NOW
-        </button>
-      </div>
-    </article>
-      
-    <article class="product-card featured-offer">
-      <img src="images/acne-patch.png" alt="Hydrocolloid Acne Patch">
-      <div class="product-content">
-        <div class="product-offer-tag">FREE DELIVERY OFFER</div>
-        <h3>Hydrocolloid Acne Patch</h3>
-        <div class="price">150 tk</div>
-        <p>
-          Cute acne patches in star and cartoon-inspired designs that help protect
-          blemishes while adding a fun and aesthetic touch to your skincare routine.
-        </p>
-        <div class="special-offer-box">
-          Buy <strong>4 pcs</strong> and get <strong>free delivery charge</strong>.
-        </div>
-        <button class="btn order-btn" onclick="orderNow('Hydrocolloid Acne Patch', 150)">
-          ORDER NOW
-        </button>
-      </div>
-    </article>
-      
-    <article class="product-card">
-      <img src="images/eyeshadow.png" alt="Hisyi 9-Colour Eye Shadow Palette">
-      <div class="product-content">
-        <h3>Hisyi 9-Colour Eye Shadow Palette</h3>
-        <div class="price">299 tk</div>
-        <p>
-          A wearable palette featuring soft neutrals and shimmer tones for effortless
-          daily beauty, soft glam, and polished eye looks.
-        </p>
-        <button class="btn order-btn" onclick="orderNow('Hisyi 9-Colour Eye Shadow Palette', 299)">
-          ORDER NOW
-        </button>
-      </div>
-    </article>
-
-    <article class="product-card featured-offer">
-      <img src="images/blotting-paper1.png" alt="Oil Absorbing Blotting Paper">
-      <div class="product-content">
-        <div class="product-offer-tag">HOT OFFER</div>
-        <h3>Oil Absorbing Blotting Paper</h3>
-        <div class="price price-highlight">
-          <span class="old-price">399 tk</span>
-          <span class="new-price">299 tk</span>
-        </div>
-        <p>
-          A portable oil-control essential with 100 sheets per pack, perfect for
-          freshening up shine without disturbing makeup during the day.
-        </p>
-        <div class="special-offer-box">
-          Save <strong>100 tk</strong> on the current offer.
-        </div>
-        <button class="btn order-btn" onclick="orderNow('Oil Absorbing Blotting Paper', 299)">
-          ORDER NOW
-        </button>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="section">
-  <div class="section-title">
-    <small>Glowora Mood</small>
-    <h2>Curated for Modern Beauty</h2>
-    <p>
-      Soft aesthetic, practical glam, and everyday beauty pieces designed to fit your mood,
-      your routine, and your glow.
-    </p>
-  </div>
-
-  <div class="product-card banner-card">
-    <img src="images/editorial-1.jpg" alt="Glowora editorial image">
-  </div>
-</section>
-
-<section class="section" id="about">
-  <div class="about">
-    <img src="images/about.jpg" alt="Glowora beauty image">
-
-    <div>
-      <div class="section-title about-title">
-        <small>About Glowora</small>
-        <h2>The art of glowing skin</h2>
-      </div>
-
-      <p class="about-text-paragraph">
-        Glowora is a beauty and lifestyle destination created for customers who love modern,
-        aesthetic, and wearable products. We bring together trendy beauty picks, skincare helpers,
-        and practical everyday essentials that feel stylish, useful, and affordable.
-      </p>
-
-      <p class="about-text-paragraph">
-        Inspired by soft glam and radiant confidence, Glowora focuses on products that help you
-        express your beauty effortlessly.
-      </p>
-
-      <a href="know-more.html" class="btn">KNOW MORE</a>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="delivery">
-  <div class="section-title">
-    <small>Delivery & Payment</small>
-    <h2>Simple ordering, clear charges</h2>
-  </div>
-
-  <div class="cards two">
-    <div class="info-card">
-      <h3>Delivery Charges</h3>
-      <p>Inside Dhaka: <strong>80 tk</strong></p>
-      <p>Outside Dhaka: <strong>120 tk</strong></p>
-      <p>Delivery area: <strong>Bangladesh</strong></p>
-    </div>
-
-    <div class="info-card">
-      <h3>Payment Methods</h3>
-      <p>Cash on Delivery</p>
-      <p>bKash</p>
-      <p>For orders, kindly reach out via our Facebook page or experience seamless ordering through our website.</p>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <img src="images/logo.png" alt="Glowora logo">
-  <h3>Glowora</h3>
-  <p>The Art of Radiant Skin</p>
-  <p>WhatsApp: +8801581836550</p>
-
-  <a href="https://www.facebook.com/profile.php?id=61587342929671" target="_blank" rel="noopener noreferrer" class="btn">
-    Follow us on Facebook
-  </a>
-
-  <p>Bashundhara, Dhaka, Bangladesh</p>
-  <p>&copy; 2026 Glowora Official</p>
-</footer>
-
-<script src="script.js"></script>
-
-<script>
-  function orderNow(name, price) {
-    const product = {
-      name: name,
-      price: price
-    };
-
-    localStorage.setItem("selectedProduct", JSON.stringify(product));
-    window.location.href = "checkout.html";
-  }
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
