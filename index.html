@@ -24,10 +24,6 @@
     </div>
   </div>
 
-  <div class="cart-icon" onclick="goToCart()" aria-label="Open cart">
-    🛒 <span id="cart-count">0</span>
-  </div>
-
   <button class="header-side icon-btn" id="menuToggle" aria-label="Open menu">☰</button>
 </header>
 
@@ -43,7 +39,6 @@
 </nav>
 
 <section class="hero">
-
   <div class="slide active">
     <img src="images/hero-1.jpg" class="bg-img" alt="Glowora hero image 1">
     <div class="overlay"></div>
@@ -73,7 +68,6 @@
       <a href="#catalog" class="btn">SHOP NOW</a>
     </div>
   </div>
-
 </section>
 
 <section class="section">
@@ -112,7 +106,13 @@
         </p>
         <div class="product-actions">
           <a href="mascara.html" class="btn btn-secondary">View Details</a>
-          <button class="btn" onclick="addToCart({ id: 'mascara', name: 'Judydoll Iron Mascara', price: 999 })">Add to Cart</button>
+          <button class="btn" onclick="addToCart({
+            id: 'mascara',
+            name: 'Judydoll Iron Mascara',
+            price: 999,
+            image: 'images/mascara.png',
+            description: 'A slim metal wand mascara designed for precise lash definition, cleaner separation, and an elegant long-look finish without heaviness.'
+          })">Add to Cart</button>
         </div>
       </div>
     </article>
@@ -132,7 +132,13 @@
         </div>
         <div class="product-actions">
           <a href="acne-patch.html" class="btn btn-secondary">View Details</a>
-          <button class="btn" onclick="addToCart({ id: 'acne', name: 'Hydrocolloid Acne Patch', price: 150 })">Add to Cart</button>
+          <button class="btn" onclick="addToCart({
+            id: 'acne',
+            name: 'Hydrocolloid Acne Patch',
+            price: 150,
+            image: 'images/acne-patch.png',
+            description: 'Cute acne patches in star and cartoon-inspired designs that help protect blemishes while adding a fun and aesthetic touch to your skincare routine.'
+          })">Add to Cart</button>
         </div>
       </div>
     </article>
@@ -148,7 +154,13 @@
         </p>
         <div class="product-actions">
           <a href="eyeshadow.html" class="btn btn-secondary">View Details</a>
-          <button class="btn" onclick="addToCart({ id: 'eyeshadow', name: 'Hisyi 9-Colour Eye Shadow Palette', price: 299 })">Add to Cart</button>
+          <button class="btn" onclick="addToCart({
+            id: 'eyeshadow',
+            name: 'Hisyi 9-Colour Eye Shadow Palette',
+            price: 299,
+            image: 'images/eyeshadow.png',
+            description: 'A wearable palette featuring soft neutrals and shimmer tones for effortless daily beauty, soft glam, and polished eye looks.'
+          })">Add to Cart</button>
         </div>
       </div>
     </article>
@@ -171,7 +183,13 @@
         </div>
         <div class="product-actions">
           <a href="blotting-paper.html" class="btn btn-secondary">View Details</a>
-          <button class="btn" onclick="addToCart({ id: 'blotting', name: 'Oil Absorbing Blotting Paper', price: 299 })">Add to Cart</button>
+          <button class="btn" onclick="addToCart({
+            id: 'blotting',
+            name: 'Oil Absorbing Blotting Paper',
+            price: 299,
+            image: 'images/blotting-paper1.png',
+            description: 'A portable oil-control essential with 100 sheets per pack, perfect for freshening up shine without disturbing makeup during the day.'
+          })">Add to Cart</button>
         </div>
       </div>
     </article>
@@ -255,6 +273,53 @@
   <p>Bashundhara, Dhaka, Bangladesh</p>
   <p>&copy; 2026 Glowora Official</p>
 </footer>
+
+<div class="floating-cart-btn" onclick="openCartDrawer()" aria-label="Open cart">
+  🛒 <span id="cart-count">0</span>
+</div>
+
+<div id="cartOverlay" class="cart-overlay hidden"></div>
+
+<aside id="cartDrawer" class="cart-drawer hidden" aria-label="Shopping cart">
+  <div class="cart-drawer-header">
+    <h2>Shopping Cart</h2>
+    <button class="icon-btn" id="closeCartBtn" aria-label="Close cart">✕</button>
+  </div>
+
+  <p class="cart-drawer-subtitle">Review your products and place one combined order.</p>
+
+  <div id="cart-items" class="cart-drawer-items"></div>
+
+  <div class="cart-summary">
+    <h3 id="subtotal">Subtotal: ৳0</h3>
+    <h3 id="deliveryTotal">Delivery: ৳0</h3>
+    <h2 id="total">Total: ৳0</h2>
+  </div>
+
+  <form id="orderForm" class="order-form">
+    <h3>Order Information</h3>
+
+    <label for="customerName">Full Name</label>
+    <input type="text" id="customerName" name="customerName" placeholder="Enter your name" required>
+
+    <label for="customerPhone">Phone Number</label>
+    <input type="tel" id="customerPhone" name="customerPhone" placeholder="01XXXXXXXXX" required>
+
+    <label for="customerAddress">Address</label>
+    <textarea id="customerAddress" name="customerAddress" rows="4" placeholder="Enter full delivery address" required></textarea>
+
+    <label for="deliveryArea">Delivery Area</label>
+    <select id="deliveryArea" name="deliveryArea" required>
+      <option value="dhaka">Inside Dhaka - ৳80</option>
+      <option value="outside">Outside Dhaka - ৳120</option>
+    </select>
+
+    <div class="cart-summary-actions">
+      <button type="button" class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+      <button type="submit" class="btn">Place Order</button>
+    </div>
+  </form>
+</aside>
 
 <script src="script.js"></script>
 </body>
