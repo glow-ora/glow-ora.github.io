@@ -24,6 +24,10 @@
     </div>
   </div>
 
+  <div class="cart-icon" onclick="goToCart()" aria-label="Open cart">
+    🛒 <span id="cart-count">0</span>
+  </div>
+
   <button class="header-side icon-btn" id="menuToggle" aria-label="Open menu">☰</button>
 </header>
 
@@ -32,7 +36,7 @@
 </div>
 
 <nav id="mobileMenu" class="mobile-menu hidden">
-  <a href=" ">Shop</a>
+  <a href="#catalog">Shop</a>
   <a href="#about">About</a>
   <a href="#delivery">Delivery</a>
   <a href="https://wa.me/8801581836550" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a>
@@ -106,7 +110,10 @@
           A slim metal wand mascara designed for precise lash definition,
           cleaner separation, and an elegant long-look finish without heaviness.
         </p>
-        <a href="mascara.html" class="btn">ORDER NOW</a>
+        <div class="product-actions">
+          <a href="mascara.html" class="btn btn-secondary">View Details</a>
+          <button class="btn" onclick="addToCart({ id: 'mascara', name: 'Judydoll Iron Mascara', price: 999 })">Add to Cart</button>
+        </div>
       </div>
     </article>
       
@@ -123,7 +130,10 @@
         <div class="special-offer-box">
           Buy <strong>4 pcs</strong> and get <strong>free delivery charge</strong>.
         </div>
-        <a href="acne-patch.html" class="btn">ORDER NOW</a>
+        <div class="product-actions">
+          <a href="acne-patch.html" class="btn btn-secondary">View Details</a>
+          <button class="btn" onclick="addToCart({ id: 'acne', name: 'Hydrocolloid Acne Patch', price: 150 })">Add to Cart</button>
+        </div>
       </div>
     </article>
       
@@ -136,7 +146,10 @@
           A wearable palette featuring soft neutrals and shimmer tones for effortless
           daily beauty, soft glam, and polished eye looks.
         </p>
-        <a href="eyeshadow.html" class="btn">ORDER NOW</a>
+        <div class="product-actions">
+          <a href="eyeshadow.html" class="btn btn-secondary">View Details</a>
+          <button class="btn" onclick="addToCart({ id: 'eyeshadow', name: 'Hisyi 9-Colour Eye Shadow Palette', price: 299 })">Add to Cart</button>
+        </div>
       </div>
     </article>
 
@@ -156,7 +169,10 @@
         <div class="special-offer-box">
           Save <strong>100 tk</strong> on the current offer.
         </div>
-        <a href="blotting-paper.html" class="btn">ORDER NOW</a>
+        <div class="product-actions">
+          <a href="blotting-paper.html" class="btn btn-secondary">View Details</a>
+          <button class="btn" onclick="addToCart({ id: 'blotting', name: 'Oil Absorbing Blotting Paper', price: 299 })">Add to Cart</button>
+        </div>
       </div>
     </article>
   </div>
