@@ -158,6 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
       closePanel(mobileMenu);
     }
   });
+
+  updateFloatingCart();
 });
 
 /* =========================
@@ -179,9 +181,10 @@ function saveCart(cart) {
 function addToGlobalCart(item) {
   let cart = getCart();
 
-  const existingIndex = cart.findIndex(cartItem =>
-    cartItem.name === item.name &&
-    cartItem.variant === item.variant
+  const existingIndex = cart.findIndex(
+    (cartItem) =>
+      cartItem.name === item.name &&
+      cartItem.variant === item.variant
   );
 
   if (existingIndex > -1) {
@@ -210,7 +213,7 @@ function updateFloatingCart() {
   let totalItems = 0;
   let totalPrice = 0;
 
-  cart.forEach(item => {
+  cart.forEach((item) => {
     const qty = Number(item.quantity) || 1;
     const price = Number(item.price) || 0;
 
@@ -225,5 +228,4 @@ function updateFloatingCart() {
   if (totalEl) totalEl.textContent = "৳" + totalPrice;
 }
 
-document.addEventListener("DOMContentLoaded", updateFloatingCart);
 window.addEventListener("storage", updateFloatingCart);
