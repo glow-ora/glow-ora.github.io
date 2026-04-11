@@ -5,11 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menuToggle");
   const slides = document.querySelectorAll(".slide");
   const catalogLinks = document.querySelectorAll('a[href="#catalog"]');
+
   const cartCount = document.getElementById("cart-count");
   const cartItemsContainer = document.getElementById("cart-items");
   const subtotalEl = document.getElementById("subtotal");
-  const deliveryEl = document.getElementById("delivery");
+  const deliveryEl = document.getElementById("deliveryTotal");
   const totalEl = document.getElementById("total");
+
+  const cartDrawer = document.getElementById("cartDrawer");
+  const cartOverlay = document.getElementById("cartOverlay");
+  const closeCartBtn = document.getElementById("closeCartBtn");
+  const orderForm = document.getElementById("orderForm");
+  const deliveryAreaSelect = document.getElementById("deliveryArea");
 
   let currentSlide = 0;
   let sliderInterval = null;
@@ -103,7 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     saveCart();
     updateCartCount();
-    alert(product.name + " added to cart");
+    renderCart();
+    openCartDrawer();
   }
 
   function removeFromCart(productId) {
@@ -135,7 +143,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function calculateDelivery(subtotal) {
     if (subtotal === 0) return 0;
-    return 80;
+
+    const selectedArea = deliveryAreaSelect ? deliveryAreaSelect.value : "dhaka";
+    let delivery = selectedArea === "outside" ? 120 : 80;
+
+    const acneItem = cart.find((item) => item.id === "acne");
+    if (acneItem && acneItem.quantity >= 4) {
+      delivery = 0;
+    }
+
+    return delivery;
   }
 
   function renderCart() {
@@ -156,15 +173,16 @@ document.addEventListener("DOMContentLoaded", () => {
       itemEl.className = "cart-item";
 
       itemEl.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
         <div class="cart-item-info">
           <h4>${item.name}</h4>
-          <p>Price: ৳${item.price}</p>
-          <p>Quantity: ${item.quantity}</p>
-        </div>
-        <div class="cart-item-actions">
-          <button class="qty-btn minus-btn" data-id="${item.id}">-</button>
-          <button class="qty-btn plus-btn" data-id="${item.id}">+</button>
-          <button class="remove-btn" data-id="${item.id}">Remove</button>
+          <p class="cart-item-desc">${item.description}</p>
+          <p class="cart-item-meta">Price: ৳${item.price} | Quantity: ${item.quantity}</p>
+          <div class="cart-item-actions">
+            <button type="button" class="qty-btn minus-btn" data-id="${item.id}">-</button>
+            <button type="button" class="qty-btn plus-btn" data-id="${item.id}">+</button>
+            <button type="button" class="remove-btn" data-id="${item.id}">Remove</button>
+          </div>
         </div>
       `;
 
@@ -205,11 +223,86 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCart();
   }
 
+  function openCartDrawer() {
+    if (!cartDrawer || !cartOverlay) return;
+
+    cartDrawer.classList.remove("hidden");
+    cartOverlay.classList.remove("hidden");
+
+    requestAnimationFrame(() => {
+      cartDrawer.classList.add("is-visible");
+      cartOverlay.classList.add("is-visible");
+    });
+  }
+
+  function closeCartDrawer() {
+    if (!cartDrawer || !cartOverlay) return;
+
+    cartDrawer.classList.remove("is-visible");
+    cartOverlay.classList.remove("is-visible");
+
+    setTimeout(() => {
+      cartDrawer.classList.add("hidden");
+      cartOverlay.classList.add("hidden");
+    }, 300);
+  }
+
+  async function placeOrder(event) {
+    event.preventDefault();
+
+    if (!cart.length) {
+      alert("Your cart is empty.");
+      return;
+    }
+
+    const customerName = document.getElementById("customerName").value.trim();
+    const customerPhone = document.getElementById("customerPhone").value.trim();
+    const customerAddress = document.getElementById("customerAddress").value.trim();
+    const deliveryArea = document.getElementById("deliveryArea").value;
+
+    if (!customerName || !customerPhone || !customerAddress) {
+      alert("Please fill in your name, phone, and address.");
+      return;
+    }
+
+    const subtotal = calculateSubtotal();
+    const delivery = calculateDelivery(subtotal);
+    const total = subtotal + delivery;
+
+    const payload = {
+      customerName,
+      customerPhone,
+      customerAddress,
+      deliveryArea,
+      subtotal,
+      delivery,
+      total,
+      items: cart
+    };
+
+    try {
+      await fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      alert("Order submitted successfully!");
+      clearCart();
+      orderForm.reset();
+      closeCartDrawer();
+    } catch (error) {
+      alert("Something went wrong. Please try again.");
+      console.error(error);
+    }
+  }
+
   window.addToCart = addToCart;
   window.clearCart = clearCart;
-  window.goToCart = function () {
-    window.location.href = "cart.html";
-  };
+  window.openCartDrawer = openCartDrawer;
 
   if (slides.length > 0) {
     showSlide(currentSlide);
@@ -228,6 +321,22 @@ document.addEventListener("DOMContentLoaded", () => {
       event.stopPropagation();
       togglePanel(mobileMenu, searchDrawer);
     });
+  }
+
+  if (closeCartBtn) {
+    closeCartBtn.addEventListener("click", closeCartDrawer);
+  }
+
+  if (cartOverlay) {
+    cartOverlay.addEventListener("click", closeCartDrawer);
+  }
+
+  if (deliveryAreaSelect) {
+    deliveryAreaSelect.addEventListener("change", renderCart);
+  }
+
+  if (orderForm) {
+    orderForm.addEventListener("submit", placeOrder);
   }
 
   catalogLinks.forEach((link) => {
@@ -262,6 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeAllPanels();
+      closeCartDrawer();
     }
   });
 
