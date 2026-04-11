@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - Glowora</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <span class="offer-badge">SHOPPING CART</span>
+  <span class="offer-text">Review your products and place one combined order</span>
+</div>
+
+<header class="header">
+  <button class="header-side icon-btn" onclick="window.location.href='index.html'">←</button>
+
+  <div class="brand">
+    <img src="images/logo.png" alt="Glowora logo">
+    <div class="brand-text">
+      <div class="brand-name">GLOWORA</div>
+      <div class="brand-tagline">The Art of Radiant Skin</div>
+    </div>
+  </div>
+
+  <div class="cart-icon">
+    🛒 <span id="cart-count">0</span>
+  </div>
+</header>
+
+<section class="section">
+  <div class="section-title">
+    <small>Cart</small>
+    <h2>Your Shopping Basket</h2>
+    <p>Add multiple products and pay delivery charge only once.</p>
+  </div>
+
+  <div class="cart-page">
+    <div id="cart-items"></div>
+
+    <div class="cart-summary">
+      <h3 id="subtotal">Subtotal: ৳0</h3>
+      <h3 id="delivery">Delivery: ৳0</h3>
+      <h2 id="total">Total: ৳0</h2>
+
+      <div class="cart-summary-actions">
+        <button class="btn" onclick="clearCart()">Clear Cart</button>
+        <a href="https://wa.me/8801581836550" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
